@@ -83,7 +83,7 @@
 
             <a class="navbar-brand " href="index.php"> <img src="" alt="TSHOP"> </a>
             <!-- this part for mobile -->
-            <div class="search-box pull-right hidden-lg hidden-md hidden-sm">
+            <div class="search-box pull-right">
                 <div class="input-group">
                     <button class="btn btn-nobg getFullSearch" type="button"><i class="fa fa-search"> </i></button>
                 </div>

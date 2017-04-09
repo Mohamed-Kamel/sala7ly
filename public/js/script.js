@@ -1,15 +1,29 @@
+//Search 
+$('.search-box .getFullSearch').on('click', function (e) {
+    $('.search-full').addClass("active"); //you can list several class names 
+    e.preventDefault();
+});
+
+$('.search-close').on('click', function (e) {
+    $('.search-full').removeClass("active"); //you can list several class names 
+    e.preventDefault();
+});
+
+
+
+
 //QUESTION PAGE
 $(function () {
     $("input[type='radio'], input[type='checkbox']").ionCheckRadio();
 });
 $("[data-toggle=tooltip]").tooltip();
 //PROFILE COMPANY PAGE
- $(document).ready(function() {
-        $(".btn-pref .btn").click(function () {
+$(document).ready(function () {
+    $(".btn-pref .btn").click(function () {
         $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
-    
-        $(this).removeClass("btn-default").addClass("btn-primary");   
-});
+
+        $(this).removeClass("btn-default").addClass("btn-primary");
+    });
 });
 (function (e) {
     var t, o = {className: "autosizejs", append: "", callback: !1, resizeDelay: 10}, i = '<textarea tabindex="-1" style="position:absolute; top:-999px; left:0; right:auto; bottom:auto; border:0; padding: 0; -moz-box-sizing:content-box; -webkit-box-sizing:content-box; box-sizing:content-box; word-wrap:break-word; height:0 !important; min-height:0 !important; overflow:hidden; transition:none; -webkit-transition:none; -moz-transition:none;"/>', n = ["fontFamily", "fontSize", "fontWeight", "fontStyle", "letterSpacing", "textTransform", "wordSpacing", "textIndent"], s = e(i).data("autosize", !0)[0];
