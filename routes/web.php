@@ -1,7 +1,4 @@
 <?php
-use Faker\Factory as Faker;
-use App\User;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +13,12 @@ use App\User;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+Route::get('/question', 'QuestionController@index');
+Route::get('/questions', 'QuestionsController@index');
+Route::get('/company', 'CompanyController@index');
+

@@ -27,6 +27,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+
     public $timestamps = false;
 
 
@@ -51,9 +52,7 @@ class User extends Authenticatable
     }
 
 
-    public function userRates(){
+    public function rates(){
         return $this->hasMany('App\Rating');
     }
-
-
 }
