@@ -1,11 +1,15 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use Illuminate\Support\Facades\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+
+
+
 
 class RegisterController extends Controller
 {
@@ -48,9 +52,32 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+            'name'           => 'Required|string|min:5|max:50',  
+            'email'          => 'Required|min:5|max:50|Email|Unique:users',
+            'password'       => 'required|min:6|confirmed',
+            'phone'          => 'required|regex:/[0-9+]+/|min:8|max:14|string|unique:users',
+            'coverphoto'     => 'image|mimes:jpeg,jpg,png,gif|nullable',
+            'profilephoto'   => 'image|required|mimes:jpeg,jpg,png,gif',
+            'group'          => 'in:1,2'
+
+        ],
+        [
+                'required'      => 'يجب ادخال هذا الحقل ',
+                'name.min'      => ' الاسم يجب ان يكون اكبر من 5 حروف',
+                'name.string'   => ' برجاء ادخال الاسم صحيح',
+                
+                'email.Email'   => ' يجب ادخال البريد الاليكترونى بطريقه صحيحه',
+                
+                'email.unique'  =>'عفوا هذا البريد الاليكترونى موجود مسبقا',
+                
+                'password.min'  =>'يجب ادخال كلمه مرور اكبر من 6 احرف',
+                'password.confirmed'=>'عفوا يجب ادخال كلمه المرور بطريقه صحيحه',
+                'phone.min'     =>'عفوا يجب ادخال رقم التليفون صحيح',
+                'phone.numeric' =>'عفوا يجب ادخال رقم التليفون صحيح',
+                'phone.unique'  =>'هذا الرقم محجوز مسبقا',
+                'image'         =>'يجب ادخال صوره ',
+
+
         ]);
     }
 
@@ -62,10 +89,31 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+        $coverPath = null;
+       if (isset($data['coverphoto'])) {
+
+        // $data['coverphoto']="null";
+        $coverPath = $data['coverphoto']->store('images/cover');
+
+       }
+       
+
+         return User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+                'phone'=>$data['phone'],
+                'city'=>$data['city'],
+                'group_id'=>$data['group'],
+                'img'   => $data['profilephoto']->store('images/profile'),
+                'cover' => $coverPath
+
+
         ]);
-    }
+      
+       }
+
 }
+
+ 
+
