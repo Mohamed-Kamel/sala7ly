@@ -12,4 +12,8 @@ class Comment extends Model
 	public function question(){
 	    return $this->belongsTo('App\Question', 'question_id', 'id');
     }
+
+    public function reply(){
+	    return Comment::where('parent_id', '=', $this->id)->get();
+    }
 }

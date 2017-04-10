@@ -12,9 +12,9 @@
     <div class="row">
         <div class="breadcrumbDiv col-lg-12">
             <ul class="breadcrumb">
-                <li><a href="#"><i class="ti-home"></i> الرئيسية</a></li>
-                <li><a href="index.php?page=question"> الاسألة</a></li>
-                <li class="active">مشكله في شاشة لاب سوني</li>
+                <li><a href="{{url('/')}}"><i class="ti-home"></i> الرئيسية</a></li>
+                <li><a href="{{url('/questions')}}"> الاسألة</a></li>
+                <li class="active">{{$question->title}}</li>
             </ul>
         </div>
     </div>
@@ -25,41 +25,57 @@
                 <div class="col-sm-10">
                     <div class="question-user-img">
                         <img src="{{ asset('images/user.png') }}">
-                        <a href="#">مروة محمد احمد عوض</a>
+                        <a href="{{url('/user')}}/{{$question->user->id}}">{{$question->user->name}}</a>
                     </div>
                 </div>
+                @if(Auth::id())
                 <div class="col-sm-2">
+                    @if($question->status === 'closed')
+                    <label>
+                        <input type="checkbox" name="tour" value="0" checked/>
+                       تم حلها
+                    </label>
+                    @else
                     <label>
                         <input type="checkbox" name="tour" value="0"/>
-                       تم حلها 
+                        تم حلها
                     </label>
+                    @endif
                 </div>
+                @endif
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <h1 class="question-title">مشكله في شاشة لاب بي اتش بي </h1>
+                    <h1 class="question-title">{{$question->title}} </h1>
                     <a href="#" class="qustion-user">
                         <i class="ti-tag"></i>
-                        السوفتوير
+                        {{$question->cat->title}}
                     </a>
                 </div>
                 <div class="col-sm-12">
                     <div class="question-header">
                         <span class="qustion-user">
                             <i class="fa fa-eye"></i>
-                            30
+                            {{$question->visited}}
                         </span>
                         <span class="qustion-user">
                             <i class="ti-thought"></i>
-                            14
+                            {{$question->allComments->count()}}
                         </span>
+                        @if($question->status === 'open')
                         <span class="qustion-user">
                             <i class="ti-info-alt"></i>
                             مفتوح
-                        </span> 
+                        </span>
+                        @else
+                        <span class="qustion-user">
+                        <i class="ti-info-alt"></i>
+                            مغلق
+                        </span>
+                        @endif
                         <span class="qustion-user">
                             <i class="ti-timer"></i>
-                            3-12-2017 3:15 PM
+                            {{$question->created}}
                         </span>
                     </div>
                 </div>
@@ -67,27 +83,13 @@
             <div class="">
                 <div class="problem-description">
                     <p>
-                        وريم ايبسوم دولار سيت أميت ,كونسيكتيتور أدايبا يسكينج أليايت,سيت دو أيوسمود تيمبور
-
-                        أنكايديديونتيوت لابوري ات دولار ماجنا أليكيوا . يوت انيم أد مينيم فينايم,كيواس نوستريد
-
-                        أكسير سيتاشن يللأمكو لابورأس نيسي يت أليكيوب أكس أيا كوممودو كونسيكيوات . ديواس
-
-                        أيوتي أريري دولار إن ريبريهينديرأيت فوليوبتاتي فيلايت أيسسي كايلليوم دولار أيو فيجايت
-
-                        نيولا باراياتيور. أيكسسيبتيور ساينت أوككايكات كيوبايداتات نون بروايدينت ,سيونت ان كيولبا
-
-                        كيو أوفيسيا ديسيريونتموليت انيم أيدي ايست لابوريوم."
-
-                        "سيت يتبيرسبايكياتيس يوندي أومنيس أستي ناتيس أيررور سيت فوليبتاتيم أكيسأنتييوم
-
-                        دولاريمكيو لايودانتيوم,توتام ريم أبيرأم,أيكيو أبسا كيواي أب أللو أنفينتوري فيرأتاتيس
+                        {{$question->desc}}
                     </p>
                     <img src="{{ asset('images/problem.png') }}">
                 </div>
 
             </div>
-
+            @if(Auth::id())
             <div class="row">
                 <div class="col-sm-12">
                     <div class="widget-area no-padding blank leave-comment">
@@ -101,72 +103,88 @@
 
                 </div>
             </div>
-            <div class="comments-container">
+            @endif
 
+            <div class="comments-container">
                 <ul id="comments-list" class="comments-list">
-                    <li>
+                    @foreach($question->comments as $comment)
+                        @if(count($comment->reply()))
+
+                            <li>
+                                <div class="comment-main-level">
+                                    <!-- Avatar -->
+                                    <div class="comment-avatar">
+                                    <img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
+                                    <!-- Contenedor del Comentario -->
+                                    <div class="comment-box">
+                                        <div class="comment-head">
+                                            <h6 class="comment-name by-author"><a href="{{ url('/company') }}">اسم الشركة</a></h6>
+                                            <div class="replay-desc">
+                                                <span><i class="ti-timer"></i> {{$comment->created}}</span>
+                                                <a href="#"><i class="fa fa-reply"></i>  تواصل</a>
+                                            </div>
+                                        </div>
+                                        <div class="comment-content">
+                                            {{$comment->comment}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Replies -->
+                                <ul class="comments-list reply-list">
+                                
+                                {{-- {{ $replies = $comment->reply()}} --}}
+                                @foreach($comment->reply() as $reply)
+                                    <li>
+                                        <!-- Avatar -->
+                                        <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
+                                        <!-- Contenedor del Comentario -->
+                                        <div class="comment-box">
+                                            <div class="comment-head">
+                                                <h6 class="comment-name by-author"><a href="{{ url('/company') }}">اسم الشركة</a></h6>
+                                                <div class="replay-desc">
+                                                    <span><i class="ti-timer"></i> {{$reply->created}}</span>
+                                                    <a href="#"><i class="fa fa-reply"></i>  تواصل</a>
+
+                                                </div>
+                                            </div>
+                                            <div class="comment-content">
+                                                {{$reply->comment}}
+                                            </div>
+                                        </div>
+                                    </li>
+                                @endforeach 
+
+                                </ul>
+                            </li>
+
+                    @else
+                        <li>
                         <div class="comment-main-level">
                             <!-- Avatar -->
                             <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
                             <!-- Contenedor del Comentario -->
                             <div class="comment-box">
                                 <div class="comment-head">
-                                    <h6 class="comment-name by-author"><a href="{{ url('/company') }}">اسم الشركة</a></h6>
+                                    <h6 class="comment-name by-author">
+                                    <a href="{{ url('/company') }}">اسم الشركة</a></h6>
                                     <div class="replay-desc">
-                                        <span><i class="ti-timer"></i> منذ ساعتين</span>
-                                        <a href="#"><i class="fa fa-reply"></i>  تواصل</a>
-
+                                        <span><i class="ti-timer"></i> {{$comment->created}}</span>
+                                        <a href="#">
+                                        <i class="fa fa-reply"></i>  تواصل</a>
                                     </div>
                                 </div>
                                 <div class="comment-content">
-                                    المشكله فعلا في الشاشه ممكن اغيرهالك بسعر ممتاز
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Respuestas de los comentarios -->
-                        <ul class="comments-list reply-list">
-                            <li>
-                                <!-- Avatar -->
-                                <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
-                                <!-- Contenedor del Comentario -->
-                                <div class="comment-box">
-                                    <div class="comment-head">
-                                        <h6 class="comment-name by-author"><a href="{{ url('/company') }}">اسم الشركة</a></h6>
-                                        <div class="replay-desc">
-                                            <span><i class="ti-timer"></i> منذ ساعتين</span>
-                                            <a href="#"><i class="fa fa-reply"></i>  تواصل</a>
-
-                                        </div>
-                                    </div>
-                                    <div class="comment-content">
-                                        المشكله فعلا في الشاشه ممكن اغيرهالك بسعر ممتاز
-                                    </div>
-                                </div>
-                            </li>
-
-                        </ul>
-                    </li>
-
-                    <li>
-                        <div class="comment-main-level">
-                            <!-- Avatar -->
-                            <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
-                            <!-- Contenedor del Comentario -->
-                            <div class="comment-box">
-                                <div class="comment-head">
-                                    <h6 class="comment-name by-author"><a href="{{ url('/company') }}">اسم الشركة</a></h6>
-                                    <div class="replay-desc">
-                                        <span><i class="ti-timer"></i> منذ ساعتين</span>
-                                        <a href="#"><i class="fa fa-reply"></i>  تواصل</a>
-
-                                    </div>
-                                </div>
-                                <div class="comment-content">
-                                    المشكله فعلا في الشاشه ممكن اغيرهالك بسعر ممتاز
+                                    {{$comment->comment}}
                                 </div>
                             </div>
                         </div>
                     </li>
+
+                    @endif
+
+                    @endforeach
+
                 </ul>
             </div>
         </div>

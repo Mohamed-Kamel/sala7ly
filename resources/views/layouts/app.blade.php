@@ -75,13 +75,94 @@
                     <a class="navbar-brand" href="{{ url('/') }}"> <img src="" alt="OUR WEBSITE TITLE"> </a>
                     <!-- this part for mobile -->
 
-                </div>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
+                        class="sr-only"> Toggle navigation </span> <span class="icon-bar"> </span> <span
+                        class="icon-bar"> </span> <span class="icon-bar"> </span></button>
 
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="{{ url('/') }}"> الرئيسية </a></li>
-                        <li><a href="{{ url('/questions') }}"> الاسئلة </a></li>
-                        <li><a href="{{ url('/companies') }}"> شركات الصيانة </a></li>
+
+
+            <a class="navbar-brand " href="{{url('/')}}"> <img src="" alt="TSHOP"> </a>
+            <!-- this part for mobile -->
+
+            <div class="search-box pull-right">
+                <div class="input-group">
+                    <button class="btn btn-nobg getFullSearch" type="button"><i class="fa fa-search"> </i></button>
+                </div>
+                <!-- /input-group -->
+            </div>
+
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{{ url('/') }}"> الرئيسية </a></li>
+                <li><a href="{{ url('/questions') }}"> الاسئلة </a></li>
+                <li><a href="{{ url('/companies') }}"> شركات الصيانة </a></li>
+            </ul>
+        </div>
+
+        <div class="user-header">
+            @if (Auth::guest())
+                <ul class="userMenu">
+
+                    <li><a href="{{ route('login') }}"> <span class="hidden-xs">تسجيل الدخول</span>
+                            <i class="glyphicon glyphicon-log-in hide visible-xs "></i> </a></li>
+                    <li class="hidden-xs"><a href="{{ route('register') }}"> مستخدم جديد </a></li>
+                </ul>
+            @else
+                <a href="#"> <img src="assets/images/user.png"> {{ Auth::user()->name }}</a>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            Logout
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </li>
+                </ul>
+            @endif
+        </div>
+
+
+        <!--/.nav-collapse -->
+    </div>
+    <!--/.container -->
+    <form action="{{url('/search')}}">
+    <div class="search-full text-right"><a class="pull-right search-close"> <i class=" fa fa-times-circle"> </i> </a>
+        <div class="searchInputBox pull-right">
+            <input type="search" data-searchurl="search?=" name="question" placeholder="start typing and hit enter to search"
+                   class="search-input">
+            <button class="btn-nobg search-btn" type="submit"><i class="fa fa-search"> </i></button>
+        </div>
+    </div>
+    </form>
+    <!--/.search-full-->
+
+</div>
+
+
+<div class="page-container">
+    @yield('content')
+</div>
+<footer>
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4  col-md-4 col-sm-6 col-xs-6">
+                    <h3> مساعدة </h3>
+                    <ul>
+                        <li class="supportLi">
+                            <p> اذا اردت الاستفسار عن شيئ ما قم بالاتصال بنا </p>
+                            <h4><a class="inline" href="callto:+88016000000"> <strong> <i class="fa fa-phone"> </i> 88
+                                        0160 000 000</strong> </a></h4>
+                            <h4><a class="inline" href="mailto:help@tshopweb.com"> <i class="fa fa-envelope-o"> </i>
+                                    help@tshopweb.com </a></h4>
+                        </li>
+
                     </ul>
                 </div>
 
