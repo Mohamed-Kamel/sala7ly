@@ -16,8 +16,9 @@ class CreateCommentsTable extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
             $table->text('comment');
-            $table->unsignedInteger('parent_id');
+            $table->unsignedInteger('parent_id')->default(0);
             $table->unsignedInteger('question_id');
+            $table->timestamp('created')->default(\Carbon\Carbon::now());
         });
     }
 

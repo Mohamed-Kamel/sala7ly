@@ -79,10 +79,10 @@
 
 
 
-            <a class="navbar-brand " href="index.php"> <img src="" alt="TSHOP"> </a>
+            <a class="navbar-brand " href="{{url('/')}}"> <img src="" alt="TSHOP"> </a>
             <!-- this part for mobile -->
 
-            <div class="search-box pull-right hidden-lg hidden-md hidden-sm">
+            <div class="search-box pull-right">
                 <div class="input-group">
                     <button class="btn btn-nobg getFullSearch" type="button"><i class="fa fa-search"> </i></button>
                 </div>
@@ -129,14 +129,15 @@
         <!--/.nav-collapse -->
     </div>
     <!--/.container -->
-
+    <form action="{{url('/search')}}">
     <div class="search-full text-right"><a class="pull-right search-close"> <i class=" fa fa-times-circle"> </i> </a>
         <div class="searchInputBox pull-right">
-            <input type="search" data-searchurl="search?=" name="q" placeholder="start typing and hit enter to search"
+            <input type="search" data-searchurl="search?=" name="question" placeholder="start typing and hit enter to search"
                    class="search-input">
             <button class="btn-nobg search-btn" type="submit"><i class="fa fa-search"> </i></button>
         </div>
     </div>
+    </form>
     <!--/.search-full-->
 
 </div>
@@ -205,7 +206,7 @@
 
     <div class="footer-bottom">
         <div class="container">
-            <p class="text-center"> &copy; Salahly 2014. All right reserved. </p>
+            <p class="text-center"> &copy; Salahly 2017. All right reserved. </p>
 
         </div>
     </div>
