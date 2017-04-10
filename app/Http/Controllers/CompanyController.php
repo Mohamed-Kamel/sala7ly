@@ -28,7 +28,7 @@ class CompanyController extends Controller
         $user = User::find($id);
         $user_comments = Rating::where('company_id', '=', $id)->where('status', '!=', 1)->orderBy('created_at', 'ASC')->get();
 
-        $login_user = 1; //Auth::id()
+        $login_user = Auth::id();
         $user_status = Rating::where('company_id', '=', $id)->where('user_id', '=', $login_user)->where('status', '=', '0')->first();
 
         $user_status1 = Rating::where('company_id', '=', $id)->where('user_id', '=', $login_user)->where('status', '=', '1')->first();
@@ -53,7 +53,7 @@ class CompanyController extends Controller
 
         Carbon::setLocale('ar');
 
-        $review_before = Rating::where("user_id", "=", 1)->where("company_id", "=", $request->company_id)->where("status", "=", '1')->first(); //Auth::id()
+        $review_before = Rating::where("user_id", "=", Auth::id())->where("company_id", "=", $request->company_id)->where("status", "=", '1')->first(); //Auth::id()
         if ($review_before) {
             return Response::json(['error' => 'لقد تم عمل تقيم من قبل'], 404); // Status code here
         }

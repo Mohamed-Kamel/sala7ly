@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 
+
 class HomeController extends Controller
 {
     /**
@@ -48,17 +49,14 @@ class HomeController extends Controller
                 'desc.max' => ' يجب ان لا يكون الوصف اكبر من 255 حرف',
             ]);
 
-        $comp = new \App\Company_detail;
+        $comp = \App\Company_detail::where('company_id', '=', Auth::id())->first();
 
-        $comp ->address= $Request['address'];
+        $comp ->address= $Request->address;
 
-        $comp ->desc = $Request['desc'];
-        $comp ->company_id = Auth::id();
+        $comp ->desc = $Request->desc;
 
         $comp ->save();
        
-        return   redirect('/company');
-
-        
+        return   redirect('/');
     }
 }
