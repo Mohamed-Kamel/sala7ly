@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +14,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
@@ -24,8 +24,15 @@ Route::get("/company_details", "HomeController@company_details");
 Route::post("/company_details", "HomeController@details");
 
 
-Route::get('/question', 'QuestionController@index');
-
-Route::get('/questions', 'QuestionsController@index');
-
 Route::get('/company', 'CompanyController@index');
+
+Route::get('/question/{id}', 'QuestionController@showQuestion');
+
+Route::get('/companies', 'CompaniesController@index');
+Route::get('/companies/search', 'CompaniesController@search');
+
+Route::get('/company/{id}', 'CompanyController@index');
+Route::post('/company/{id}', 'CompanyController@rate_company');
+
+Route::get('/search', 'SearchController@questions');
+

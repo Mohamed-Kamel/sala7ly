@@ -1,34 +1,28 @@
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Styles -->
-
-     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css')}}">
-     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css')}}">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <title>{{ config('app.name', 'Laravel') }}</title>
+        <!-- Styles -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css')}}">
         <link href="{{ asset('css/themify-icons.css')}}" rel="stylesheet">
         <link href="{{ asset('css/style.css')}}" rel="stylesheet">
         <link href="{{ asset('css/custom-style.css')}}" rel="stylesheet">
+        <!-- Scripts -->
+        <script>
+            window.Laravel = {!! json_encode([
+                    'csrfToken' => csrf_token(),
+            ]) !!};
+        </script>
+    </head>
+    <body>
 
-
-    <!-- Scripts -->
-    <script>
-        window.Laravel = {!! json_encode([
-            'csrfToken' => csrf_token(),
-        ]) !!};
-    </script>
-</head>
-<body>
-
- <!-- Fixed navbar start -->
+        <!-- Fixed navbar start -->
         <div class="navbar navbar-tshop navbar-fixed-top megamenu" role="navigation">
             <div class="navbar-top">
                 <div class="container">
@@ -50,7 +44,7 @@
                             <div class="text-left">
                                 <ul>
                                     <li class="phone-number">
-                                        <a href="callto:+0111232656"> 
+                                        <a href="callto:+0111232656">
                                             <i class="glyphicon glyphicon-phone-alt "></i>
                                             88 01680 53 1352
                                         </a>
@@ -71,24 +65,23 @@
 
             <div class="container">
                 <div class="navbar-header">
-               
-                                         
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
                             class="sr-only"> Toggle navigation </span> <span class="icon-bar"> </span> <span
                             class="icon-bar"> </span> <span class="icon-bar"> </span></button>
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-cart"><i
                             class="fa fa-shopping-cart colorWhite"> </i> <span
                             class="cartRespons colorWhite">  </span></button>
-                            
-                               
-                    <a class="navbar-brand " href="index.php"> <img src="" alt="TSHOP"> </a>
+
+                    <a class="navbar-brand" href="{{ url('/') }}"> <img src="" alt="OUR WEBSITE TITLE"> </a>
                     <!-- this part for mobile -->
-                    <div class="search-box pull-right hidden-lg hidden-md hidden-sm">
+
+                    <div class="search-box pull-right">
                         <div class="input-group">
                             <button class="btn btn-nobg getFullSearch" type="button"><i class="fa fa-search"> </i></button>
                         </div>
                         <!-- /input-group -->
                     </div>
+
                 </div>
 
                 <div class="navbar-collapse collapse">
@@ -100,53 +93,55 @@
                 </div>
 
                 <div class="user-header">
-                  @if (Auth::guest())
-                                        <ul class="userMenu">
-                                           
-                                            <li><a href="{{ route('login') }}"> <span class="hidden-xs">تسجيل الدخول</span>
-                                                    <i class="glyphicon glyphicon-log-in hide visible-xs "></i> </a></li>
-                                            <li class="hidden-xs"><a href="{{ route('register') }}" > مستخدم جديد </a></li>
-                                        </ul>
-                @else
-                    <a href="#"> <img src="assets/images/user.png"> {{ Auth::user()->name }}</a>
-                    <ul role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
+                    @if (Auth::guest())
+                    <ul class="userMenu">
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                                 @endif
+                        <li><a href="{{ route('login') }}"> <span class="hidden-xs">تسجيل الدخول</span>
+                                <i class="glyphicon glyphicon-log-in hide visible-xs "></i> </a></li>
+                        <li class="hidden-xs"><a href="{{ route('register') }}"> مستخدم جديد </a></li>
+                    </ul>
+                    @else
+                    <a href="#"> <img src="assets/images/user.png"> {{ Auth::user()->name }}</a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                       document.getElementById('logout-form').submit();">
+                                Logout
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
+                    </ul>
+                    @endif
                 </div>
-                
+
 
                 <!--/.nav-collapse -->
             </div>
             <!--/.container -->
-
-            <div class="search-full text-right"><a class="pull-right search-close"> <i class=" fa fa-times-circle"> </i> </a>
-                <div class="searchInputBox pull-right">
-                    <input type="search" data-searchurl="search?=" name="q" placeholder="start typing and hit enter to search"
-                           class="search-input">
-                    <button class="btn-nobg search-btn" type="submit"><i class="fa fa-search"> </i></button>
+            <form action="{{url('/search')}}">
+                <div class="search-full text-right"><a class="pull-right search-close"> <i class=" fa fa-times-circle"> </i> </a>
+                    <div class="searchInputBox pull-right">
+                        <input type="search" data-searchurl="search?=" name="question" placeholder="start typing and hit enter to search"
+                               class="search-input">
+                        <button class="btn-nobg search-btn" type="submit"><i class="fa fa-search"> </i></button>
+                    </div>
                 </div>
-            </div>
+            </form>
             <!--/.search-full-->
 
         </div>
-  
 
 
-     <div class="page-container">
-@yield('content')
-     </div>
-  <footer>
+        <div class="page-container">
+            @yield('content')
+        </div>
+
+
+        <footer>
             <div class="footer">
                 <div class="container">
                     <div class="row">
@@ -172,7 +167,7 @@
                                 <li><a href="#"> اتصل بنا </a></li>
                                 <li><a href="#"> مساعدة </a></li>
                                 <li><a href="#"> رابط ثان </a></li>
-                                <li><a href="#"> رابط ثالث  </a></li>
+                                <li><a href="#"> رابط ثالث </a></li>
                             </ul>
                         </div>
 
@@ -206,17 +201,30 @@
 
             <div class="footer-bottom">
                 <div class="container">
-                    <p class="text-center"> &copy; Salahly  2014. All right reserved. </p>
+                    <p class="text-center"> &copy; Salahly 2014. All right reserved. </p>
 
                 </div>
             </div>
-        </div>
-     <!-- Latest compiled and minified JavaScript -->
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>     
-    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>    
-    <script type="text/javascript" src="{{ asset('js/ion-checkRadio/ion.checkRadio.min.js') }}"></script>
-    <script src="{{ asset('js/script.js') }}"></script>
+        </footer>
 
-</body>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/ion-checkRadio/ion.checkRadio.min.js') }}"></script>
+        <script src="{{ asset('js/script.js') }}"></script>
+
+
+        <script>
+            $(document).ready(function () {
+                $('#option').change(function () {
+                    $('.next').css({"display": ""})
+                });
+
+            });
+        </script>
+
+
+    </body>
+
 </html>

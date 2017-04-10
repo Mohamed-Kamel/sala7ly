@@ -27,9 +27,6 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    
-
-
     public function questions(){
         return $this->hasMany('App\Question');
     }
@@ -50,8 +47,7 @@ class User extends Authenticatable
         return $this->belongsTo('App\Group');
     }
 
-
     public function rates(){
-        return $this->hasMany('App\Rating', 'user_id');
+        return $this->hasMany('App\Rating');
     }
 }
