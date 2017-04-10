@@ -20,7 +20,13 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 Route::get('/question/{id}', 'QuestionController@showQuestion');
 Route::get('/questions', 'QuestionsController@index');
+
+
+Route::get('/companies', 'CompaniesController@index');
+Route::get('/companies/search', 'CompaniesController@search');
+
 Route::get('/company/{id}', 'CompanyController@index');
 Route::post('/company/{id}', 'CompanyController@rate_company');
+
 
 Route::get('/search', 'SearchController@questions');
