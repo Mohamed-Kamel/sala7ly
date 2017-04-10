@@ -109,7 +109,7 @@
                                         </ul>
                 @else
                     <a href="#"> <img src="assets/images/user.png"> {{ Auth::user()->name }}</a>
-                    <ul class="dropdown-menu" role="menu">
+                    <ul role="menu">
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -217,17 +217,6 @@
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>    
     <script type="text/javascript" src="{{ asset('js/ion-checkRadio/ion.checkRadio.min.js') }}"></script>
     <script src="{{ asset('js/script.js') }}"></script>
-
-   <script>
-
-    $(document).ready(function(){
-        $('#option').change(function(){
-           $('.next').css({"display":""})
-        });
-
-    });
-</script>
-
 
 </body>
 </html>
