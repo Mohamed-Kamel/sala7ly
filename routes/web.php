@@ -20,5 +20,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 Route::get('/question', 'QuestionController@index');
 Route::get('/questions', 'QuestionsController@index');
-Route::get('/company', 'CompanyController@index');
+Route::get('/company/{id}', 'CompanyController@index');
+Route::post('/company/{id}', 'CompanyController@rate_company');
 

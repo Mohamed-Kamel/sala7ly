@@ -20,6 +20,7 @@ class CreateRatingsTable extends Migration
             $table->unsignedTinyInteger('stars', false)->default(0);
             $table->text('review');
             $table->enum('status', ['0', '1']);
+            $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->unique(['user_id', 'company_id']);
         });
     }

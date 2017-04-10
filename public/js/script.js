@@ -7,7 +7,6 @@ $("[data-toggle=tooltip]").tooltip();
  $(document).ready(function() {
         $(".btn-pref .btn").click(function () {
         $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
-    
         $(this).removeClass("btn-default").addClass("btn-primary");   
 });
 });
@@ -103,6 +102,7 @@ var __slice = [].slice;
             e || (e = this.options.rating);
             if (e) {
                 for (t = n = 0, i = e - 1; 0 <= i ? n <= i : n >= i; t = 0 <= i ? ++n : --n) {
+
                     this.$el.find("span").eq(t).removeClass("glyphicon-star-empty").addClass("glyphicon-star")
                 }
             }
@@ -168,8 +168,41 @@ $(function () {
         closeReviewBtn.hide();
 
     });
-
+    var star=0;
     $('.starrr').on('starrr:change', function (e, value) {
         ratingsField.val(value);
+        star=value;
+    });
+
+    $('.save').on('click', function ( event) {
+        event.preventDefault();
+        var company_id= $(".save").attr('id');
+        var review = $("#new-review").val();
+        var token = $("#token").val();
+          $.ajax({
+                type:'post',
+                data:{
+                    'stars':star,
+                    'company_id' : company_id,
+                    'review' : review,
+                    '_token' : token
+                    },
+                success:function(data){
+                    window.location.reload();
+            }
+            }).fail(function (error) {
+                if(error.responseJSON.error){
+                    $(".error_review").empty();
+                    $(".error_review").append($("<p></p>").addClass("alert alert-danger text-right"));
+                    $(".error_review").find("p").append("<i class='fa fa-times-circle' style='font-size:18px;'></i> ");
+                    $(".error_review").find("p").append(" "+error.responseJSON.error);
+                }
+                if(error.responseJSON.review[0]){
+                    $(".error_review").empty();
+                    $(".error_review").append($("<p></p>").addClass("alert alert-danger text-right"));
+                    $(".error_review").find("p").append("<i class='fa fa-times-circle' style='font-size:18px;'></i> ");
+                    $(".error_review").find("p").append(" "+error.responseJSON.review[0]);
+                }
+            });
     });
 });
