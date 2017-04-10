@@ -21,4 +21,6 @@ Route::get('/home', 'HomeController@index');
 Route::get('/question', 'QuestionController@index');
 Route::get('/questions', 'QuestionsController@index');
 Route::get('/company', 'CompanyController@index');
+Route::get('/companies', 'CompaniesController@index');
+Route::get('/companies/search', 'CompaniesController@search');
 

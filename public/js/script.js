@@ -9,7 +9,9 @@ $('.search-close').on('click', function (e) {
     e.preventDefault();
 });
 
-
+//$(".search-comp-button").click(function(){
+//$(".companies-list").hide();
+//});
 
 
 //QUESTION PAGE
