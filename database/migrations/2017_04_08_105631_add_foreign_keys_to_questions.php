@@ -16,6 +16,7 @@ class AddForeignKeysToQuestions extends Migration
         Schema::table('questions', function (Blueprint $table) {
             $table->foreign('cat_id')->references('id')->on('cats');
             $table->foreign('user_id')->references('id')->on('users');
+            DB::statement('CREATE INDEX questions_title_idx ON questions (title(100));');
         });
     }
 

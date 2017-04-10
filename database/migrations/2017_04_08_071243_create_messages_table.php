@@ -17,7 +17,7 @@ class CreateMessagesTable extends Migration
             $table->increments('id');
             $table->text('msg');
             $table->enum('status', ['read', 'unread']);
-            $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('created')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->integer('sender_id')->unsigned();
             $table->integer('receiver_id')->unsigned();
         });
