@@ -51,7 +51,6 @@ class User extends Authenticatable
         return $this->belongsTo('App\Group');
     }
 
-
     public function rates(){
         return $this->hasMany('App\Rating');
     }

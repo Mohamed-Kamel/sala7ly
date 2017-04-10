@@ -21,9 +21,9 @@ $("[data-toggle=tooltip]").tooltip();
 $(document).ready(function () {
     $(".btn-pref .btn").click(function () {
         $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
-
         $(this).removeClass("btn-default").addClass("btn-primary");
     });
+
 });
 (function (e) {
     var t, o = {className: "autosizejs", append: "", callback: !1, resizeDelay: 10}, i = '<textarea tabindex="-1" style="position:absolute; top:-999px; left:0; right:auto; bottom:auto; border:0; padding: 0; -moz-box-sizing:content-box; -webkit-box-sizing:content-box; box-sizing:content-box; word-wrap:break-word; height:0 !important; min-height:0 !important; overflow:hidden; transition:none; -webkit-transition:none; -moz-transition:none;"/>', n = ["fontFamily", "fontSize", "fontWeight", "fontStyle", "letterSpacing", "textTransform", "wordSpacing", "textIndent"], s = e(i).data("autosize", !0)[0];
@@ -117,6 +117,7 @@ var __slice = [].slice;
             e || (e = this.options.rating);
             if (e) {
                 for (t = n = 0, i = e - 1; 0 <= i ? n <= i : n >= i; t = 0 <= i ? ++n : --n) {
+
                     this.$el.find("span").eq(t).removeClass("glyphicon-star-empty").addClass("glyphicon-star")
                 }
             }
@@ -182,8 +183,41 @@ $(function () {
         closeReviewBtn.hide();
 
     });
-
+    var star=0;
     $('.starrr').on('starrr:change', function (e, value) {
         ratingsField.val(value);
+        star=value;
+    });
+
+    $('.save').on('click', function ( event) {
+        event.preventDefault();
+        var company_id= $(".save").attr('id');
+        var review = $("#new-review").val();
+        var token = $("#token").val();
+          $.ajax({
+                type:'post',
+                data:{
+                    'stars':star,
+                    'company_id' : company_id,
+                    'review' : review,
+                    '_token' : token
+                    },
+                success:function(data){
+                    window.location.reload();
+            }
+            }).fail(function (error) {
+                if(error.responseJSON.error){
+                    $(".error_review").empty();
+                    $(".error_review").append($("<p></p>").addClass("alert alert-danger text-right"));
+                    $(".error_review").find("p").append("<i class='fa fa-times-circle' style='font-size:18px;'></i> ");
+                    $(".error_review").find("p").append(" "+error.responseJSON.error);
+                }
+                if(error.responseJSON.review[0]){
+                    $(".error_review").empty();
+                    $(".error_review").append($("<p></p>").addClass("alert alert-danger text-right"));
+                    $(".error_review").find("p").append("<i class='fa fa-times-circle' style='font-size:18px;'></i> ");
+                    $(".error_review").find("p").append(" "+error.responseJSON.review[0]);
+                }
+            });
     });
 });

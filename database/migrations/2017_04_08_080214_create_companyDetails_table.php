@@ -17,6 +17,7 @@ class CreateCompanyDetailsTable extends Migration
             $table->increments('id');
             $table->string('address', 70);
             $table->text('desc');
+            $table->double('rating')->default(0);
             $table->unsignedInteger('company_id')->unique();
         });
     }
