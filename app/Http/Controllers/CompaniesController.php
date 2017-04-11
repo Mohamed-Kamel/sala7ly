@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Company_detail;
 use App\User;
 
 class CompaniesController extends Controller {

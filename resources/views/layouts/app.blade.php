@@ -68,19 +68,9 @@
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
                             class="sr-only"> Toggle navigation </span> <span class="icon-bar"> </span> <span
                             class="icon-bar"> </span> <span class="icon-bar"> </span></button>
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-cart"><i
-                            class="fa fa-shopping-cart colorWhite"> </i> <span
-                            class="cartRespons colorWhite">  </span></button>
-
-                    <a class="navbar-brand" href="{{ url('/') }}"> <img src="" alt="OUR WEBSITE TITLE"> </a>
+                    <a class="navbar-brand" href="{{ url('/') }}"> <img src="" alt="Salahly"> </a>
                     <!-- this part for mobile -->
 
-                    <div class="search-box pull-right">
-                        <div class="input-group">
-                            <button class="btn btn-nobg getFullSearch" type="button"><i class="fa fa-search"> </i></button>
-                        </div>
-                        <!-- /input-group -->
-                    </div>
 
                 </div>
 
@@ -91,33 +81,50 @@
                         <li><a href="{{ url('/companies') }}"> شركات الصيانة </a></li>
                     </ul>
                 </div>
-
+                <div class="search-box pull-left">
+                    <div class="input-group">
+                        <button class="btn btn-nobg getFullSearch" type="button"><i class="fa fa-search"> </i></button>
+                    </div>
+                    <!-- /input-group -->
+                </div>
                 <div class="user-header">
                     @if (Auth::guest())
-                    <ul class="userMenu">
-
-                        <li><a href="{{ route('login') }}"> <span class="hidden-xs">تسجيل الدخول</span>
-                                <i class="glyphicon glyphicon-log-in hide visible-xs "></i> </a></li>
-                        <li class="hidden-xs"><a href="{{ route('register') }}"> مستخدم جديد </a></li>
+                    <ul class="use_menu">
+                        <li><a class="hvr-ripple-out" href="{{ route('login') }}"> <i class="fa fa-sign-in"></i> تسجيل الدخول</a></li>
+                        <li><a class="hvr-ripple-out" href="{{ route('register') }}"> <i class="ti-user"></i> مستخدم جديد</a></li>
                     </ul>
                     @else
-                    <a href="#"> <img src="assets/images/user.png"> {{ Auth::user()->name }}</a>
-                    <ul class="" role="menu">
-                        <li>
-                            <a href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                       document.getElementById('logout-form').submit();">
-                                Logout
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                            </form>
-                        </li>
+                    <ul class="user-notify">
+                        <a class="header-notifi" href=""> <i class="ti-bell"></i></a>
                     </ul>
+
+                    <div class="header-user">
+                        <a href="#" class="heaer-user-name"> <img src="{{ Auth::user()->img }}">
+                        </a>
+                        <ul class="user-menu" role="menu">
+                            <li>
+                                <a href="{{ URL('userProfile') }}/{{ Auth::user()->id }}">
+                                    <i class="ti-id-badge"></i> 
+                                    {{ Auth::user()->name }}                       
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                           document.getElementById('logout-form').submit();">
+                                    <i class="ti-power-off"></i> 
+                                    تسجيل الخروج
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
+                        </ul>
+
+                    </div>
                     @endif
                 </div>
-
 
                 <!--/.nav-collapse -->
             </div>
@@ -125,7 +132,7 @@
             <form action="{{url('/search')}}">
                 <div class="search-full text-right"><a class="pull-right search-close"> <i class=" fa fa-times-circle"> </i> </a>
                     <div class="searchInputBox pull-right">
-                        <input type="search" data-searchurl="search?=" name="question" placeholder="start typing and hit enter to search"
+                        <input type="search" data-searchurl="search?=" name="question" placeholder="ابحث عن سؤال"
                                class="search-input">
                         <button class="btn-nobg search-btn" type="submit"><i class="fa fa-search"> </i></button>
                     </div>
@@ -161,7 +168,7 @@
                         <div style="clear:both" class="hide visible-xs"></div>
 
                         <div class="col-lg-4  col-md-4 col-sm-6 col-xs-6">
-                            <h3> My Account </h3>
+                            <h3> روابط تهمك </h3>
                             <ul>
                                 <li><a href="#"> من نحن </a></li>
                                 <li><a href="#"> اتصل بنا </a></li>
@@ -216,15 +223,15 @@
 
 
         <script>
-            $(document).ready(function () {
-                $('#option').change(function () {
-                    $('.next').css({"display": ""})
-                });
+                                       $(document).ready(function () {
+                                           $('#option').change(function () {
+                                               $('.next').css({"display": ""})
+                                           });
 
-            });
+                                       });
         </script>
 
-    @yield('scripts')
+        @yield('scripts')
     </body>
 
 </html>

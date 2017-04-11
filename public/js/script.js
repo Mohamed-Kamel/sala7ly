@@ -8,6 +8,9 @@ $('.search-close').on('click', function (e) {
     $('.search-full').removeClass("active"); //you can list several class names 
     e.preventDefault();
 });
+$('.heaer-user-name').on('click', function (e) {
+    $('.header-user>ul').toggle("slow");
+});
 
 //$(".search-comp-button").click(function(){
 //$(".companies-list").hide();

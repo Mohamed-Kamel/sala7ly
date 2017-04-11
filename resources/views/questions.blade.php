@@ -14,7 +14,7 @@
         <div class="breadcrumbDiv col-lg-12">
             <ul class="breadcrumb">
                 <li><a href="#"><i class="ti-home"></i> الرئيسية</a></li>
-                <li class="active">الاسألة</li>
+                <li class="active">الأسئلة</li>
             </ul>
         </div>
     </div>
@@ -166,20 +166,33 @@
         <!--right column-->
         <div class="col-lg-9 col-md-9 col-sm-12 all-questions">
             <div class="row">
+
+                @if(Auth::id())
                 <div class="col-sm-12">
                     <div class="widget-area no-padding blank">
+                        @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
                         <div class="status-upload">
-                            <form>
-                                <input type="text" placeholder="عنوان المشكله">
-                                <textarea placeholder="اكتب مشكلتك" ></textarea>
+                            <form method="post" action="{{ URL('/question') }}" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                <input type="text" name="title" placeholder="عنوان المشكله">
+                                <textarea name="desc" placeholder="اكتب مشكلتك" ></textarea>
                                 <ul>
                                     <li class="upload-img-icon">
-                                        
-                                        <a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="اضف صورة"><input type="file"><i class="ti-image"></i></a>
+                                        <a title="" data-toggle="tooltip" data-placement="bottom" data-original-title="اضف صورة"><input type="file" name="img"><i class="ti-image"></i></a>
                                     </li>
                                     <li class="">
-                                        <select>
-                                            <option>قسم السوفتوير</option>
+                                        <select name="cat_id" >
+                                            @foreach($cats as $cat)
+                                            <option value="{{$cat->id}}">{{$cat->title}}</option>
+                                            @endforeach
                                         </select>
                                     </li>
                                 </ul>
@@ -189,22 +202,25 @@
                     </div><!-- Widget Area -->
 
                 </div>
+                @endif
+
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div id="category-1" class="tab-pane fade in active">
+                        @foreach($questions as $question)   
                         <div class="question-block">
                             <div class="row">
                                 <div class="col-sm-2">
                                     <div class="row">
                                         <span class="data-icons col-sm-4">
-                                            30
+                                            {{ $question->visited }}
                                             <i class="fa fa-eye"></i>
                                         </span>
                                         <span class="data-icons col-sm-4">
-                                            14
+                                            {{ $question->allComments->count()}}
                                             <i class="ti-thought"></i>
                                         </span>
                                         <span class="data-icons col-sm-4">
-                                            مفتوح
+                                            {{ $question->status }}
                                             <i class="ti-info-alt"></i>
                                         </span>
                                     </div>
@@ -212,447 +228,28 @@
                                 <div class="col-sm-10 question-desc">
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <h2 class="question-title-block"><a href="#">مشكله في مروجة لاب توب سوني</a></h2>
+                                            <h2 class="question-title-block"><a href="{{ URL('question') }}/{{ $question->id }}">{{ $question->title }}</a></h2>
                                         </div>
                                         <div class="col-sm-12">
                                             <a href="#" class="qustion-user">
                                                 <i class="ti-user"></i>
-                                                محمد احمد عوض
+                                                {{ $question->user->name }}
                                             </a>
 
                                             <a href="#" class="qustion-user">
                                                 <i class="ti-tag"></i>
-                                                السوفتوير
+                                                {{ $question->cat->title }}
                                             </a>
                                             <span class="qustion-user">
                                                 <i class="ti-timer"></i>
-                                                3-12-2017 3:15 PM
+                                                {{ $question->created }}
                                             </span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="question-block">
-                            <div class="row">
-                                <div class="col-sm-2">
-                                    <div class="row">
-                                        <span class="data-icons col-sm-4">
-                                            30
-                                            <i class="fa fa-eye"></i>
-                                        </span>
-                                        <span class="data-icons col-sm-4">
-                                            14
-                                            <i class="ti-thought"></i>
-                                        </span>
-                                        <span class="data-icons col-sm-4">
-                                            مفتوح
-                                            <i class="ti-info-alt"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-10 question-desc">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <h2 class="question-title-block"><a href="#">مشكله في مروجة لاب توب سوني</a></h2>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <a href="#" class="qustion-user">
-                                                <i class="ti-user"></i>
-                                                محمد احمد عوض
-                                            </a>
-
-                                            <a href="#" class="qustion-user">
-                                                <i class="ti-tag"></i>
-                                                السوفتوير
-                                            </a>
-                                            <span class="qustion-user">
-                                                <i class="ti-timer"></i>
-                                                3-12-2017 3:15 PM
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="question-block">
-                            <div class="row">
-                                <div class="col-sm-2">
-                                    <div class="row">
-                                        <span class="data-icons col-sm-4">
-                                            30
-                                            <i class="fa fa-eye"></i>
-                                        </span>
-                                        <span class="data-icons col-sm-4">
-                                            14
-                                            <i class="ti-thought"></i>
-                                        </span>
-                                        <span class="data-icons col-sm-4">
-                                            مفتوح
-                                            <i class="ti-info-alt"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-10 question-desc">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <h2 class="question-title-block"><a href="#">مشكله في مروجة لاب توب سوني</a></h2>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <a href="#" class="qustion-user">
-                                                <i class="ti-user"></i>
-                                                محمد احمد عوض
-                                            </a>
-
-                                            <a href="#" class="qustion-user">
-                                                <i class="ti-tag"></i>
-                                                السوفتوير
-                                            </a>
-                                            <span class="qustion-user">
-                                                <i class="ti-timer"></i>
-                                                3-12-2017 3:15 PM
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="question-block">
-                            <div class="row">
-                                <div class="col-sm-2">
-                                    <div class="row">
-                                        <span class="data-icons col-sm-4">
-                                            30
-                                            <i class="fa fa-eye"></i>
-                                        </span>
-                                        <span class="data-icons col-sm-4">
-                                            14
-                                            <i class="ti-thought"></i>
-                                        </span>
-                                        <span class="data-icons col-sm-4">
-                                            مفتوح
-                                            <i class="ti-info-alt"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-10 question-desc">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <h2 class="question-title-block"><a href="#">مشكله في مروجة لاب توب سوني</a></h2>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <a href="#" class="qustion-user">
-                                                <i class="ti-user"></i>
-                                                محمد احمد عوض
-                                            </a>
-
-                                            <a href="#" class="qustion-user">
-                                                <i class="ti-tag"></i>
-                                                السوفتوير
-                                            </a>
-                                            <span class="qustion-user">
-                                                <i class="ti-timer"></i>
-                                                3-12-2017 3:15 PM
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="question-block">
-                            <div class="row">
-                                <div class="col-sm-2">
-                                    <div class="row">
-                                        <span class="data-icons col-sm-4">
-                                            30
-                                            <i class="fa fa-eye"></i>
-                                        </span>
-                                        <span class="data-icons col-sm-4">
-                                            14
-                                            <i class="ti-thought"></i>
-                                        </span>
-                                        <span class="data-icons col-sm-4">
-                                            مفتوح
-                                            <i class="ti-info-alt"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-10 question-desc">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <h2 class="question-title-block"><a href="#">مشكله في مروجة لاب توب سوني</a></h2>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <a href="#" class="qustion-user">
-                                                <i class="ti-user"></i>
-                                                محمد احمد عوض
-                                            </a>
-
-                                            <a href="#" class="qustion-user">
-                                                <i class="ti-tag"></i>
-                                                السوفتوير
-                                            </a>
-                                            <span class="qustion-user">
-                                                <i class="ti-timer"></i>
-                                                3-12-2017 3:15 PM
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="question-block">
-                            <div class="row">
-                                <div class="col-sm-2">
-                                    <div class="row">
-                                        <span class="data-icons col-sm-4">
-                                            30
-                                            <i class="fa fa-eye"></i>
-                                        </span>
-                                        <span class="data-icons col-sm-4">
-                                            14
-                                            <i class="ti-thought"></i>
-                                        </span>
-                                        <span class="data-icons col-sm-4">
-                                            مفتوح
-                                            <i class="ti-info-alt"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-10 question-desc">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <h2 class="question-title-block"><a href="#">مشكله في مروجة لاب توب سوني</a></h2>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <a href="#" class="qustion-user">
-                                                <i class="ti-user"></i>
-                                                محمد احمد عوض
-                                            </a>
-
-                                            <a href="#" class="qustion-user">
-                                                <i class="ti-tag"></i>
-                                                السوفتوير
-                                            </a>
-                                            <span class="qustion-user">
-                                                <i class="ti-timer"></i>
-                                                3-12-2017 3:15 PM
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="question-block">
-                            <div class="row">
-                                <div class="col-sm-2">
-                                    <div class="row">
-                                        <span class="data-icons col-sm-4">
-                                            30
-                                            <i class="fa fa-eye"></i>
-                                        </span>
-                                        <span class="data-icons col-sm-4">
-                                            14
-                                            <i class="ti-thought"></i>
-                                        </span>
-                                        <span class="data-icons col-sm-4">
-                                            مفتوح
-                                            <i class="ti-info-alt"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-10 question-desc">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <h2 class="question-title-block"><a href="#">مشكله في مروجة لاب توب سوني</a></h2>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <a href="#" class="qustion-user">
-                                                <i class="ti-user"></i>
-                                                محمد احمد عوض
-                                            </a>
-
-                                            <a href="#" class="qustion-user">
-                                                <i class="ti-tag"></i>
-                                                السوفتوير
-                                            </a>
-                                            <span class="qustion-user">
-                                                <i class="ti-timer"></i>
-                                                3-12-2017 3:15 PM
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="question-block">
-                            <div class="row">
-                                <div class="col-sm-2">
-                                    <div class="row">
-                                        <span class="data-icons col-sm-4">
-                                            30
-                                            <i class="fa fa-eye"></i>
-                                        </span>
-                                        <span class="data-icons col-sm-4">
-                                            14
-                                            <i class="ti-thought"></i>
-                                        </span>
-                                        <span class="data-icons col-sm-4">
-                                            مفتوح
-                                            <i class="ti-info-alt"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-10 question-desc">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <h2 class="question-title-block"><a href="#">مشكله في مروجة لاب توب سوني</a></h2>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <a href="#" class="qustion-user">
-                                                <i class="ti-user"></i>
-                                                محمد احمد عوض
-                                            </a>
-
-                                            <a href="#" class="qustion-user">
-                                                <i class="ti-tag"></i>
-                                                السوفتوير
-                                            </a>
-                                            <span class="qustion-user">
-                                                <i class="ti-timer"></i>
-                                                3-12-2017 3:15 PM
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="question-block">
-                            <div class="row">
-                                <div class="col-sm-2">
-                                    <div class="row">
-                                        <span class="data-icons col-sm-4">
-                                            30
-                                            <i class="fa fa-eye"></i>
-                                        </span>
-                                        <span class="data-icons col-sm-4">
-                                            14
-                                            <i class="ti-thought"></i>
-                                        </span>
-                                        <span class="data-icons col-sm-4">
-                                            مفتوح
-                                            <i class="ti-info-alt"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-10 question-desc">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <h2 class="question-title-block"><a href="#">مشكله في مروجة لاب توب سوني</a></h2>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <a href="#" class="qustion-user">
-                                                <i class="ti-user"></i>
-                                                محمد احمد عوض
-                                            </a>
-
-                                            <a href="#" class="qustion-user">
-                                                <i class="ti-tag"></i>
-                                                السوفتوير
-                                            </a>
-                                            <span class="qustion-user">
-                                                <i class="ti-timer"></i>
-                                                3-12-2017 3:15 PM
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="question-block">
-                            <div class="row">
-                                <div class="col-sm-2">
-                                    <div class="row">
-                                        <span class="data-icons col-sm-4">
-                                            30
-                                            <i class="fa fa-eye"></i>
-                                        </span>
-                                        <span class="data-icons col-sm-4">
-                                            14
-                                            <i class="ti-thought"></i>
-                                        </span>
-                                        <span class="data-icons col-sm-4">
-                                            مفتوح
-                                            <i class="ti-info-alt"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-10 question-desc">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <h2 class="question-title-block"><a href="#">مشكله في مروجة لاب توب سوني</a></h2>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <a href="#" class="qustion-user">
-                                                <i class="ti-user"></i>
-                                                محمد احمد عوض
-                                            </a>
-
-                                            <a href="#" class="qustion-user">
-                                                <i class="ti-tag"></i>
-                                                السوفتوير
-                                            </a>
-                                            <span class="qustion-user">
-                                                <i class="ti-timer"></i>
-                                                3-12-2017 3:15 PM
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="question-block">
-                            <div class="row">
-                                <div class="col-sm-2">
-                                    <div class="row">
-                                        <span class="data-icons col-sm-4">
-                                            30
-                                            <i class="fa fa-eye"></i>
-                                        </span>
-                                        <span class="data-icons col-sm-4">
-                                            14
-                                            <i class="ti-thought"></i>
-                                        </span>
-                                        <span class="data-icons col-sm-4">
-                                            مفتوح
-                                            <i class="ti-info-alt"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-10 question-desc">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <h2 class="question-title-block"><a href="#">مشكله في مروجة لاب توب سوني</a></h2>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <a href="#" class="qustion-user">
-                                                <i class="ti-user"></i>
-                                                محمد احمد عوض
-                                            </a>
-
-                                            <a href="#" class="qustion-user">
-                                                <i class="ti-tag"></i>
-                                                السوفتوير
-                                            </a>
-                                            <span class="qustion-user">
-                                                <i class="ti-timer"></i>
-                                                3-12-2017 3:15 PM
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach 
                     </div>
                 </div>
             </div>
