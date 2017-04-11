@@ -101,7 +101,7 @@ a{
                             <span class="input-group-addon">
                              <i class="fa fa-phone fa-lg" aria-hidden="true"></i></span>
 
-                             <input id="phone" type="number" class="form-control" name="phone" value="{{ old('phone') }}" required autofocus>
+                             <input id="phone" type="text" class="form-control" name="phone" value="{{ old('phone') }}" required autofocus>
                           
                                 </div>
                                 <div>
@@ -228,7 +228,7 @@ a{
                         <div class="btn-group " data-toggle="buttons"> 
                             
                           <select class="selectpicker form-control" name="group"  id="option" >
-                            <option class=""   id="option1"  value="1" selected>مستخدم جديد</option>
+                            <option class=""   id="option1"  value="1" selected>مستخدم عادي</option>
                             <option class=""   id="option2" value="2">صاحب شركه</option>
                           </select>
                         </div>

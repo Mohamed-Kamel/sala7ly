@@ -28,6 +28,8 @@ Route::post('/company/{id}', 'CompanyController@rate_company');
 Route::get('/company', 'CompanyController@index');
 
 Route::get('/question/{id}', 'QuestionController@showQuestion');
+Route::get('/questions', 'QuestionController@index');
+Route::post('/question', 'QuestionController@add_question');
 
 Route::get('/companies', 'CompaniesController@index');
 Route::get('/companies/search', 'CompaniesController@search');
