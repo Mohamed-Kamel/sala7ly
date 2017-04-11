@@ -8,6 +8,7 @@ use App\Cat;
 use Auth;
 class QuestionController extends Controller {
 
+
     public function index() {
         $questions = Question::orderBy('id', 'DESC')->get();
         $cats = Cat::all();
