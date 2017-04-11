@@ -20,7 +20,7 @@ class UserTableSeeder extends Seeder
                 'password' => bcrypt('secret'),
                 'city' => $faker->name,
                 'phone' => $faker->phoneNumber,
-                'group_id' => 1
+                'group_id' => rand(1, 3)
             ]);
         }
     }
