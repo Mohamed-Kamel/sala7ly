@@ -17,7 +17,7 @@ class SearchController extends Controller
         Common::globalXssClean($request);
         $results = Question::where('title', 'LIKE', '%'.$request->question.'%')
             ->orWhere('desc', 'LIKE', '%'.$request->question.'%')
-            ->get();
+            ->paginate(4);
         return view('search', compact('results'));
     }
 

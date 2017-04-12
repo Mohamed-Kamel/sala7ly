@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Company_detail;
 use Illuminate\Http\Request;
 use App\User;
 
@@ -23,34 +24,26 @@ class CompaniesController extends Controller {
      */
     public function index() {
         //GET ALL COMPANIES
-        $companies = User::where('group_id', '=', 2)->get();
+        $companies = User::where('group_id', '=', 2)->paginate(8);
 
         //GET LASTEST COMPANIES ADDED
-        $latest_added = User::where('group_id', '=', 2)->orderBy('id', 'DESC')->get();
+        $latest_added = User::where('group_id', '=', 2)->limit(20)->orderBy('id', 'DESC')->get();
 
-        //GET TOP RATED COMPANIES
-        $top_rated = User::where('group_id', '=', 2)->get();
-        $des = [];
-        foreach ($top_rated as $top) {
-            $des[] = $top->company->total_rating;
-        }
-        $top = $des;
-        rsort($des);
+        $top_rated = Company_detail::limit(20)->orderBy('rating', 'DESC')->get();
+
         return view('companies', compact('companies', 'latest_added', 'top_rated'));
     }
 
     public function search(Request $request) {
 
-        
         $searchKey = $request->key;
         
         if ($searchKey != "") {
             $companies = User::where('name', 'LIKE', '%' . $searchKey . '%')->where('group_id', '=', 2)->get();
             
             for($i = 0; $i < count($companies); $i++){
-                $companies[$i]->total_rating = $companies[$i]->company->total_rating;
+                $companies[$i]->rating = $companies[$i]->company->rating;
             }
-            
              return response()->json($companies, 200);
         }
     }
