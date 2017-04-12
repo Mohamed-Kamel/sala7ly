@@ -1,20 +1,20 @@
 ::selection {
     color: #ffffff;
-    background: #4bb777;
+    background: #157cb2;
 }
 
 ::-moz-selection {
     color: #ffffff;
-    background: #4bb777;
+    background: #157cb2;
 }
 
 .search-full,
 .search-input {
-    background: #4bb777;
+    background: #157cb2;
 }
 
 .search-close {
-    color: #4bb777;
+    color: #157cb2;
 }
 
 .searchInputBox .search-btn {
@@ -22,13 +22,13 @@
 }
 
 .navbar-tshop {
-    background: #4ec67f;
+    background: #258cc3;
 }
 
 .btn-primary,
 .product:hover .add-fav:hover,
 .product:hover .add-fav.active {
-    background-color: #4ec67f;
+    background-color: #258cc3;
     color: #ffffff;
 }
 
@@ -51,11 +51,11 @@
     background-color: #66de97;
     border-color: #66de97;
     color: #ffffff;
-    background: #4ec67f;
+    background: #258cc3;
 }
 
 .navbar-top {
-    background: #4bb777;
+    background: #157cb2;
 }
 
 .navbar-nav > li > a {
@@ -66,30 +66,30 @@
 .nav > li > a:hover,
 .nav > li > a:focus,
 .nav > li:hover > a {
-    background: #27ae60;
+    background: #157cb2;
 }
 
 .nav .open > a,
 .nav .open > a:hover,
 .nav .open > a:focus,
 .cartMenu:hover > a.dropdown-toggle {
-    background: #27ae60;
+    background: #157cb2;
 }
 
 .dropdown-menu {
-    border-top: solid #27ae60;
+    border-top: solid #157cb2;
 }
 
 .search-box:hover .form-control {
-    background: #4ec67f;
+    background: #258cc3;
 }
 
 .search-box:hover .btn-nobg {
-    color: #4ec67f;
+    color: #258cc3;
 }
 
 .mCS-dark-2 > .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
-    background-color: #4ec67f !important;
+    background-color: #258cc3 !important;
     background-color: rgba(78, 198, 127, 0.5) !important;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#804ec67f, endColorstr=#804ec67f) !important;
     -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#804ec67f, endColorstr=#804ec67f) !important;
@@ -98,42 +98,42 @@
 .action-control a:hover,
 .action-control a.active {
     color: #ffffff;
-    background: #27ae60;
+    background: #157cb2;
 }
 
 .product:hover,
 .featuredImgLook2 .inner:hover {
-    border: 1px solid #4ec67f;
+    border: 1px solid #258cc3;
 }
 
 .subCategoryList .thumbnail:hover {
-    border: 1px solid #4ec67f;
+    border: 1px solid #258cc3;
 }
 
 #pager a.cycle-pager-active {
-    background-color: #4bb777 !important;
+    background-color: #157cb2 !important;
     background-color: rgba(75, 183, 119, 0.7) !important;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#b34bb777, endColorstr=#b34bb777) !important;
     -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#b34bb777, endColorstr=#b34bb777) !important;
 }
 
 .pager2 a {
-    border: 1px solid #4ec67f;
+    border: 1px solid #258cc3;
 }
 
 .pager2 a.selected {
-    background: #4ec67f;
+    background: #258cc3;
 }
 
 .btn-site,
 .newsLatterBox .btn {
-    background: #4ec67f;
+    background: #258cc3;
 }
 
 .btn-discover:hover,
 .btn-site:hover,
 .newsLatterBox .btn:hover {
-    background: #27ae60;
+    background: #157cb2;
 }
 
 .full {
@@ -141,19 +141,19 @@
 }
 
 .footer a:hover {
-    color: #4ec67f;
+    color: #258cc3;
 }
 
 .modal-header {
-    background: #4ec67f;
+    background: #258cc3;
 }
 
 .form-control:focus {
-    border-color: #4ec67f;
+    border-color: #258cc3;
 }
 
 .new-product {
-    background-color: #4ec67f !important;
+    background-color: #258cc3 !important;
     background-color: rgba(78, 198, 127, 0.95) !important;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f24ec67f, endColorstr=#f24ec67f) !important;
     -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f24ec67f, endColorstr=#f24ec67f) !important;

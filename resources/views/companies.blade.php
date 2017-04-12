@@ -23,38 +23,42 @@
             <div class="row">
                 <form class="col-sm-12" method="get" id="search-com-form">
                     <div class="search-company">
-                        <input id="search-comp" type="text" class="search-input-comp" placeholder="ابحث عن الشركة " name="name">
+                        <input id="search-comp" type="text" class="search-input-comp" placeholder="ابحث عن الشركة "
+                               name="name">
                         <button class="search-comp-button"><i class="ti-search"></i></button>
                     </div>
                 </form>
-                <div class="col-sm-12" id="search-results">
-                </div>
+                <div class="col-sm-12 infinite-scroll" id="search-results"></div>
             </div>
+
             <div class="companies-list">
                 <div class="companies-links">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#category-1">  الكل</a></li>
-                        <li><a data-toggle="tab" href="#category-2">  المضاف حديثاً</a></li>
-                        <li><a data-toggle="tab" href="#category-3"> الاعلى تقيماً</a></li>
+                        <li ><a id="all" data-toggle="tab" href="#category-1"> الكل</a></li>
+                        <li><a data-toggle="tab" id="latest" href="#category-2"> المضاف حديثاً</a></li>
+                        <li><a data-toggle="tab" id="top" href="#category-3"> الاعلى تقيماً</a></li>
                     </ul>
                     <h1 class="subtitles"> شركات الصيانة</h1>
                 </div>
 
                 <div class="tab-content">
                     <div id="category-1" class="tab-pane fade in active">
-                        @foreach($companies as $company)    
+                        @if(isset($companies))
+                        @foreach($companies as $company)
                         <div class="company-block">
                             <div class="comp-image">
-                                <a href="{{ URL('company') }}/{{ $company->id }}"><img src="{{ $company->img }}"></a>
+                                <a href="{{ URL('company') }}/{{ $company->id }}"><img
+                                        src="{{ $company->img }}"></a>
                             </div>
                             <div class="company-det">
-                                <a class="comp-title" href="{{ URL('company') }}/{{ $company->id }}">{{ $company->name }}</a>
+                                <a class="comp-title"
+                                   href="{{ URL('company') }}/{{ $company->id }}">{{ $company->name }}</a>
                                 <div class="sub-det">
-                                    <div  id="stars" class="pull-right">
-                                        @for($i=0; $i<round($company->company->total_rating); $i++)
+                                    <div id="stars" class="pull-right">
+                                        @for($i=0; $i<round($company->company->rating); $i++)
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             @endfor
-                                            @for($i=5; $i>round($company->company->total_rating); $i--)
+                                            @for($i=5; $i>round($company->company->rating); $i--)
                                             <i class="fa fa-star-o" aria-hidden="true"></i>
                                             @endfor
                                     </div>
@@ -64,22 +68,25 @@
                                 </div>
                             </div>
                         </div>
-                        @endforeach 
+                        @endforeach
+                        @endif
                     </div>
-                    <div id="category-2" class="tab-pane fade">
-                        @foreach($latest_added as $last)    
+                    <div id="category-2" class="tab-pane fade ">
+                        @if(isset($latest_added))
+                        @foreach($latest_added as $last)
                         <div class="company-block">
                             <div class="comp-image">
                                 <a href="{{ URL('company') }}/{{ $last->id }}"><img src="{{ $last->img }}"></a>
                             </div>
                             <div class="company-det">
-                                <a class="comp-title" href="{{ URL('company') }}/{{ $last->id }}">{{ $last->name }}</a>
+                                <a class="comp-title"
+                                   href="{{ URL('company') }}/{{ $last->id }}">{{ $last->name }}</a>
                                 <div class="sub-det">
-                                    <div  id="stars" class="pull-right">
-                                        @for($i=0; $i<round($last->company->total_rating); $i++)
+                                    <div id="stars" class="pull-right">
+                                        @for($i=0; $i<round($last->company->rating); $i++)
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             @endfor
-                                            @for($i=5; $i>round($last->company->total_rating); $i--)
+                                            @for($i=5; $i>round($last->company->rating); $i--)
                                             <i class="fa fa-star-o" aria-hidden="true"></i>
                                             @endfor
                                     </div>
@@ -89,33 +96,38 @@
                                 </div>
                             </div>
                         </div>
-                        @endforeach 
+                        @endforeach
+                        @endif
+
                     </div>
                     <div id="category-3" class="tab-pane fade">
-
-                        @foreach($top_rated as $top)    
+                        @if(isset($top_rated))
+                        @foreach($top_rated as $top)
                         <div class="company-block">
                             <div class="comp-image">
-                                <a href="{{ URL('company') }}/{{ $top->id }}"><img src="{{ $top->img }}"></a>
+                                <a href="{{ URL('/company') }}/{{ $top->user->id }}"><img
+                                        src="{{ $top->user->img }}"></a>
                             </div>
                             <div class="company-det">
-                                <a class="comp-title" href="{{ URL('company') }}/{{ $top->id }}">{{ $top->name }}</a>
+                                <a class="comp-title"
+                                   href="{{ URL('/company') }}/{{ $top->user->id }}">{{ $top->user->name }}</a>
                                 <div class="sub-det">
-                                    <div  id="stars" class="pull-right">
-                                        @for($i=0; $i<round($top->company->total_rating); $i++)
+                                    <div id="stars" class="pull-right">
+                                        @for($i=0; $i<round($top->rating); $i++)
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             @endfor
-                                            @for($i=5; $i>round($top->company->total_rating); $i--)
+                                            @for($i=5; $i>round($top->rating); $i--)
                                             <i class="fa fa-star-o" aria-hidden="true"></i>
                                             @endfor
                                     </div>
                                     <span class="pull-left">
-                                        <i class="ti-location-pin"> {{ $top->city  }}</i>
+                                        <i class="ti-location-pin"> {{ $top->user->city  }}</i>
                                     </span>
                                 </div>
                             </div>
                         </div>
-                        @endforeach 
+                        @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
@@ -133,65 +145,118 @@
 @endsection
 
 @section('scripts')
-<script type="text/javascript">
-    $(function () {
+    <!--<script src="{{asset('js/jquery.jscroll.min.js')}}"></script>-->
 
+<script type="text/javascript">
+//        $('ul.pagination').hide();
+//        $(function () {
+//            $('.infinite-scroll').jscroll({
+//                autoTrigger: true,
+//                loadingHtml: '<img class="center-block" src="/images/loading.gif" alt="Loading..." />',
+//                padding: 0,
+//                nextSelector: '.pagination li.active + li a',
+//                contentSelector: 'div.infinite-scroll',
+//                callback: function () {
+//                    $('ul.pagination').remove();
+//                }
+//            });
+//        });
+
+
+    $(function () {
         $("#search-comp").on("keyup", function (event) {
             $("#search-results").empty();
             $('.companies-list').show();
-            
+
             event.preventDefault();
-//            console.log("hello");
+
             var key = $("#search-comp").val();
             console.log(key);
             $.ajax({
                 url: "{{URL('/companies/search')}}",
                 type: "GET",
                 data: {'key': key},
-                success: function (response) {
-                    console.log(response);
-                    var html;
-                    $.each(response, function (index, ele) {
-//                        var block = $('<div class="company-block"></div>').attr('href', "{{url('/company')}}/" + ele.id).text(ele.name);
-                        var company_block = $('<div class="company-block"></div>');
-
-                        var comp_image_block = $('<div class="comp-image"></div>');
-                        var image_a_image = $('<img src="' + ele.img + '">');
-                        var image_a = $('<a></a>').attr('href', "{{url('/company')}}/" + ele.id).append(image_a_image);
-
-                        comp_image_block.append(image_a);
-
-                        var company_det = $('<div class="company-det"></div>');
-                        var comp_title = $('<a class="comp-title"></a>').attr('href', "{{url('/company')}}/" + ele.id).text(ele.name);
-                        var sub_det = $('<div class="company-det"></div>');
-                        var stars = $('<div id="stars" class="pull-right"></div>');
-                        for (var i = 0; i < ele.total_rating; i++) {
-                            stars.append($('<i class="fa fa-star"></i>'));
-                        }
-                        for (var i = 0; i < (5 - ele.total_rating); i++) {
-                            stars.append($('<i class="fa fa-star-o"></i>'));
-                        }
-
-                        var city = $('<div class="pull-left" id="stars"></div>');
-                        var city_i = $('<i class="ti-location-pin"></div>').text(ele.city);
-                        city.append(city_i);
-
-                        sub_det.append(stars, city);
-                        company_det.append(comp_title, sub_det);
-
-                        company_block.append(comp_image_block, company_det);
-                        if ($("#search-results").append(company_block)) {
-                            $('.companies-list').hide();
-                        }
-//                        console.log($("#search-results"));
-//                        $('.companies-list').hide();
-                    });
-
+                success: function (data) {
+                    console.log(data);
+                    $('#search-results').show();
+                    render("#search-results", data);
                 }
             });
         });
     }());
 
-</script>
+    $("#all").on('click', function () {
+        $.ajax({
+            method: 'get',
+            data: {'all': 'all'},
+            success: function (data) {
+                console.log(data);
+                render('#category-1', data);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
 
+    $("#latest").on('click', function () {
+        $.ajax({
+            method: 'get',
+            data: {'latest': 'latest'},
+            success: function (data) {
+                console.log(data);
+                render('#category-2', data);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+
+    $("#top").on('click', function () {
+        $.ajax({
+            method: 'get',
+            data: {'top': 'top'},
+            success: function (data) {
+                console.log(data);
+                render('#category-3', data);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+
+    function render(id, data) {
+        $(id).empty();
+        $.each(data, function (index, ele) {
+
+            var company_block = $('<div class="company-block"></div>');
+            var comp_image_block = $('<div class="comp-image"></div>');
+            var image_a_image = $('<img src="' + ele.img + '">');
+            var image_a = $('<a></a>').attr('href', "{{url('/company')}}/" + ele.id).append(image_a_image);
+            comp_image_block.append(image_a);
+            var company_det = $('<div class="company-det"></div>');
+            var comp_title = $('<a class="comp-title"></a>').attr('href', "{{url('/company')}}/" + ele.id).text(ele.name);
+            var sub_det = $('<div class="company-det"></div>');
+            var stars = $('<div id="stars" class="pull-right"></div>');
+            for (var i = 0; i < ele.rating; i++) {
+                stars.append($('<i class="fa fa-star"></i>'));
+            }
+            for (var i = 0; i < (5 - ele.rating); i++) {
+                stars.append($('<i class="fa fa-star-o"></i>'));
+            }
+            var city = $('<div class="pull-left" id="stars"></div>');
+            var city_i = $('<i class="ti-location-pin"></div>').text(ele.city);
+            city.append(city_i);
+            sub_det.append(stars, city);
+            company_det.append(comp_title, sub_det);
+            company_block.append(comp_image_block, company_det);
+            $(id).append(company_block);
+            if (id === "#search-results") {
+                $('.companies-list').hide();
+            }
+        });
+    }
+</script>
 @endsection
