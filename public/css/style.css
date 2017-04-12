@@ -382,7 +382,7 @@ li.phone-number i{
     margin-bottom: 0;
 }
 .user-menu i {
-    color: #4ec67f;
+    color: #258cc3;
     margin-left: 5px;
     font-size: 16px;
     float: right;
@@ -1005,16 +1005,16 @@ ul.user-notify {
     padding-top: 20px;
 }
 .super-title div.seperator:before {
-    background: #4ec67f;
+    background: #258cc3;
 }
 .super-title div.seperator:before {
-    background: #4ec67f;
+    background: #258cc3;
 }
 .iconbox-center .icon {
-    background: #4ec67f;
+    background: #258cc3;
 }
 .iconbox-center:hover .icon {
-    border: 3px solid #4ec67f;
+    border: 3px solid #258cc3;
 }
 
 
@@ -1096,10 +1096,11 @@ ul.user-notify {
 }
 .most-rated-comp {
     border: 1px solid #dedede;
-    border-top: 4px solid #4ec67f;
+    border-top: 4px solid #258cc3;
     float: right;
     width: 100%;
     margin-bottom: 15px;
+    border-radius: 4px 4px 0 0;
 }
 .company-rate-block {
     height: 60px;
@@ -1140,6 +1141,7 @@ ul.user-notify {
     font-size: 16px;
     font-weight: bold;
     border-bottom: 1px solid #dedede;
+    border-radius: 4px 4px 0 0;
 }
 .company-rate-block:last-child{
     margin-bottom: 0;
@@ -1150,7 +1152,7 @@ ul.user-notify {
 .subtitles {
     position: absolute;
     top: 7px;
-    color: #4ec67f;
+    color: #258cc3;
     font-size: 18px;
     font-weight: 600;
 }
@@ -1159,7 +1161,7 @@ ul.user-notify {
     float: left;
 }
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
-    border-top: 4px solid #4ec67f;
+    border-top: 4px solid #258cc3;
 }
 .nav-tabs>li>a{
     border-top: 4px solid #fff;
@@ -1195,7 +1197,7 @@ ul.user-notify {
     padding-bottom: 10px;
 }
 .question-title-block a{
-    color: #4ec67f;
+    color: #258cc3;
 }
 .qustion-user {
     margin-left: 20px;
@@ -1203,10 +1205,11 @@ ul.user-notify {
     color: #999;
 }
 a.qustion-user:hover{
-    color: #4ec67f;   
+    color: #258cc3;   
 }
 .qustion-user i{
     margin-left: 5px;
+    float: right;
 }
 .qustion-user i.ti-timer{
     float: right;
@@ -1242,6 +1245,9 @@ a.qustion-user:hover{
 }
 .breadcrumb a i{
     margin-left: 3px;
+}
+.breadcrumb>.active {
+    color: #258cc3;
 }
 .main-container {
     min-height: 580px;
@@ -1415,7 +1421,7 @@ a.qustion-user:hover{
 }
 .nav-pills>li>a>.badge {
     margin-left: 3px;
-    background-color: #4ec67f;
+    background-color: #258cc3;
     margin: 4px 0;
     margin-left: 5px;
 }
@@ -1427,7 +1433,7 @@ a.qustion-user:hover{
     color: #333;
     background-color: #f5f5f5;
     border-color: #ddd;
-    border-top: 4px solid #4ec67f;
+    border-top: 4px solid #258cc3;
 }
 .questions-filter .panel-title{
     padding: 0;
@@ -1524,7 +1530,7 @@ a.qustion-user:hover{
     cursor: pointer;
 }
 .status-upload ul > li > a:hover {
-    background: none repeat scroll 0 0 #4ec67f;
+    background: none repeat scroll 0 0 #258cc3;
     color: #fff;
 }
 .status-upload form button {
@@ -1701,7 +1707,7 @@ a.qustion-user:hover{
     color: #333;
     background-color: #f5f5f5;
     border-color: #ddd;
-    border-top: 4px solid #4ec67f;
+    border-top: 4px solid #258cc3;
 }
 /*QUESTION PAGE*/
 .related-questions-block{
@@ -1713,7 +1719,7 @@ a.qustion-user:hover{
     margin-bottom: 8px;
 }
 .related-questions-block a:hover{
-    color: #4ec67f;
+    color: #258cc3;
 }
 .switch {
     position: relative !important;
@@ -1781,11 +1787,11 @@ input:checked + .slider:before {
     line-height: 60px;  
 }
 .question-user-img a:hover{
-    color: #4ec67f;
+    color: #258cc3;
 }
 
 .question-title {
-    color: #4ec67f;
+    color: #258cc3;
     font-size: 18px;
     font-weight: 600;
     padding-bottom: 10px;
@@ -2002,7 +2008,7 @@ input:checked + .slider:before {
     color: #999;
 }
 .comment-box .comment-head a:hover{
-    color: #4ec67f;
+    color: #258cc3;
 }
 .comment-box .comment-content {
     background: #FFF;
@@ -2057,11 +2063,13 @@ input:checked + .slider:before {
     margin-left: 15px;
 }
 .comp-title {
-    color: #4ec67f;
+    color: #258cc3;
     font-size: 17px;
+    margin-bottom: 5px;
+    display: block;
 }
 .comp-title:hover{
-    color: #4ec67f;
+    color: #258cc3;
 }
 .sub-det ul li{
     display: inline-block;
@@ -2080,7 +2088,7 @@ input:checked + .slider:before {
     padding-right: 15px;
 }
 .search-company input:focus {
-    border: 1px solid #4ec67f;
+    border: 1px solid #258cc3;
     outline: 0;
 }
 .search-company button {
@@ -2088,7 +2096,7 @@ input:checked + .slider:before {
     left: 5px;
     background: transparent;
     border: 0;
-    color: #4ec67f;
+    color: #258cc3;
     top: 12px;
 }
 .companies-links {
@@ -2111,3 +2119,62 @@ input:checked + .slider:before {
     margin-left: 5px;
     background-color: #a94442;
 }
+/*FAQS*/
+.faqs h4.panel-title a.collapsed:after {
+    content: "\f067";
+    font-family: FontAwesome;
+    background: #afafaf;
+    color: #fff;
+    font-size: 14px;
+    left: 20px;
+    position: absolute;
+    z-index: 111;
+    width: 25px;
+    height: 25px;
+    line-height: 27px;
+    top: -4px;
+    border-radius: 100%;
+    text-align: center;
+    -webkit-box-shadow: 0 0 0 5px rgba(0,0,0,.07);
+    -moz-box-shadow: 0 0 0 5px rgba(0,0,0,.07);
+    box-shadow: 0 0 0 5px rgba(0,0,0,.07);
+}
+.faqs h4.panel-title a:after {
+    content: "\f068";
+    font-family: FontAwesome;
+    background: #258cc3;
+    color: #fff;
+    font-size: 14px;
+    left: 20px;
+    position: absolute;
+    z-index: 111;
+    width: 25px;
+    height: 25px;
+    line-height: 27px;
+    top: -4px;
+    border-radius: 100%;
+    text-align: center;
+    -webkit-box-shadow: 0 0 0 5px rgba(0,0,0,.07);
+    -moz-box-shadow: 0 0 0 5px rgba(0,0,0,.07);
+    box-shadow: 0 0 0 5px rgba(0,0,0,.07);
+}
+.faqs h4.panel-titl{
+    margin-bottom: 0;
+}
+.faqs h4.panel-title {
+    color: #989898;
+    position: relative;
+    padding-bottom: 0;
+}
+
+.faqs .panel-title > a:hover, .faqs .panel-title > a:focus, .faqs .panel-title > a:active{
+    color: #157CB2;
+}
+.faqs .panel-heading {
+    padding: 15px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+/*PAGES*/

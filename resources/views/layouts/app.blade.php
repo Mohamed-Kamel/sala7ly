@@ -32,10 +32,10 @@
                                 <ul class="userMenu ">
                                     <li>
                                         <a href="#"> من نحن</a>
+                                        <a href="#"> مساعدة </a>
+                                        <a href="#">  الاسئلة الشائعة</a>
                                         <a href="#"> اتصل بنا</a>
-                                        <a href="#"> سياسة الخصوصية</a>
-                                        <a href="#"> مساعدة</a>
-                                        <a href="#">الاسألة الشائعة</a>
+                                        <a href="{{ url('/faq') }}">الاسألة الشائعة</a>
                                     </li>
                                 </ul>
                             </div>
@@ -77,7 +77,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="{{ url('/') }}"> الرئيسية </a></li>
-                        <li><a href="{{ url('/questions') }}"> الاسئلة </a></li>
+                        <li><a href="{{ url('questions') }}"> الاسئلة </a></li>
                         <li><a href="{{ url('/companies') }}"> شركات الصيانة </a></li>
                     </ul>
                 </div>
@@ -187,7 +187,7 @@
                                     <div class="input-append newsLatterBox text-center">
                                         <input type="text" class="full text-center" placeholder="Email ">
                                         <button class="btn  bg-gray" type="button"> تابعنا <i
-                                                class="fa fa-long-arrow-right"> </i></button>
+                                                class="fa fa-long-arrow-left"> </i></button>
                                     </div>
                                 </li>
                             </ul>

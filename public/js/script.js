@@ -8,13 +8,17 @@ $('.search-close').on('click', function (e) {
     $('.search-full').removeClass("active"); //you can list several class names 
     e.preventDefault();
 });
+
+//USER MENU
 $('.heaer-user-name').on('click', function (e) {
     $('.header-user>ul').toggle("slow");
 });
 
-//$(".search-comp-button").click(function(){
-//$(".companies-list").hide();
-//});
+//TABS PANEL
+$('.nav-tabs> li:first-child').addClass('active');
+$('.tab-content> .tab-pane:first-child').addClass('in').addClass('active');
+
+//FAQS
 
 
 //QUESTION PAGE
