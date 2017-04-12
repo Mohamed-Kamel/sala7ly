@@ -18,7 +18,8 @@ class CreateCommentsTable extends Migration
             $table->text('comment');
             $table->unsignedInteger('parent_id')->default(0);
             $table->unsignedInteger('question_id');
-            $table->timestamp('created')->default(\Carbon\Carbon::now());
+            $table->timestamp('created')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->unsignedInteger('user_id');
         });
     }
 

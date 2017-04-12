@@ -11,4 +11,5 @@ class Company_detail extends Model
     public function user(){
         return $this->belongsTo('App\User', 'company_id', 'id');
     }
+
 }

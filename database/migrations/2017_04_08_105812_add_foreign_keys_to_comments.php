@@ -15,6 +15,7 @@ class AddForeignKeysToComments extends Migration
     {
         Schema::table('comments', function (Blueprint $table) {
             $table->foreign('question_id')->references('id')->on('questions');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -27,6 +28,7 @@ class AddForeignKeysToComments extends Migration
     {
         Schema::table('comments', function (Blueprint $table) {
             $table->dropForeign('comments_question_id_foreign');
+            $table->dropForeign('comments_user_id_foreign');
         });
     }
 }

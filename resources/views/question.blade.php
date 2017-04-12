@@ -8,6 +8,9 @@
             <img src="{{ asset('images/footer-ann.jpg') }}">
         </div>
     </div>
+    @if(!$question)
+        <h1 class="alert alert-danger">هذا السؤال غير موجود</h1>
+    @else
     <!-- Main component call to action -->
     <div class="row">
         <div class="breadcrumbDiv col-lg-12">
@@ -19,6 +22,7 @@
         </div>
     </div>
     <!-- /.row  -->
+
     <div class="row">
         <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
             <div class="row">
@@ -188,7 +192,7 @@
                 </ul>
             </div>
         </div>
-
+        @endif
         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <div class="anouncment-sidebar">
                 <img src="{{ asset('images/sidebar-ann.jpg') }}">
