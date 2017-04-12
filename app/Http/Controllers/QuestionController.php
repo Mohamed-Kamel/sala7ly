@@ -8,7 +8,7 @@ use App\Cat;
 use Auth;
 class QuestionController extends Controller {
 
-
+    
     public function index() {
 //        $questions = Question::orderBy('id', 'DESC')->get();
         $questions = Question::orderBy('id', 'DESC')->paginate(5);
@@ -16,8 +16,36 @@ class QuestionController extends Controller {
         return view('questions', compact('questions', 'cats'));
     }
 
+   
+    public function changeStatus(Request $request,$id){
+         $question = Question::find($id);
+          if ($request->status ==='open')
+          { 
+             $question->status = 'closed';
+             $question->save();
+        }
+        elseif( $question->status === 'closed'){
+             $question->status = 'open';
+             $question->save();
+            }
+            else{
+             $question->save();
+            }
+           return response()->json(['success'=>"success"], 200);
+        } 
+
+    public function showQuestion(Request $request, $id){
+        $question = Question::find($id);
+         $results = Question::where('title', 'LIKE', '%'.$question->title.'%')
+         ->where('title', '<>', $question->title)
+         ->limit(10)->get();
+         return view('question', compact('question','results'));
+    }
+
+
+
     public function add_question(AddQuestion $request) {
-        //todo validate request
+        
         Common::globalXssClean($request);
         $question = new Question;
         $question->title = $request->title;
@@ -31,9 +59,6 @@ class QuestionController extends Controller {
         return redirect('/questions');
     }
 
-    public function showQuestion($id) {
-        $question = Question::find($id);
-        return view('question', compact('question'));
-    }
+   
 
 }
