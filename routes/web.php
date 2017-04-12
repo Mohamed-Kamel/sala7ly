@@ -10,15 +10,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
-
+Route::get('/', 'HomeController@index');
+Route::get('/faq', 'FaqController@index');
+Route::get('/page/{id}', 'PageController@index');
 Route::get("/company_details", "HomeController@company_details");
 
 Route::post("/company_details", "HomeController@details");

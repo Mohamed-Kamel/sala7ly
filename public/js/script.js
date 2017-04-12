@@ -8,13 +8,17 @@ $('.search-close').on('click', function (e) {
     $('.search-full').removeClass("active"); //you can list several class names 
     e.preventDefault();
 });
+
+//USER MENU
 $('.heaer-user-name').on('click', function (e) {
     $('.header-user>ul').toggle("slow");
 });
 
-//$(".search-comp-button").click(function(){
-//$(".companies-list").hide();
-//});
+//TABS PANEL
+$('.nav-tabs> li:first-child').addClass('active');
+$('.tab-content> .tab-pane:first-child').addClass('in').addClass('active');
+
+//FAQS
 
 
 //QUESTION PAGE
@@ -224,5 +228,22 @@ $(function () {
                     $(".error_review").find("p").append(" "+error.responseJSON.review[0]);
                 }
             });
+    });
+});
+
+
+// infinit scroll
+
+$('ul.pagination').hide();
+$(function() {
+    $('.infinite-scroll').jscroll({
+        autoTrigger: true,
+        loadingHtml: '<img class="center-block" src="/images/loading.gif" alt="Loading..." />',
+        padding: 0,
+        nextSelector: '.pagination li.active + li a',
+        contentSelector: 'div.infinite-scroll',
+        callback: function() {
+            $('ul.pagination').remove();
+        }
     });
 });
