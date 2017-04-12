@@ -20,7 +20,7 @@ class CreateQuestionsTable extends Migration
             $table->string('img')->nullable();
             $table->unsignedInteger('visited')->default(0);
             $table->timestamp('created')->default(\DB::raw('CURRENT_TIMESTAMP'));
-            $table->enum('status', ['open', 'closed']);
+            $table->enum('status', ['open', 'closed'])->default('open');
             $table->unsignedInteger('cat_id');
             $table->unsignedInteger('user_id');
         });

@@ -10,25 +10,32 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
-
+Route::get('/', 'HomeController@index');
+Route::get('/faq', 'FaqController@index');
+Route::get('/page/{id}', 'PageController@index');
 Route::get("/company_details", "HomeController@company_details");
 
 Route::post("/company_details", "HomeController@details");
 
 Route::get('/company/{id}',  'CompanyController@index');
 Route::post('/company/{id}', 'CompanyController@rate_company');
-//Route::get('/company',       'CompanyController@index');
+
 
 Route::get('/question/{id}', 'QuestionController@showQuestion');
 Route::get('/search', 'SearchController@questions');
+
+Route::post('/company/edit/profile', 'CompanyController@editProfile');
+
+
+Route::get('/questions', 'QuestionController@index');
+
+Route::post('/question', 'QuestionController@add_question');
+
 
 Route::get('/companies', 'CompaniesController@index');
 Route::get('/companies/search', 'CompaniesController@search');

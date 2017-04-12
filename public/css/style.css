@@ -55,7 +55,7 @@ h6 {
     font-size: 12px;
     line-height: 20px;
 }
-a:hover{
+a:hover, a:active, a:focus{
     text-decoration: none;
 }
 /* =============================================================== */
@@ -124,8 +124,17 @@ a:hover{
     border-radius: 100%;
     margin-left: 5px;
 }
-
-
+.header-notifi{
+    float: right;
+    font-size: 22px;
+    margin-left: 10px;
+    position: relative;
+    display: inline-block;
+    margin: 4px 0;
+}
+.header-notifi i{
+    padding: 10px;
+}
 .social-icon li {
     display: inline-block;
 }
@@ -192,6 +201,65 @@ li.phone-number i{
 
 .phone-number span {
     float: left;
+}
+
+.use_menu li a, .use_menu li{
+    display: inline-block;
+}
+.use_menu li a {
+    /*border: 1px solid #fff;*/
+    padding: 2px 10px;
+    margin-left: 15px;
+    font-size: 12px;
+}
+.use_menu li a i{
+    margin-left: 4px;
+}
+@-webkit-keyframes hvr-ripple-out {
+    100% {
+        top: -8px;
+        right: -8px;
+        bottom: -8px;
+        left: -8px;
+        opacity: 0;
+    }
+}
+
+@keyframes hvr-ripple-out {
+    100% {
+        top: -8px;
+        right: -8px;
+        bottom: -8px;
+        left: -8px;
+        opacity: 0;
+    }
+}
+
+.hvr-ripple-out {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+}
+.hvr-ripple-out:before {
+    content: '';
+    position: absolute;
+    border: #fff solid 1px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+}
+.hvr-ripple-out:hover:before, .hvr-ripple-out:focus:before, .hvr-ripple-out:active:before {
+    -webkit-animation-name: hvr-ripple-out;
+    animation-name: hvr-ripple-out;
 }
 
 /***  ------- Main Navigation onhover issue for ipad and mobile ------- ***/
@@ -263,8 +331,66 @@ li.phone-number i{
     -moz-transition: all 0.3s ease-out 0s;
     -ms-transition: all 0.3s ease-out 0s;
     -o-transition: all 0.3s ease-out 0s;
+    margin-right: 10px;
+}
+.header-user, .heaer-user-name{
+    position: relative;
+    float: left;
+}
+.header-user ul {
+    display: none;
+    position: absolute;
+    top: 44px;
+    right: 0;
+    background-color: #fff;
+    min-width: 160px;
+    padding: 10px;
+    box-shadow: 0 0 10px silver;
+    border-radius: 0 0 3px 3px;
+}
+.header-user ul:after, .header-user ul:before {
+    bottom: 100%;
+    right: 10px;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
 }
 
+.header-user ul:after {
+    border-color: rgba(136, 183, 213, 0);
+    border-bottom-color: #fff;
+    border-width: 10px;
+    margin-left: -10px;
+}
+.header-user ul:before {
+    border-color: rgba(194, 225, 245, 0);
+    border-bottom-color: #c2e1f5;
+    border-width: 10px;
+    margin-left: -10px;
+}
+
+.header-user ul li a{
+    color: #777;
+    margin-bottom: 10px;
+    display: block;
+    font-size: 13px;
+}
+.header-user ul li:last-child a{
+    margin-bottom: 0;
+}
+.user-menu i {
+    color: #258cc3;
+    margin-left: 5px;
+    font-size: 16px;
+    float: right;
+    margin: 4px 0 4px 5px;
+}
+ul.user-notify {
+    float: left;
+}
 .search-box:hover .input-group {
     max-width: 183px;
 }
@@ -369,7 +495,9 @@ li.phone-number i{
     -ms-transition: all 0.5s ease 0s;
     -o-transition: all 0.5s ease 0s;
 }
-
+.search-close:hover, .search-close:focus, .search-close:active{
+    color: rgba(255, 255, 255, 0.52);
+}
 .search-close:hover i {
     transform: scale(1.15) rotate(-180deg);
     -webkit-transform: scale(1.1) rotate(-180deg);
@@ -383,13 +511,12 @@ li.phone-number i{
     -webkit-box-sizing: border-box;
     border: 0 none;
     color: #FFFFFF;
-    font-family: sans-serif;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1.2;
     margin: 0;
     outline: medium none;
     text-align: right;
-    padding: 13px 0 13px 15px;
+    padding: 13px 15px 13px 0;
     width: 100%;
     max-width: 90%;
 }
@@ -878,16 +1005,16 @@ li.phone-number i{
     padding-top: 20px;
 }
 .super-title div.seperator:before {
-    background: #4ec67f;
+    background: #258cc3;
 }
 .super-title div.seperator:before {
-    background: #4ec67f;
+    background: #258cc3;
 }
 .iconbox-center .icon {
-    background: #4ec67f;
+    background: #258cc3;
 }
 .iconbox-center:hover .icon {
-    border: 3px solid #4ec67f;
+    border: 3px solid #258cc3;
 }
 
 
@@ -969,10 +1096,11 @@ li.phone-number i{
 }
 .most-rated-comp {
     border: 1px solid #dedede;
-    border-top: 4px solid #4ec67f;
+    border-top: 4px solid #258cc3;
     float: right;
     width: 100%;
     margin-bottom: 15px;
+    border-radius: 4px 4px 0 0;
 }
 .company-rate-block {
     height: 60px;
@@ -1013,6 +1141,7 @@ li.phone-number i{
     font-size: 16px;
     font-weight: bold;
     border-bottom: 1px solid #dedede;
+    border-radius: 4px 4px 0 0;
 }
 .company-rate-block:last-child{
     margin-bottom: 0;
@@ -1023,7 +1152,7 @@ li.phone-number i{
 .subtitles {
     position: absolute;
     top: 7px;
-    color: #4ec67f;
+    color: #258cc3;
     font-size: 18px;
     font-weight: 600;
 }
@@ -1032,7 +1161,7 @@ li.phone-number i{
     float: left;
 }
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
-    border-top: 4px solid #4ec67f;
+    border-top: 4px solid #258cc3;
 }
 .nav-tabs>li>a{
     border-top: 4px solid #fff;
@@ -1068,7 +1197,7 @@ li.phone-number i{
     padding-bottom: 10px;
 }
 .question-title-block a{
-    color: #4ec67f;
+    color: #258cc3;
 }
 .qustion-user {
     margin-left: 20px;
@@ -1076,10 +1205,11 @@ li.phone-number i{
     color: #999;
 }
 a.qustion-user:hover{
-    color: #4ec67f;   
+    color: #258cc3;   
 }
 .qustion-user i{
     margin-left: 5px;
+    float: right;
 }
 .qustion-user i.ti-timer{
     float: right;
@@ -1115,6 +1245,9 @@ a.qustion-user:hover{
 }
 .breadcrumb a i{
     margin-left: 3px;
+}
+.breadcrumb>.active {
+    color: #258cc3;
 }
 .main-container {
     min-height: 580px;
@@ -1288,7 +1421,7 @@ a.qustion-user:hover{
 }
 .nav-pills>li>a>.badge {
     margin-left: 3px;
-    background-color: #4ec67f;
+    background-color: #258cc3;
     margin: 4px 0;
     margin-left: 5px;
 }
@@ -1300,7 +1433,7 @@ a.qustion-user:hover{
     color: #333;
     background-color: #f5f5f5;
     border-color: #ddd;
-    border-top: 4px solid #4ec67f;
+    border-top: 4px solid #258cc3;
 }
 .questions-filter .panel-title{
     padding: 0;
@@ -1397,7 +1530,7 @@ a.qustion-user:hover{
     cursor: pointer;
 }
 .status-upload ul > li > a:hover {
-    background: none repeat scroll 0 0 #4ec67f;
+    background: none repeat scroll 0 0 #258cc3;
     color: #fff;
 }
 .status-upload form button {
@@ -1483,11 +1616,11 @@ a.qustion-user:hover{
     height: 130px;
 }
 .card-background img {
-/*    -webkit-filter: blur(25px);
-    -moz-filter: blur(25px);
-    -o-filter: blur(25px);
-    -ms-filter: blur(25px);
-    filter: blur(25px);*/
+    /*    -webkit-filter: blur(25px);
+        -moz-filter: blur(25px);
+        -o-filter: blur(25px);
+        -ms-filter: blur(25px);
+        filter: blur(25px);*/
     margin-left: -100px;
     margin-top: -200px;
     min-width: 130%;
@@ -1574,7 +1707,7 @@ a.qustion-user:hover{
     color: #333;
     background-color: #f5f5f5;
     border-color: #ddd;
-    border-top: 4px solid #4ec67f;
+    border-top: 4px solid #258cc3;
 }
 /*QUESTION PAGE*/
 .related-questions-block{
@@ -1586,7 +1719,7 @@ a.qustion-user:hover{
     margin-bottom: 8px;
 }
 .related-questions-block a:hover{
-    color: #4ec67f;
+    color: #258cc3;
 }
 .switch {
     position: relative !important;
@@ -1654,11 +1787,11 @@ input:checked + .slider:before {
     line-height: 60px;  
 }
 .question-user-img a:hover{
-    color: #4ec67f;
+    color: #258cc3;
 }
 
 .question-title {
-    color: #4ec67f;
+    color: #258cc3;
     font-size: 18px;
     font-weight: 600;
     padding-bottom: 10px;
@@ -1875,7 +2008,7 @@ input:checked + .slider:before {
     color: #999;
 }
 .comment-box .comment-head a:hover{
-    color: #4ec67f;
+    color: #258cc3;
 }
 .comment-box .comment-content {
     background: #FFF;
@@ -1930,11 +2063,13 @@ input:checked + .slider:before {
     margin-left: 15px;
 }
 .comp-title {
-    color: #4ec67f;
+    color: #258cc3;
     font-size: 17px;
+    margin-bottom: 5px;
+    display: block;
 }
 .comp-title:hover{
-    color: #4ec67f;
+    color: #258cc3;
 }
 .sub-det ul li{
     display: inline-block;
@@ -1953,7 +2088,7 @@ input:checked + .slider:before {
     padding-right: 15px;
 }
 .search-company input:focus {
-    border: 1px solid #4ec67f;
+    border: 1px solid #258cc3;
     outline: 0;
 }
 .search-company button {
@@ -1961,9 +2096,85 @@ input:checked + .slider:before {
     left: 5px;
     background: transparent;
     border: 0;
-    color: #4ec67f;
+    color: #258cc3;
     top: 12px;
 }
 .companies-links {
     position: relative;
 }
+/*ERROR MESSAGE QUESTION*/
+.status-upload .alert.alert-danger ul{
+    width: 100%;
+}
+.status-upload .alert.alert-danger ul li{
+    display: block;
+    width: 100%;
+    color: #a94442;
+}
+.status-upload .alert-danger li:before{
+    content: " ";
+    display: inline-block;
+    width: 10px;
+    height:10px;
+    margin-left: 5px;
+    background-color: #a94442;
+}
+/*FAQS*/
+.faqs h4.panel-title a.collapsed:after {
+    content: "\f067";
+    font-family: FontAwesome;
+    background: #afafaf;
+    color: #fff;
+    font-size: 14px;
+    left: 20px;
+    position: absolute;
+    z-index: 111;
+    width: 25px;
+    height: 25px;
+    line-height: 27px;
+    top: -4px;
+    border-radius: 100%;
+    text-align: center;
+    -webkit-box-shadow: 0 0 0 5px rgba(0,0,0,.07);
+    -moz-box-shadow: 0 0 0 5px rgba(0,0,0,.07);
+    box-shadow: 0 0 0 5px rgba(0,0,0,.07);
+}
+.faqs h4.panel-title a:after {
+    content: "\f068";
+    font-family: FontAwesome;
+    background: #258cc3;
+    color: #fff;
+    font-size: 14px;
+    left: 20px;
+    position: absolute;
+    z-index: 111;
+    width: 25px;
+    height: 25px;
+    line-height: 27px;
+    top: -4px;
+    border-radius: 100%;
+    text-align: center;
+    -webkit-box-shadow: 0 0 0 5px rgba(0,0,0,.07);
+    -moz-box-shadow: 0 0 0 5px rgba(0,0,0,.07);
+    box-shadow: 0 0 0 5px rgba(0,0,0,.07);
+}
+.faqs h4.panel-titl{
+    margin-bottom: 0;
+}
+.faqs h4.panel-title {
+    color: #989898;
+    position: relative;
+    padding-bottom: 0;
+}
+
+.faqs .panel-title > a:hover, .faqs .panel-title > a:focus, .faqs .panel-title > a:active{
+    color: #157CB2;
+}
+.faqs .panel-heading {
+    padding: 15px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+/*PAGES*/

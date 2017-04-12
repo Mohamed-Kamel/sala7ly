@@ -35,6 +35,7 @@ class User extends Authenticatable
         return $this->hasOne('App\Company_detail', 'company_id');
     }
 
+
     public function senderMessages(){
         return $this->hasMany('App\Message', 'sender_id');
     }
@@ -53,4 +54,5 @@ class User extends Authenticatable
      public function comments(){
         return $this->hasMany('App\Comment');
     }
+
 }
