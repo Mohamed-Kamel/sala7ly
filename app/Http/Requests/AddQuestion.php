@@ -30,4 +30,20 @@ class AddQuestion extends FormRequest
             'cat_id' => 'required|integer'            
         ];
     }
+
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'أدخل عنوان السؤال',
+            'title.min' => 'أدخل عنوان لايقل 20 حرف',
+            'title.max' => 'أدخل عنوان ﻻ يزيد عن 255 حرف',
+            'desc.required' => 'أدخل وصف المشكلة',
+            'desc.min' => 'أدخل وصف للمشكلة ﻻ يقل عن 30 حرف',
+            'img.mimes' => 'أدخل صورة صحيحة من نوع (jpeg, png)',
+            'img.size'  => 'هذه الصورة حجمها كبير',
+            'cat_id.required' => 'يجب ادخال القسم',
+            'cat_id.integer' => 'من فضلك اختر قسم صحيح'
+        ];
+    }
 }
