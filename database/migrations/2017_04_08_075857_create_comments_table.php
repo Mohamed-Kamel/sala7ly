@@ -19,8 +19,11 @@ class CreateCommentsTable extends Migration
             $table->unsignedInteger('parent_id')->default(0);
             $table->unsignedInteger('question_id');
             $table->timestamp('created')->default(\Carbon\Carbon::now());
+
+           
         });
-    }
+        });
+    
 
     /**
      * Reverse the migrations.
