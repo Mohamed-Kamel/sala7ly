@@ -225,6 +225,7 @@
         </script>
 
     @yield('scripts')
+    @yield('company')
     </body>
 
 </html>

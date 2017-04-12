@@ -18,7 +18,7 @@ margin:10px 0;
                     <img class="card-bkimg img-responsive" alt="cover" src="{{ asset('images/cover') }}/{{ $users->cover }}">
                 </div>
                 <div class="useravatar">
-                    <img alt="profile photo" src="{{ asset('images/profile') }}/{{ $users->img }}" />
+                    <img alt="profile photo" src="{{ url($users->img)}}" />
 
 
                 </div>

@@ -25,6 +25,8 @@ Route::post("/company_details", "HomeController@details");
 
 Route::get('/company/{id}', 'CompanyController@index');
 Route::post('/company/{id}', 'CompanyController@rate_company');
+Route::post('/company/edit/profile', 'CompanyController@editProfile');
+
 Route::get('/company', 'CompanyController@index');
 
 Route::get('/question/{id}', 'QuestionController@showQuestion');

@@ -87,9 +87,7 @@ a{
 
                                     <div class="col-md-8">
                                          <div class="input-group">
-                                       <textarea class="form-control" placeholder="اوصف شركتك" wrap='off' rows="12" cols="200" name="desc">
-                                     
-                                       </textarea>
+                                       <textarea class="form-control" placeholder="اوصف شركتك" wrap='on' rows="12" cols="200" name="desc"></textarea>
                                        </div>
                                        <div>
 
