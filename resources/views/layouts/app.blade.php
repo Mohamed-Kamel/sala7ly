@@ -235,7 +235,9 @@
     });
 </script>
 
-@yield('scripts')
-</body>
+    @yield('scripts')
+    @yield('company')
+    </body>
+
 
 </html>
