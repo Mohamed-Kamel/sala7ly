@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\comment;
+use App\Comment;
 use  Auth;
 use Mail;
 use  \App\Rating;
-//use App\Common;
+
 
 class comments extends Controller
 {
@@ -19,8 +19,8 @@ class comments extends Controller
     // dd($request);
     // $common= new Common;
     // Common::globalXssClean($request);
-
-   $comment = new comment;
+    Common::globalXssClean($request);
+   $comment = new Comment;
    $comment->comment = $request->comment;
    $comment->parent_id= $request->parent_id;
    $comment->question_id= $request->question_id;

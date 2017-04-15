@@ -13,13 +13,13 @@ class CommentsTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        for($i = 0; $i<20; $i++){
+        for($i = 0; $i<60; $i++){
             Comment::create([
                 'comment' =>$faker->text,
                 'parent_id' => 0,
-                'question_id' => $faker->numberBetween(1, 20),
+                'question_id' => rand(1, 40),
                 'created' => \Carbon\Carbon::now(),
-                'user_id' => $i+1
+                'user_id' => rand(1,20)
             ]);
         }
     }

@@ -13,7 +13,7 @@ class CatsTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        for($i = 0; $i<20; $i++){
+        for($i = 0; $i<5; $i++){
             Cat::create([
                 'title' =>$faker->name
             ]);

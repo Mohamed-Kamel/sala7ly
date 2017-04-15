@@ -14,7 +14,7 @@ class QuestionsTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        for($i = 0; $i<20; $i++){
+        for($i = 0; $i<40; $i++){
             Question::create([
                 'title' =>$faker->name,
                 'desc' => $faker->text,
@@ -22,8 +22,8 @@ class QuestionsTableSeeder extends Seeder
                 'visited' => rand(1, 10000),
                 'created' => \Carbon\Carbon::now(),
                 'status' => 'open',
-                'cat_id' => rand(1, 10),
-                'user_id' => rand(1, 20)
+                'cat_id' => rand(1, 5),
+                'user_id' => rand(11, 20)
             ]);
         }
     }

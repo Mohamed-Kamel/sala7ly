@@ -409,7 +409,7 @@
         $('.mail').on("submit", function(event){
         event.preventDefault();
         $.ajax({
-        url:  {{$question -> user_id}} + '/mail',
+        url:  {{$question->user_id}} + '/mail',
                 data: $(this).serialize(),
                 type: "post",
                 success: function(response) {
@@ -430,7 +430,7 @@
         console.log(checked);
         $.ajax({
         method: "post",
-                url:{{ $question -> id }} + '/done',
+                url:{{ $question->id }} + '/done',
                 data: {
                 "status": checked,
                         "_token": csrf

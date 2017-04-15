@@ -16,10 +16,10 @@ class RatingsTableSeeder extends Seeder
 
         $faker = Faker::create();
         $total = 20;
-        for($i = 0; $i<20; $i++){
+        for($i = 0; $i<10; $i++){
             Rating::create([
-                'user_id' => $i+1,
-                'company_id' => $total--,
+                'user_id' => $total--,
+                'company_id' => $i+1,
                 'stars' => rand(1, 5),
                 'review' => $faker->text,
                 'status' => '0',
