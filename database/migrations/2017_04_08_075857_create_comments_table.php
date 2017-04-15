@@ -20,9 +20,8 @@ class CreateCommentsTable extends Migration
             $table->unsignedInteger('question_id');
             $table->timestamp('created')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->unsignedInteger('user_id');
-
         });
-        });
+    }
     
 
     /**

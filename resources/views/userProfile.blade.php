@@ -70,7 +70,7 @@
                     <div class="col-sm-10 question-desc">
                         <div class="row">
                             <div class="col-sm-12">
-                                <h2 class="question-title-block"><a href="{{ url('/question') }}">{{ $question->title }}</a></h2>
+                                <h2 class="question-title-block"><a href="{{ url('/question') }}/{{$question->id}}">{{ $question->title }}</a></h2>
                             </div>
                             <div class="col-sm-12">
                                 <a href="{{ url('/questions') }}" class="qustion-user">

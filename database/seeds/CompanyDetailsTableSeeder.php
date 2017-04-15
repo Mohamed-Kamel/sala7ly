@@ -14,7 +14,7 @@ class CompanyDetailsTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        for($i = 0; $i<20; $i++){
+        for($i = 0; $i<10; $i++){
             Company_detail::create([
                 'address' =>$faker->name,
                 'desc' => $faker->text,
