@@ -36,8 +36,13 @@ class CompaniesController extends Controller {
         } elseif ($request->latest) {
             //GET LASTEST COMPANIES ADDED
             $latest_added = User::where('group_id', '=', 2)->limit(20)->orderBy('id', 'DESC')->get();
+          
             for ($i = 0; $i < count($latest_added); $i++) {
+                // echo $latest_added[$i]->id;
+                // print_r($latest_added[$i]->company->rating);
+                // echo "<hr>";
                 $latest_added[$i]->rating = $latest_added[$i]->company->rating;
+
             }
 
             return response()->json($latest_added, 200);
@@ -48,7 +53,8 @@ class CompaniesController extends Controller {
             }
             return response()->json($companies, 200);
         }else{
-            $companies = User::where('group_id', '=', 2)->paginate(3);
+            // $companies = User::where('group_id', '=', 2)->paginate(3);
+            $companies = User::where('group_id', '=', 2)->get();
             return view('companies', compact('companies'));
         }
     }

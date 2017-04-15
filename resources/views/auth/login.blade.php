@@ -1,17 +1,16 @@
 @extends('layouts.app')
-
 @section('content')
-<div class="container">
+<div class="container headerOffset">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8 col-md-offset-2 registration">
             <div class="panel panel-default">
-                <div class="panel-heading">تسجيل الدخول </div>
+                <div class="panel-heading"><i class="fa fa-sign-in"></i> تسجيل الدخول  </div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">الايميل</label>
+                            <label for="email" class="col-md-4 control-label">البريد الالكتروني</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
@@ -51,10 +50,7 @@
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                   تسجيل الخول
-                                   
-                                    <i class="fa fa-sign-in" aria-hidden="true"></i>
-
+                                   تسجيل الدخول
                                 </button>
 
                                 <a class="btn btn-link" href="{{ route('password.request') }}">

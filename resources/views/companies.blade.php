@@ -47,8 +47,9 @@
                                 @foreach($companies as $company)
                                     <div class="company-block">
                                         <div class="comp-image">
-                                            <a href="{{ URL('company') }}/{{ $company->id }}"><img
-                                                        src="{{ $company->img }}"></a>
+                                            <a href="{{ URL('company') }}/{{ $company->id }}">
+                                                <img @if($company->img) src="{{ url($company->img)}}"@endif  alt="{{$company->img}}">
+                                            </a>
                                         </div>
                                         <div class="company-det">
                                             <a class="comp-title"
@@ -70,7 +71,7 @@
                                     </div>
                                 @endforeach
                             @endif
-                            {{$companies->links()}}
+                           <!--  -->
                         </div>
                         <div id="category-2" class="tab-pane fade ">
                         </div>
@@ -221,6 +222,7 @@
                 }
             });
         }
+
 
 
         /*$(function () {

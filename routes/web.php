@@ -15,8 +15,23 @@
 
 Auth::routes();
 
+//FOR ADMIN
+Route::get('admin/login', function(){
+    return view('admin/login');
+});
+Route::get('admin/view', function(){
+    return view('admin/view');
+});
+Route::get('admin/form', function(){
+    return view('admin/form');
+});
+
+
 Route::get('/', 'HomeController@index');
 Route::get('/faq', 'FaqController@index');
+Route::get('/contactus', 'ContactusController@index');
+Route::post('/contactus', 'ContactusController@send');
+
 Route::get('/page/{id}', 'PageController@index');
 Route::get("/company_details", "HomeController@company_details");
 

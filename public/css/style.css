@@ -14,6 +14,9 @@ body{
 }
 
 /*COMMON STYLE*/
+textarea{
+    resize: none;
+}
 ul, ol { list-style: none; list-style-image: none; margin: 0; padding: 0;
          color:#858585;
          font-size: 14px;
@@ -57,6 +60,15 @@ h6 {
 }
 a:hover, a:active, a:focus{
     text-decoration: none;
+}
+.form-control:focus {
+    border-color: #258cc3;
+    box-shadow: none;
+}
+.btn-primary:hover, .btn-primary:focus, .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    background-color: #258cc3;
+    border-color: #157cb2;
+    color: #ffffff;
 }
 /* =============================================================== */
 /* Header
@@ -118,11 +130,12 @@ a:hover, a:active, a:focus{
 .user-header a{
     color: #fff;
 }
-.user-header img{
-    width: 35px;
-    height: 35px;
+.user-header img {
     border-radius: 100%;
     margin-left: 5px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 .header-notifi{
     float: right;
@@ -178,7 +191,7 @@ li.phone-number a{
     color: #fff;
 }
 li.phone-number i{
-    margin-right: 5px;
+    margin-left: 5px;
 }
 .userMenu li a {
     color: #FFFFFF;
@@ -336,6 +349,12 @@ li.phone-number i{
 .header-user, .heaer-user-name{
     position: relative;
     float: left;
+}
+a.heaer-user-name {
+    border: 2px solid #157cb2;
+    border-radius: 100%;
+    width: 35px;
+    height: 35px;
 }
 .header-user ul {
     display: none;
@@ -771,7 +790,12 @@ ul.user-notify {
 /* =============================================================== */
 /*  FOOTER
 /* =============================================================== */
-
+footer {
+    margin-top: 20px;
+}
+a.inline {
+    font-size: 17px;
+}
 .gap {
     height: 30px;
     width: 100%;
@@ -844,7 +868,7 @@ ul.user-notify {
     -moz-border-radius: 3px;
     -o-border-radius: 3px;
     -ms-border-radius: 3px;
-    border-radius: 3px;
+    border-radius: 0;
     display: inline-block;
     height: 40px;
     padding: 0;
@@ -896,17 +920,15 @@ ul.user-notify {
     text-align: center;
     line-height: 30px;
 }
-
 .social li:hover {
-    border: 2px solid #2c3e50;
-    background: #2c3e50;
+    border: 2px solid #258cc3;
+    background: #258cc3;
 }
-
 .social li a i {
     font-size: 16px;
     color: #EDEFF1 !important;
+    padding: 8px;
 }
-
 .footer-bottom {
     background: #E3E3E3;
     border-top: 1px solid #DDDDDD;
@@ -1085,7 +1107,7 @@ ul.user-notify {
 }
 .questions-home{
     /*background-color: #f5f5f5;*/
-    padding: 30px 0;
+    padding-top: 30px;
 }
 .anouncment-sidebar{
     border: 1px solid #dedede;
@@ -1182,6 +1204,9 @@ ul.user-notify {
     padding-bottom: 10px;
     border-bottom: 1px solid #dedede;
 }
+/*.question-block:last-child{
+    border-bottom: 0;
+}*/
 .data-icons {
     margin-top: 5px;
     color: #999;
@@ -1229,6 +1254,7 @@ a.qustion-user:hover{
 /* =============================================================== */
 .headerOffset {
     padding-top: 30px;
+    min-height: 500px;
 }
 .header-ann{
     margin-bottom: 20px;
@@ -1575,8 +1601,6 @@ a.qustion-user:hover{
 .upload-img-icon a{
     position: absolute;
     cursor: pointer;
-
-
 }
 .status-upload select {
     margin-right: 15px;
@@ -1589,7 +1613,6 @@ a.qustion-user:hover{
 /* USER PROFILE PAGE */
 .card {
     margin-top: 20px;
-    padding: 30px;
     background-color: rgba(214, 224, 226, 0.2);
     -webkit-border-top-left-radius:5px;
     -moz-border-top-left-radius:5px;
@@ -1611,6 +1634,15 @@ a.qustion-user:hover{
     background-color: #fff;
     background-color: rgba(255, 255, 255, 1);
     margin-bottom: 15px;
+    border-radius: 5px;
+}
+.card-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.38);
 }
 .card.hovercard .card-background {
     height: 130px;
@@ -1678,7 +1710,26 @@ a.qustion-user:hover{
     -moz-transition: height 0.2s;
     transition: height 0.2s;
 }
-
+.edit-profile {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-radius: 0 0 5px 0 !important;
+    font-size: 13px;
+}
+.edit-profile i{
+    margin-left: 4px;
+}
+.user-details {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.company-details-block{
+    text-align: center;
+}
+.company-details-block i{
+    margin-left: 3px;
+}
 .stars
 {
     margin: 20px 0;
@@ -1776,11 +1827,13 @@ input:checked + .slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
-.question-user-img img{
+.question-user-img img {
     float: right;
     width: 60px;
     height: 60px;
     margin-left: 10px;
+    border: 2px solid #dedede;
+    border-radius: 2px;
 }
 .question-user-img a{
     color: #555;
@@ -1800,6 +1853,9 @@ input:checked + .slider:before {
     margin-top: 10px;
     padding-bottom: 10px;
     border-bottom: 1px solid #dedede;
+}
+.problem-description {
+    margin: 15px 0;
 }
 .problem-description p {
     line-height: 30px;
@@ -1830,10 +1886,6 @@ input:checked + .slider:before {
     margin-top: 30px;
     position: relative;
 }
-
-/**
- * Lineas / Detalles
- -----------------------*/
 .comments-list:before {
     content: '';
     width: 2px;
@@ -1889,9 +1941,6 @@ input:checked + .slider:before {
     clear: both;
     margin-top: 15px;
 }
-/**
- * Avatar
- ---------------------------*/
 .comments-list .comment-avatar {
     width: 65px;
     height: 65px;
@@ -1926,10 +1975,10 @@ input:checked + .slider:before {
     clear: both;
 }
 /**
- * Caja del Comentario
+ * Commets
  ---------------------------*/
 .comments-list .comment-box {
-    width: 680px;
+    width: 765px;
     float: right;
     position: relative;
     -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
@@ -1947,20 +1996,18 @@ input:checked + .slider:before {
     display: block;
     border-top: 15px solid transparent;
     border-bottom: 15px solid transparent;
-    border-left: 15px solid #fcfcfc;
+    border-left: 15px solid #f5f5f5;
     border-style: solid;
-    border-color: transparent #fcfcfc;
+    border-color: transparent #f5f5f5;
     top: 8px;
     right: -16px;
 }
-
-
 .reply-list .comment-box {
-    width: 610px;
+    width: 690px;
     margin-right: 15px;
 }
 .comment-box .comment-head {
-    background: #FCFCFC;
+    background: #f5f5f5;
     padding: 10px 12px;
     border-bottom: 1px solid #E5E5E5;
     overflow: hidden;
@@ -2018,6 +2065,37 @@ input:checked + .slider:before {
     -webkit-border-radius: 0 0 4px 4px;
     -moz-border-radius: 0 0 4px 4px;
     border-radius: 0 0 4px 4px;
+}
+.auther-leave-comment textarea {
+    width: 100%;
+    resize: none;
+    border: 1px solid #dedede;
+    height: 70px;
+}
+.auther-leave-comment .btn.btn-success i{
+    color: #fff !important;
+}
+.colsed-question {
+    display: block;
+    line-height: 60px;
+    color: #999;
+}
+.colsed-question i{
+    color: #258cc3;
+    margin-left: 3px;
+}
+.replay-desc i.ti-timer {
+    float: right;
+    margin: 5px 3px;
+}
+.btn-success i{
+    color: #fff !important;
+}
+form.mail{
+    float: left;
+}
+form.mail .btn-success i{
+    color: #fff !important;
 }
 /** =====================
  * Responsive
@@ -2087,7 +2165,7 @@ input:checked + .slider:before {
     color: #999;
     padding-right: 15px;
 }
-.search-company input:focus {
+.search-company input:focus, textarea:focus {
     border: 1px solid #258cc3;
     outline: 0;
 }
@@ -2178,3 +2256,140 @@ input:checked + .slider:before {
 }
 
 /*PAGES*/
+/*REGISTRATION*/
+span.input-group-addon i {
+    color: #258cc3;
+    font-size: 17px;
+}
+
+.login-button{
+    margin-top: 5px;
+}
+
+.login-register{
+    font-size: 11px;
+    text-align: center;
+}
+.choice{
+
+    margin: 5px;
+    margin-right: 11px;
+    padding: 3px;
+}
+.registration .panel-default>.panel-heading {
+    color: #fff;
+    background-color: #258cc3;
+    border-color: #ddd;
+}
+.registration .panel-default>.panel-heading i{
+    margin-left: 3px;
+}
+.registration label, label{
+    color: #777;
+}
+select.form-control{
+    width: 100%;
+}
+.registration  .panel-default{
+    box-shadow: 0 0 10px #ddd;
+}
+.registration i.fa.fa-envelope.fa-lg{
+    font-size: 13px;
+}
+.registration i.fa.fa-lg.fa-lock {
+    font-size: 20px;
+}
+.input-group-addon{
+    border-radius: 0;
+}
+.form-control{
+    border-radius: 0;
+    box-shadow: none;
+}
+.btn{
+    border-radius: 0;
+    margin-left: 5px;
+}
+.modal{
+    background-color: rgba(0, 0, 0, 0.74);
+}
+.profile-imge-edit img{
+    width:100%;
+    margin:10px 0;
+}
+.close {
+    float: left;
+    color: #fff;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: 0.5;
+}
+.modal-title {
+    color: #fff;
+    padding-bottom: 0;
+    font-size: 16px;
+}
+.modal-title i{
+    margin-left: 5px;
+}
+.btn i{
+    margin-left: 3px;
+}
+.btn-success {
+    color: #fff;
+    background-color: #258cc3;
+    border-color: #258cc3;
+    border-radius: 2px;
+}
+.btn-success.active, .btn-success.focus, .btn-success:active, .btn-success:focus, .btn-success:hover, .open>.dropdown-toggle.btn-success {
+    color: #fff;
+    background-color: #157cb2;
+    border-color: #157cb2;
+}
+
+/*COMPANY PROFILE*/
+.text-muted i {
+    float: right;
+    margin-left: 3px;
+    padding: 3px 0;
+}
+.leave-comment-rating {
+    margin: 20px 0;
+}
+.stars.starrr .glyphicon-star-empty{
+    color: #ddd;
+}
+.stars.starrr .glyphicon.glyphicon-star{
+    color: #fedc2f;
+}
+#post-review-box {
+    padding: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #dedede;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+#post-review-box textarea{
+    resize: none;
+}
+.choice{
+    margin: 5px;
+    margin-right: 11px;
+    padding: 3px;
+}
+#map{
+    height: 300px;
+}
+legend {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 20px;
+    font-size: 21px;
+    line-height: inherit;
+    color: #333;
+    border: 0;
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}

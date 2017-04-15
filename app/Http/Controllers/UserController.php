@@ -13,30 +13,30 @@ class UserController extends Controller
 
     public function showUserQuestions($id)
     {
-        //  $id = Auth::user()->id;
         $users = User::find($id);
-        $userQuestions = DB::table('users')
-            ->join('questions', 'users.id', '=', 'questions.user_id')
-            ->where('questions.id', '=', $id)
-            ->select('questions.*')
-            ->get();
+//        dd($users->questions);
+//        $userQuestions = DB::table('users')
+//            ->join('questions', 'users.id', '=', 'questions.user_id')
+//            ->where('questions.id', '=', $id)
+//            ->select('questions.*')
+//            ->get();
+        
+//        $cats = DB::table('questions')
+//            ->join('cats', 'questions.id', '=', 'cats.id')
+//            ->where('cats.id', '=', $id)
+//            ->select('cats.*')
+//            ->get();
 
-        $cats = DB::table('questions')
-            ->join('cats', 'questions.id', '=', 'cats.id')
-            ->where('cats.id', '=', $id)
-            ->select('cats.*')
-            ->get();
 
+//        $comments = DB::table('questions')
+//            ->join('comments', 'questions.id', '=', 'comments.id')
+//            ->where('comments.id', '=', $id)
+//            ->select('comments.*')
+//            ->get();
+//        $commentsNumber = $comments->count();
+       // dd($commentsNumber);
 
-        $comments = DB::table('questions')
-            ->join('comments', 'questions.id', '=', 'comments.id')
-            ->where('comments.id', '=', $id)
-            ->select('comments.*')
-            ->get();
-        $commentsNumber = $comments->count();
-//         dd($commentsNumber);
-
-        return view("userProfile", compact('userQuestions', 'users', 'cats', 'commentsNumber'));
+        return view("userProfile", compact( 'users'));
     }
 
 
@@ -49,7 +49,6 @@ class UserController extends Controller
             'img'=>'image',
             'cover'=>'image',
         ]);
-
         $users = User::find(Auth::id());
         $users->name = $request->name;
         // $users->email = $request->email;
@@ -58,7 +57,7 @@ class UserController extends Controller
         if ($request->file('img')) {
             $users->img = $request->file('img')->store('asset(images/profile)');
         }
-        if ($request->file('img')) {
+        if ($request->file('cover')) {
             $users->cover = $request->file('cover')->store('images/cover');
         }
         $users->save();
