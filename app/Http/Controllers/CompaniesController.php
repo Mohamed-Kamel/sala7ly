@@ -59,14 +59,17 @@ class CompaniesController extends Controller {
         $searchKey = $request->key;
 
         if ($searchKey != "") {
-            $companies = User::where('name', 'LIKE', '%' . $searchKey . '%')->where('group_id', '=', 2)->get();
-//            $companies = User::where('name', 'LIKE', '%' . $searchKey . '%')->where('group_id', '=', 2)->paginate(3);
+//            $companies = User::where('name', 'LIKE', '%' . $searchKey . '%')->where('group_id', '=', 2)->get();
+            $companies = User::where('name', 'LIKE', '%' . $searchKey . '%')->where('group_id', '=', 2)->paginate(3);
 
-            for ($i = 0; $i < count($companies); $i++) {
-                $companies[$i]->rating = $companies[$i]->company->rating;
+            if(count($companies) > 0){
+                for ($i = 0; $i < count($companies); $i++) {
+                    $companies[$i]->rating = $companies[$i]->company->rating;
+                }
+                return response()->json($companies, 200);
+            }else{
+                return response()->json(false, 400);
             }
-
-            return response()->json($companies, 200);
         }
     }
 

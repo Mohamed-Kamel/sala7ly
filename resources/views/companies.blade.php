@@ -34,7 +34,7 @@
                 <div class="companies-list">
                     <div class="companies-links">
                         <ul class="nav nav-tabs">
-                            <li ><a id="all" data-toggle="tab" href="#category-1"> الكل</a></li>
+                            <li><a id="all" data-toggle="tab" href="#category-1"> الكل</a></li>
                             <li><a data-toggle="tab" id="latest" href="#category-2"> المضاف حديثاً</a></li>
                             <li><a data-toggle="tab" id="top" href="#category-3"> الاعلى تقيماً</a></li>
                         </ul>
@@ -93,17 +93,16 @@
 @endsection
 
 @section('scripts')
-
+    <script src="{{asset('js/jquery.jscroll.min.js')}}"></script>
+    <script src="{{asset('js/manual-trigger.js')}}"></script>
     <script type="text/javascript">
-        $(function () {
+        var contentPage;
+        $(document).ready(function(){
             $("#search-comp").on("keyup", function (event) {
                 $("#search-results").empty();
                 $('.companies-list').show();
-
                 event.preventDefault();
-
                 var key = $("#search-comp").val();
-                console.log(key);
                 $.ajax({
                     url: "{{URL('/companies/search')}}",
                     type: "GET",
@@ -111,9 +110,40 @@
                     success: function (data) {
                         console.log(data);
                         $('#search-results').show();
-                        render("#search-results", data);
+                        render("#search-results", data.data);
+                        contentPage = data.next_page_url;
+                        console.log('content: ',contentPage);
+                    },
+                    error: function(error){
+                        console.log(error);
                     }
                 });
+            });
+            /***********************************Scroll****************************/
+
+            $('#search-results').scrollPagination({
+                autoTrigger: true,
+                'contentPage': contentPage, // the url you are fetching the results
+//                'contentData': {'page': page},
+                'scrollTarget': $(window),
+                'heightOffset': 3,
+                'beforeLoad': function () {
+                    console.log('scroll content : '+contentPage);
+                    // before load function, you can display a preloader div
+//                    $('#loading').fadeIn();
+                },
+                'afterLoad': function (elementsLoaded) {
+                    console.log('scroll content : ');
+//                    $('#loading').fadeOut();
+//                    var i = 0;
+//                    $(elementsLoaded).fadeInWithDelay();
+//                    page++;
+//                    if ($('#content').children().size() > 140) {
+//                        // if more than 140 results already loaded, then stop pagination
+//                        $('#nomoreresults').fadeIn();
+//                        $('#content').stopScrollPagination();
+//                    }
+                }
             });
         }());
 
@@ -185,32 +215,36 @@
                 sub_det.append(stars, city);
                 company_det.append(comp_title, sub_det);
                 company_block.append(comp_image_block, company_det);
-                $(id).append(company_block).append(data.next_page_url);
+                $(id).append(company_block);
                 if (id === "#search-results") {
                     $('.companies-list').hide();
                 }
             });
         }
-    </script>
 
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('#search-results').infinitescroll({
-                navSelector: "#next:last",
-                nextSelector: "#next:last",
-                itemSelector: "#content",
-                debug: false,
-                dataType: 'html',
-                maxPage: 4,
-                path: function(index) {
-                    return "index" + index + ".html";
+
+        /*$(function () {
+            $('#search-results').scrollPagination({
+                'contentPage': contentPage, // the url you are fetching the results
+//                'contentData': {'page': page},
+                'scrollTarget': $(window),
+                'heightOffset': 3,
+                'beforeLoad': function () {
+                    // before load function, you can display a preloader div
+//                    $('#loading').fadeIn();
+                },
+                'afterLoad': function (elementsLoaded) {
+//                    $('#loading').fadeOut();
+//                    var i = 0;
+//                    $(elementsLoaded).fadeInWithDelay();
+//                    page++;
+//                    if ($('#content').children().size() > 140) {
+//                        // if more than 140 results already loaded, then stop pagination
+//                        $('#nomoreresults').fadeIn();
+//                        $('#content').stopScrollPagination();
+//                    }
                 }
-                // appendCallback : false, // USE FOR PREPENDING
-            }, function(newElements, data, url){
-                // used for prepending data
-                // $(newElements).css('background-color','#ffef00');
-                // $(this).prepend(newElements);
             });
-        });
+        });*/
     </script>
 @endsection
