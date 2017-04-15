@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Cat;
 use App\Question;
-use App\User;
+use App\Company_detail;
 use Auth;
 
 class HomeController extends Controller {
@@ -18,13 +18,8 @@ class HomeController extends Controller {
     public function index() {
         $cats = Cat::all();
         $questions = Question::orderBy('id', 'DESC')->limit('20')->get();
-        $top_rated = User::where('group_id', '=', 2)->limit('10')->get();
-        $des = [];
-        foreach ($top_rated as $top) {
-            $des[] = $top->company->rating;
-        }
-        $top = $des;
-        rsort($des);
+        $top_rated = Company_detail::orderBy('rating', 'DESC')->limit('10')->get();
+        
         return view('welcome', compact('cats', 'questions', 'top_rated'));
     }
 
@@ -34,6 +29,8 @@ class HomeController extends Controller {
     }
 
     public function details(Request $Request) {
+        
+//        dd( $Request->address);
 
 
         $this->validate($Request, [
@@ -48,8 +45,8 @@ class HomeController extends Controller {
             'desc.max' => ' يجب ان لا يكون الوصف اكبر من 255 حرف',
         ]);
 
-        $comp = \App\Company_detail::where('company_id', '=', Auth::id())->first();
-
+        $comp = Company_detail::where('company_id', '=', Auth::id())->first();
+        
         $comp->address = $Request->address;
 
         $comp->desc = $Request->desc;

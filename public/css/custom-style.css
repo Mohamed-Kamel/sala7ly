@@ -24,27 +24,10 @@
 .navbar-tshop {
     background: #258cc3;
 }
-
-.btn-primary,
-.product:hover .add-fav:hover,
-.product:hover .add-fav.active {
-    background-color: #258cc3;
+.btn-primary, .product:hover .add-fav:hover, .product:hover .add-fav.active {
+    background-color: #157cb2;
     color: #ffffff;
 }
-
-.btn-primary:hover,
-.btn-primary:focus,
-.pagination > .active > a,
-.pagination > .active > span,
-.pagination > .active > a:hover,
-.pagination > .active > span:hover,
-.pagination > .active > a:focus,
-.pagination > .active > span:focus {
-    background-color: #66de97;
-    border-color: #66de97;
-    color: #ffffff;
-}
-
 .btn-primary:active,
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {

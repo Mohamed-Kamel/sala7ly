@@ -12,10 +12,9 @@ use Auth;
 
 use Response;
 
-use carbon\Carbon;
-
 use Illuminate\Foundation\Auth\RegisterController;
 
+use carbon\Carbon;
 
 class CompanyController extends Controller
 {
@@ -62,24 +61,23 @@ class CompanyController extends Controller
             'review' => 'required',
             'stars' => 'required'
         ], ['required' => "برجاء ادخال تعليقك"]);
-
         $review_before = Rating::where("user_id", "=", Auth::id())->where("company_id", "=", $request->company_id)->where("status", "=", '1')->first(); 
         if ($review_before) {
             return Response::json(['error' => 'لقد تم عمل تقيم من قبل'], 404); // Status code here
         }
 
-        $review = Rating::where("user_id", "=", 1)->where("company_id", "=", $request->company_id)->where("status", "=", '0')->first();
+        $review = Rating::where("user_id", "=", Auth::id())->where("company_id", "=", $request->company_id)->where("status", "=", '0')->first();
         if (!$review) {
             return Response::json(['error' => 'لم يتم التواصل من قبل'], 404); // Status code here
 
         } else {
             $review->stars = $request->stars;
             $review->review = $request->review;
-            $review->created_at = \DB::raw('CURRENT_TIMESTAMP');
+            $review->created_at = Carbon::now();
             $review->status = '1';
             $review->save();
         }
-        return redirect('company/' . $request->company_id);
+        return redirect('company/'.$request->company_id);
 
     }
     public function editProfile(Request $request){

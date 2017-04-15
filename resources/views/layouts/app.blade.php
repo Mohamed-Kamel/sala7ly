@@ -31,10 +31,10 @@
                     <div class="text-right">
                         <ul class="userMenu ">
                             <li>
-                                <a href="#"> من نحن</a>
-                                <a href="#"> مساعدة </a>
-                                <a href="#"> الاسئلة الشائعة</a>
-                                <a href="#"> اتصل بنا</a>
+                                <a href="{{ URL('/page') }}/1"> من نحن</a>
+                                <a href="{{ URL('/page') }}/2"> مساعدة </a>
+                                <a href="{{ URL('/page') }}/3"> سياسة الخصوصية </a>
+                                <a href="{{ url('/contactus') }}"> اتصل بنا</a>
                                 <a href="{{ url('/faq') }}">الاسألة الشائعة</a>
                             </li>
                         </ul>
@@ -68,7 +68,7 @@
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
                         class="sr-only"> Toggle navigation </span> <span class="icon-bar"> </span> <span
                         class="icon-bar"> </span> <span class="icon-bar"> </span></button>
-            <a class="navbar-brand" href="{{ url('/') }}"> <img src="" alt="Salahly"> </a>
+            <a class="navbar-brand" href="{{ url('/') }}"> <img style="height:40px;" src="{{ asset('images/logo.png') }}" alt="Salahly"> </a>
             <!-- this part for mobile -->
 
 
@@ -101,14 +101,32 @@
                 </ul>
 
                 <div class="header-user">
-                    <a href="#" class="heaer-user-name"> <img src="{{ Auth::user()->img }}">
+                  
+                    <a href="#" class="heaer-user-name">
+                          
+                        <img src="
+                             @if( Auth::user()->img)
+                             {{ url(Auth::user()->img) }}
+                         @endif
+                         ">
                     </a>
+                    
                     <ul class="user-menu" role="menu">
                         <li>
-                            <a href="{{ URL('userProfile') }}/{{ Auth::user()->id }}">
+                            @if( Auth::user()->group_id == '1')
+                             <a href="{{ URL('userProfile') }}/{{ Auth::user()->id }}">
                                 <i class="ti-id-badge"></i>
                                 {{ Auth::user()->name }}
                             </a>
+                            @endif
+                            @if( Auth::user()->group_id == '2')
+                             <a href="{{ URL('company') }}/{{ Auth::user()->id }}">
+                                <i class="ti-id-badge"></i>
+                                {{ Auth::user()->name }}
+                            </a>
+                            @endif
+                            
+                           
                         </li>
                         <li>
                             <a href="{{ route('logout') }}"
@@ -160,8 +178,8 @@
                     <ul>
                         <li class="supportLi">
                             <p> اذا اردت الاستفسار عن شيئ ما قم بالاتصال بنا </p>
-                            <h4><a class="inline" href="callto:+88016000000"> <strong> <i class="fa fa-phone"> </i> 88
-                                        0160 000 000</strong> </a></h4>
+                            <h4><a class="inline" href="callto:+88016000000"> <i class="fa fa-phone"> </i> 88
+                                        0160 000 000 </a></h4>
                             <h4><a class="inline" href="mailto:help@tshopweb.com"> <i class="fa fa-envelope-o"> </i>
                                     help@tshopweb.com </a></h4>
                         </li>
@@ -173,11 +191,11 @@
                 <div class="col-lg-4  col-md-4 col-sm-6 col-xs-6">
                     <h3> روابط تهمك </h3>
                     <ul>
-                        <li><a href="#"> من نحن </a></li>
-                        <li><a href="#"> اتصل بنا </a></li>
-                        <li><a href="#"> مساعدة </a></li>
-                        <li><a href="#"> رابط ثان </a></li>
-                        <li><a href="#"> رابط ثالث </a></li>
+                        <li><a href="{{ URL('/page') }}/1"> من نحن</a></li>
+                        <li><a href="{{ URL('/page') }}/2"> مساعدة </a></li>
+                        <li><a href="{{ URL('/page') }}/3"> سياسة الخصوصية </a></li>
+                        <li><a href="{{ url('/contactus') }}"> اتصل بنا</a></li>
+                        <li> <a href="{{ url('/faq') }}">الاسألة الشائعة</a></li>
                     </ul>
                 </div>
 

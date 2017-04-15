@@ -1,25 +1,40 @@
 @extends('layouts.app')
-
 @section('content')
+<div class="container main-container headerOffset">
+    <div class="row">
+        <div class="col-sm-12 header-ann">
+            <img src="{{ asset('images/footer-ann.jpg') }}">
+        </div>
+    </div>
+    <!-- Main component call to action -->
+    <div class="row">
+        <div class="breadcrumbDiv col-lg-12">
+            <ul class="breadcrumb">
+                <li><a href="{{url('/')}}"><i class="ti-home"></i> الرئيسية</a></li>
+                <li class="active">نتيجة البحث</li>
+            </ul>
+        </div>
+    </div>
+    <!-- /.row  -->
     @if(count($results)>0)
     <div class="infinite-scroll">
-    @foreach($results as $result)
+        @foreach($results as $result)
         <div class="question-block">
             <div class="row">
                 <div class="col-sm-2">
                     <div class="row">
-                            <span class="data-icons col-sm-4">
-                                {{$result->visited}}
-                                <i class="fa fa-eye"></i>
-                            </span>
                         <span class="data-icons col-sm-4">
-                                {{$result->allComments->count()}}
-                                            <i class="ti-thought"></i>
-                                        </span>
+                            {{$result->visited}}
+                            <i class="fa fa-eye"></i>
+                        </span>
                         <span class="data-icons col-sm-4">
-                                            مفتوح
-                                            <i class="ti-info-alt"></i>
-                                        </span>
+                            {{$result->allComments->count()}}
+                            <i class="ti-thought"></i>
+                        </span>
+                        <span class="data-icons col-sm-4">
+                            مفتوح
+                            <i class="ti-info-alt"></i>
+                        </span>
                     </div>
                 </div>
                 <div class="col-sm-10 question-desc">
@@ -50,30 +65,34 @@
                 </div>
             </div>
         </div>
-    @endforeach
-
+        @endforeach
         {{ $results->links() }}
     </div>
     @endif
+
+</div>
+
+
+
 @endsection
 
 
 
 @section('scripts')
-    <script src="{{asset('js/jquery.jscroll.min.js')}}"></script>
-    <script type="text/javascript">
-        $('ul.pagination').hide();
-        $(function () {
-            $('.infinite-scroll').jscroll({
-                autoTrigger: true,
-                loadingHtml: '<img class="center-block" src="/images/loading.gif" alt="Loading..." />',
-                padding: 0,
-                nextSelector: '.pagination li.active + li a',
-                contentSelector: 'div.infinite-scroll',
-                callback: function () {
-                    $('ul.pagination').remove();
-                }
-            });
-        });
-    </script>
+<script src="{{asset('js/jquery.jscroll.min.js')}}"></script>
+<script type="text/javascript">
+$('ul.pagination').hide();
+$(function () {
+$('.infinite-scroll').jscroll({
+    autoTrigger: true,
+//    loadingHtml: '<img class="center-block" src="/images/loading.gif" alt="Loading..." />',
+    padding: 0,
+    nextSelector: '.pagination li.active + li a',
+    contentSelector: 'div.infinite-scroll',
+    callback: function () {
+        $('ul.pagination').remove();
+    }
+});
+});
+</script>
 @endsection
