@@ -56,16 +56,19 @@
         <div class="row">
             <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
                 <ul class="nav nav-tabs">
+                    @if(isset($cats))
                     @foreach($cats as $cat)
                     <li><a data-toggle="tab" href="#category_{{$cat->id}}"> {{$cat->title}}</a></li>
                     @endforeach
+                    @endif
                 </ul>
 
                 <h1 class="subtitles">احدث الاسألة</h1>
                 <div class="tab-content">
+                    @if(isset($cats))
                     @foreach($cats as $cat)
                     <div id="category_{{ $cat->id }}" class="tab-pane fade">
-
+                        @if(isset($questions))
                         @foreach($questions as $question) 
                         @if($cat->id == $question->cat_id)
                         <div class="question-block">
@@ -97,7 +100,7 @@
                                                 {{ $question->user->name }}
                                             </a>
 
-                                            <a href="#" class="qustion-user">
+                                            <a href="{{ URL('/questions') }}" class="qustion-user">
                                                 <i class="ti-tag"></i>
                                                 {{ $question->cat->title }}
                                             </a>
@@ -112,8 +115,10 @@
                         </div>
                         @endif
                         @endforeach 
+                        @endif
                     </div>
                     @endforeach
+                    @endif
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
@@ -126,22 +131,26 @@
                         اعلى الشركات تقيماً
                     </h2>
                     <div class="main-comp-block-top">
+                        @if(isset($top_rated))
                         @foreach($top_rated as $top)
                         <div Class="company-rate-block">
-                            <a href="{{ URL('company') }}/{{ $top->id }}"><img src="{{ $top->img }}" alt="{{ $top->name }}"></a>
+                            <a href="{{ URL('company') }}/{{ $top->user->id }}">
+                                <img @if(isset($top->user->img)) src="{{ url($top->user->img)}}" @endif  alt="{{ $top->user->name }}">
+                            </a>
                             <div class="copmnyrate">
-                                <a href="{{ URL('company') }}/{{ $top->id }}" class="comp-title">{{ $top->name }}</a>
+                                <a href="{{ URL('company') }}/{{ $top->user->id }}" class="comp-title">{{ $top->user->name }}</a>
                                 <ul id="stars">
-                                    @for($i=0; $i<round($top->company->rating); $i++)
+                                    @for($i=0; $i<round($top->rating); $i++)
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         @endfor
-                                        @for($i=5; $i>round($top->company->rating); $i--)
+                                        @for($i=5; $i>round($top->rating); $i--)
                                         <i class="fa fa-star-o" aria-hidden="true"></i>
                                         @endfor
                                 </ul>
                             </div>
                         </div>
                         @endforeach 
+                        @endif
                     </div>
                 </div>
             </div>

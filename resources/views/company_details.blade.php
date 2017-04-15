@@ -1,46 +1,8 @@
 @extends('layouts.app')
-<style >
-    .input-group {
-    -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
-    -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
-    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21)!important;
-}
-span.input-group-addon i {
-    color: #009edf;
-    font-size: 17px;
-}
-
-.login-button{
-    margin-top: 5px;
-}
-
-.login-register{
-    font-size: 11px;
-    text-align: center;
-}
-.choice{
-    
-    margin: 5px;
-    margin-right: 11px;
-    padding: 3px;
-}
-
-a{
-    text-decoration: none;
-
-}
-.more{
-    margin-top: 30px;
-}
-#map{
-    height: 300px;
-}
-</style>
-
 @section('content')
-<div class="container">
-    <div class="row more">
-        <div class="col-md-8 col-md-offset-2">
+<div class="container headerOffset">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 registration">
             <div class="panel panel-default">
                 <div class="panel-heading">استكمال بيانات شركتك</div>
                 <div class="panel-body">

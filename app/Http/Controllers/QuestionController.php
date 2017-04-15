@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use App\Http\Requests\AddQuestion;
 use App\Question;
+use App\Company_detail;
 use App\Cat;
 use Auth;
 class QuestionController extends Controller {
@@ -34,12 +35,13 @@ class QuestionController extends Controller {
            return response()->json(['success'=>"success"], 200);
         } 
 
-    public function showQuestion(Request $request, $id){
+    public function showQuestion($id){
         $question = Question::find($id);
          $results = Question::where('title', 'LIKE', '%'.$question->title.'%')
          ->where('title', '<>', $question->title)
          ->limit(10)->get();
-         return view('question', compact('question','results'));
+         $top_rated = Company_detail::orderBy('rating', 'DESC')->limit('10')->get();
+         return view('question', compact('question','results','top_rated'));
     }
 
 

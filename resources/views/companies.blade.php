@@ -47,8 +47,9 @@
                                 @foreach($companies as $company)
                                     <div class="company-block">
                                         <div class="comp-image">
-                                            <a href="{{ URL('company') }}/{{ $company->id }}"><img
-                                                        src="{{ $company->img }}"></a>
+                                            <a href="{{ URL('company') }}/{{ $company->id }}">
+                                                <img @if($company->img) src="{{ url($company->img)}}"@endif  alt="{{$company->img}}">
+                                            </a>
                                         </div>
                                         <div class="company-det">
                                             <a class="comp-title"
@@ -70,7 +71,7 @@
                                     </div>
                                 @endforeach
                             @endif
-                            {{$companies->links()}}
+                           <!--  -->
                         </div>
                         <div id="category-2" class="tab-pane fade ">
                         </div>
@@ -191,26 +192,28 @@
                 }
             });
         }
-    </script>
+        </script>
 
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('#search-results').infinitescroll({
-                navSelector: "#next:last",
-                nextSelector: "#next:last",
-                itemSelector: "#content",
-                debug: false,
-                dataType: 'html',
-                maxPage: 4,
-                path: function(index) {
-                    return "index" + index + ".html";
-                }
-                // appendCallback : false, // USE FOR PREPENDING
-            }, function(newElements, data, url){
-                // used for prepending data
-                // $(newElements).css('background-color','#ffef00');
-                // $(this).prepend(newElements);
+
+        <!-- <script type="text/javascript">
+        
+            $(function() {
+                $('#search-results').infinitescroll({
+                    navSelector: "#next:last",
+                    nextSelector: "#next:last",
+                    itemSelector: "#content",
+                    debug: false,
+                    dataType: 'html',
+                    maxPage: 4,
+                    path: function(index) {
+                        return "index" + index + ".html";
+                    }
+                    // appendCallback : false, // USE FOR PREPENDING
+                }, function(newElements, data, url){
+                    // used for prepending data
+                    // $(newElements).css('background-color','#ffef00');
+                    // $(this).prepend(newElements);
+                });
             });
-        });
-    </script>
+        </script> -->
 @endsection
