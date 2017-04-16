@@ -9,23 +9,21 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
-
-
 Auth::routes();
 
 //FOR ADMIN
-Route::get('admin/login', function(){
-    return view('admin/login');
-});
-Route::get('admin/view', function(){
-    return view('admin/view');
-});
-Route::get('admin/form', function(){
-    return view('admin/form');
-});
-
+// Route::get('admin/login', function(){
+//     return view('layouts.admin');
+// });
+// Route::get('ad/view', function(){
+//     return view('admin.view');
+// });
+// Route::get('ad/form', function(){
+//     return view('admin.form');
+// });
+Route::get('/ad/users', 'AdminController@users');
+Route::get('/ad/users/{id}', 'AdminController@deleteUser');
+Route::get('/ad/users/{id}/d', 'AdminController@restorUser');
 
 Route::get('/', 'HomeController@index');
 Route::get('/faq', 'FaqController@index');
