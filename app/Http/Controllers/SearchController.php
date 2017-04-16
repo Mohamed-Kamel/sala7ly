@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Cat;
 use Illuminate\Http\Request;
 use App\Question;
-
+use DB;
 class SearchController extends Controller
 {
     /**
-     * Search for questions
+     * Search for questions general navbar search
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -21,4 +22,71 @@ class SearchController extends Controller
         return view('search', compact('results'));
     }
 
+    /**
+     * get questions by cat id
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function catQuestions($id)
+    {
+        // @TODO: slug instead of ids
+        $questions = Question::where('cat_id', '=', $id)->paginate(5);
+        $cats = Cat::all();
+        return view('questions', compact('questions', 'cats'));
+    }
+
+    /**
+     * method to search for questions advancedly
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function advancedSearch(Request $request){
+        Common::globalXssClean($request);
+        $query = DB::table('questions')
+            ->select(['cats.title AS cat_name', 'questions.*', 'users.*'])
+            ->join('users', 'users.id', '=', 'questions.user_id')
+            ->join('cats', 'cats.id', '=', 'questions.cat_id');
+
+//        $query->where(function($query) use ($request){
+            foreach ($request->all() as $key => $value){
+                switch ($key){
+                    case 'open':
+                        $query->where('status', '=', 'open');
+                    break;
+
+                    case 'last':
+                        $query->orderBy('questions.id', 'DESC');
+                    break;
+
+                    case 'advancedSearch':
+                        $query->where('questions.title', 'LIKE', '%'.$value.'%')->orWhere('questions.desc', 'LIKE', '%'.$value.'%');
+                    break;
+                }
+            }
+//        });
+
+//        dd($request->all());
+        $query->where(function($query) use ($request){
+            foreach ($request->all() as $key => $value){
+                if(!($key == 'all' || $key == 'open' || $key == 'last' || $key == 'advancedSearch') ){
+                    $query->orWhere('users.city', '=', $value);
+                }
+            }
+        });
+//        echo $query->toSql();
+//        exit;
+        $questions = $query->paginate(5);
+
+        foreach ($questions as $question){
+            $question->numOfComments = Question::find($question->id)->allComments->count();
+        }
+        $cats = Cat::all();
+
+        return view('advancedSearch',[
+            'questions' => $questions->appends($request->except('page')),
+            'cats' => $cats
+        ]);
+
+//        return view('advancedSearch', compact('questions', 'cats'));
+    }
 }

@@ -39,7 +39,8 @@ Route::get('admin/login', function(){
     return view('admin/login');
 });
 Route::get('admin/view', function(){
-    return view('admin/view');
+    dd('helo');
+//    return view('admin/view');
 });
 Route::get('admin/form', function(){
     return view('admin/form');
@@ -68,6 +69,10 @@ Route::post('/company/edit/profile', 'CompanyController@editProfile');
 
 
 Route::get('/questions', 'QuestionController@index');
+
+Route::get('/questions/cat/{id}', 'SearchController@catQuestions');
+
+Route::get('/questions/search', 'SearchController@advancedSearch');
 
 Route::post('/question', 'QuestionController@add_question');
 

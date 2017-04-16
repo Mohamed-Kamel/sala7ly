@@ -17,21 +17,28 @@ class HomeController extends Controller {
      */
     public function index() {
         $cats = Cat::all();
-        $questions = Question::withTrashed()->orderBy('id', 'DESC')->limit('20')->get();
-        $top_rated = Company_detail::withTrashed()->orderBy('rating', 'DESC')->limit('10')->get();
 
+        $questions = Question::orderBy('id', 'DESC')->limit('20')->get();
+        $top_rated = Company_detail::orderBy('rating', 'DESC')->limit('10')->get();
+      
         return view('welcome', compact('cats', 'questions', 'top_rated'));
     }
 
+    /**
+     * show company details form
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function company_details() {
 
         return view('company_details');
     }
 
+    /**
+     * update company details
+     * @param Request $Request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function details(Request $Request) {
-
-//        dd( $Request->address);
-
 
         $this->validate($Request, [
             'address' => 'required|string|min:6|max:50',
