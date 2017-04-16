@@ -9,11 +9,22 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
-
-
 Auth::routes();
+
+
+//FOR ADMIN
+// Route::get('admin/login', function(){
+//     return view('layouts.admin');
+// });
+// Route::get('ad/view', function(){
+//     return view('admin.view');
+// });
+// Route::get('ad/form', function(){
+//     return view('admin.form');
+// });
+Route::get('/ad/users', 'AdminController@users');
+Route::get('/ad/users/{id}', 'AdminController@deleteUser');
+Route::get('/ad/users/{id}/d', 'AdminController@restorUser');
 
 //FOR ADMIN PAGE
 Route::get('/admin/pages', 'PagesController@index');
@@ -33,6 +44,7 @@ Route::get('admin/view', function(){
 Route::get('admin/form', function(){
     return view('admin/form');
 });
+
 
 
 Route::get('/', 'HomeController@index');
@@ -77,3 +89,4 @@ Route::post('question/{id}/done','QuestionController@changeStatus');
 //******************** admin-ratings *********************//
 Route::get('ad/rate','RateCompany@view_rate');
 Route::get('ad/rate/delete/{id}','RateCompany@deleteRate');
+

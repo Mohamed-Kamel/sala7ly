@@ -78,7 +78,9 @@
                             </a>
                         </li>
                         <li>
+
                             <a href="{{ url('admin/settings') }}">
+
                                 <i class="fa fa-cogs"></i>
                                 <span>Settings/ SEO</span>
                             </a>
@@ -87,6 +89,7 @@
                             <a href="{{ url('admin/pages') }}">
                                 <i class="fa fa-file-text-o"></i>
                                 <span>Pages</span>
+
                             </a>
                         </li>
                         <li>
@@ -94,6 +97,7 @@
 
                                 <i class="fa fa-users"></i>
                                 <span>Users</span>
+
                             </a>
                         </li>
                         <li>
@@ -201,9 +205,11 @@
         <script src="{{ asset('admin/js/apps.js')}}"></script>
         <script>
 $(document).ready(function () {
+
     App.init();
     Demo.init();
     PageDemo.init();
+
 });
         </script>
         @yield('scripts')
