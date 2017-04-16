@@ -63,7 +63,7 @@
                     @endif
                 </ul>
 
-                <h1 class="subtitles">احدث الاسألة</h1>
+                <h1 class="subtitles">احدث الاسئلة</h1>
                 <div class="tab-content">
                     @if(isset($cats))
                     @foreach($cats as $cat)
