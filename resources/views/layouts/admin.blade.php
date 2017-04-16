@@ -20,6 +20,7 @@
         <link href="{{ asset('admin/js/plugins/bootstrap-calendar/css/bootstrap_calendar.css')}}" rel="stylesheet" />
         <link href="{{ asset('admin/js/plugins/DataTables/media/css/dataTables.bootstrap.min.css')}}" rel="stylesheet" />
         <link href="{{ asset('admin/js/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css')}}" rel="stylesheet" />
+
         @yield('styles')
     </head>
     <body>
@@ -77,21 +78,26 @@
                             </a>
                         </li>
                         <li>
-                            <a href="">
+
+                            <a href="{{ url('admin/settings') }}">
+
                                 <i class="fa fa-cogs"></i>
                                 <span>Settings/ SEO</span>
                             </a>
                         </li>
                         <li>
-                            <a href="">
-                                <i class="fa fa-users"></i>
-                                <span>Users</span>
+                            <a href="{{ url('admin/pages') }}">
+                                <i class="fa fa-file-text-o"></i>
+                                <span>Pages</span>
+
                             </a>
                         </li>
                         <li>
                             <a href="">
-                                <i class="fa fa-picture-o"></i>
-                                <span>Pages</span>
+
+                                <i class="fa fa-users"></i>
+                                <span>Users</span>
+
                             </a>
                         </li>
                         <li>
@@ -199,9 +205,11 @@
         <script src="{{ asset('admin/js/apps.js')}}"></script>
         <script>
 $(document).ready(function () {
-App.init();
-Demo.init();
-PageDemo.init();
+
+    App.init();
+    Demo.init();
+    PageDemo.init();
+
 });
         </script>
         @yield('scripts')

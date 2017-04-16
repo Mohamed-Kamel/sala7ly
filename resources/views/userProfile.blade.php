@@ -9,20 +9,20 @@
                 <div class="card-overlay"></div>
                 <div class="card-background">
                     <img class="card-bkimg img-responsive" alt="{{ $users->name }}" src="
-                         @if( Auth::user()->img)
+                         @if($users->cover)
                          {{URL ($users->cover)}}
                          @endif
                          ">
                 </div>
                 <div class="useravatar">
                     <img alt="{{ $users->name }}" src="
-                         @if( Auth::user()->img)
+                         @if( $users->img)
                          {{URL ($users->img)}}
                          @endif
                          " />
                 </div>
                 <div class="card-info"> <span class="card-title">{{ $users->name }}</span> </div>
-                @if(Auth::id())
+                @if(Auth::id()== $users->id)
                 <button type="button" class="btn btn-primary edit-profile" data-toggle="modal" data-target="#myModal">
                     <i class="ti-pencil-alt"></i>
                     تعديل الملف الشخصي

@@ -11,6 +11,7 @@
 */
 Auth::routes();
 
+
 //FOR ADMIN
 // Route::get('admin/login', function(){
 //     return view('layouts.admin');
@@ -24,6 +25,27 @@ Auth::routes();
 Route::get('/ad/users', 'AdminController@users');
 Route::get('/ad/users/{id}', 'AdminController@deleteUser');
 Route::get('/ad/users/{id}/d', 'AdminController@restorUser');
+
+//FOR ADMIN PAGE
+Route::get('/admin/pages', 'PagesController@index');
+Route::post('/admin/page/add', 'PagesController@addPage');
+Route::post('/admin/pages/{id}', 'PagesController@editPage');
+Route::get('/admin/page/delete/{id}', 'PagesController@deletePage');
+
+//FOR ADMIN SETTINGS
+Route::get('/admin/settings', 'SettingsController@index');
+
+Route::get('admin/login', function(){
+    return view('admin/login');
+});
+Route::get('admin/view', function(){
+    return view('admin/view');
+});
+Route::get('admin/form', function(){
+    return view('admin/form');
+});
+
+
 
 Route::get('/', 'HomeController@index');
 Route::get('/faq', 'FaqController@index');
@@ -62,3 +84,9 @@ Route::post('userProfile/{id}','UserController@updateUser');
 Route::post("/question/{id}", "comments@post");
 Route::post("/question/{id}/mail", "comments@mailfunction");
 Route::post('question/{id}/done','QuestionController@changeStatus');
+
+
+//******************** admin-ratings *********************//
+Route::get('ad/rate','RateCompany@view_rate');
+Route::get('ad/rate/delete/{id}','RateCompany@deleteRate');
+
