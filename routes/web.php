@@ -15,7 +15,15 @@
 
 Auth::routes();
 
-//FOR ADMIN
+//FOR ADMIN PAGE
+Route::get('/admin/pages', 'PagesController@index');
+Route::post('/admin/page/add', 'PagesController@addPage');
+Route::post('/admin/pages/{id}', 'PagesController@editPage');
+Route::get('/admin/page/delete/{id}', 'PagesController@deletePage');
+
+//FOR ADMIN SETTINGS
+Route::get('/admin/settings', 'SettingsController@index');
+
 Route::get('admin/login', function(){
     return view('admin/login');
 });
