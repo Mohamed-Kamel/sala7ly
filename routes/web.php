@@ -72,3 +72,8 @@ Route::post('userProfile/{id}','UserController@updateUser');
 Route::post("/question/{id}", "comments@post");
 Route::post("/question/{id}/mail", "comments@mailfunction");
 Route::post('question/{id}/done','QuestionController@changeStatus');
+
+
+//******************** admin-ratings *********************//
+Route::get('ad/rate','RateCompany@view_rate');
+Route::get('ad/rate/delete/{id}','RateCompany@deleteRate');

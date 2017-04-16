@@ -12,6 +12,7 @@
         <link href="{{ asset('admin/js/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" />
         <link href="{{ asset('admin/js/plugins/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" />
         <link href="{{ asset('admin/css/animate.min.css')}}" rel="stylesheet" />
+        <link href="{{ asset('admin/css/style.css')}}" rel="stylesheet" />
         <link href="{{ asset('admin/js/plugins/jquery-jvectormap/jquery-jvectormap-1.2.2.css')}}" rel="stylesheet" />
         <link href="{{ asset('admin/js/plugins/gritter/css/jquery.gritter.css')}}" rel="stylesheet" />	
         <link href="{{ asset('admin/js/plugins/summernote/dist/summernote.css')}}" rel="stylesheet" />
@@ -19,7 +20,7 @@
         <link href="{{ asset('admin/js/plugins/bootstrap-calendar/css/bootstrap_calendar.css')}}" rel="stylesheet" />
         <link href="{{ asset('admin/js/plugins/DataTables/media/css/dataTables.bootstrap.min.css')}}" rel="stylesheet" />
         <link href="{{ asset('admin/js/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css')}}" rel="stylesheet" />
-        <link href="{{ asset('admin/css/style.css')}}" rel="stylesheet" />
+
         @yield('styles')
     </head>
     <body>
@@ -90,6 +91,7 @@
                         </li>
                         <li>
                             <a href="">
+
                                 <i class="fa fa-users"></i>
                                 <span>Users</span>
                             </a>
