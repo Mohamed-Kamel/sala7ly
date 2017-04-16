@@ -240,16 +240,27 @@
 <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/ion-checkRadio/ion.checkRadio.min.js') }}"></script>
-<script src="{{asset('js/jquery.jscroll.min.js')}}"></script>
 <script src="{{ asset('js/script.js') }}"></script>
-
-
+<script src="{{asset('js/jquery.jscroll.min.js')}}"></script>
 <script>
     $(document).ready(function () {
         $('#option').change(function () {
             $('.next').css({"display": ""})
         });
 
+    });
+// infinit scroll
+    $('ul.pagination').hide();
+    $(function () {
+        $('.infinite-scroll').jscroll({
+            autoTrigger: true,
+            padding: 0,
+            nextSelector: '.pagination li.active + li a',
+            contentSelector: 'div.infinite-scroll',
+            callback: function () {
+                $('ul.pagination').remove();
+            }
+        });
     });
 </script>
 

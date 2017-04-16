@@ -122,19 +122,19 @@
                             <label  class="col-md-4 control-label">اختار المحافظه</label>
                             <div class="col-md-8">
                                 <select class="selectpicker form-control" name="city">
-                                    <option value="cairo" selected>القاهره</option>
-                                    <option value="elgeza">الجيزه</option>
-                                    <option value="elsharqia">الشرقيه</option>
-                                    <option value="alex">الاسكندريه</option>
-                                    <option value="domiatte">دمياط</option>
-                                    <option value="algharbia">الغربيه</option>
-                                    <option value="mnofia">المنوفيه</option>
-                                    <option value="matrou7">مطروح</option>
-                                    <option value="matrou7">كفرالشيخ</option>
-                                    <option value="matrou7">المنيا</option>
-                                    <option value="matrou7">اسيوط</option>
-                                    <option value="matrou7">قنا</option>
-                                    <option value="matrou7">سوهاج</option>
+                                    <option value="القاهره" selected>القاهره</option>
+                                    <option value="الجيزه">الجيزه</option>
+                                    <option value="الشرقيه">الشرقيه</option>
+                                    <option value="الاسكندريه">الاسكندريه</option>
+                                    <option value="دمياط">دمياط</option>
+                                    <option value="الغربيه">الغربيه</option>
+                                    <option value="المنوفيه">المنوفيه</option>
+                                    <option value="مطروح">مطروح</option>
+                                    <option value="كفرالشيخ">كفرالشيخ</option>
+                                    <option value="المنيا">المنيا</option>
+                                    <option value="اسيوط">اسيوط</option>
+                                    <option value="قنا">قنا</option>
+                                    <option value="سوهاج">سوهاج</option>
                                 </select>
                             </div>
                         </div>

@@ -24,7 +24,7 @@ class AddQuestion extends FormRequest
     public function rules()
     {
         return [
-           'title' => 'required|min:10|max:255',
+           'title' => 'required|min:5|max:255',
             'desc' => 'required|min:10',
             'img' => 'mimes:jpeg,png|max:3072',
             'cat_id' => 'required|integer'            
@@ -36,10 +36,10 @@ class AddQuestion extends FormRequest
     {
         return [
             'title.required' => 'أدخل عنوان السؤال',
-            'title.min' => 'أدخل عنوان لايقل 20 حرف',
+            'title.min' => 'أدخل عنوان لايقل 5 حرف',
             'title.max' => 'أدخل عنوان ﻻ يزيد عن 255 حرف',
             'desc.required' => 'أدخل وصف المشكلة',
-            'desc.min' => 'أدخل وصف للمشكلة ﻻ يقل عن 30 حرف',
+            'desc.min' => 'أدخل وصف للمشكلة ﻻ يقل عن 10 حرف',
             'img.mimes' => 'أدخل صورة صحيحة من نوع (jpeg, png)',
             'img.size'  => 'هذه الصورة حجمها كبير',
             'cat_id.required' => 'يجب ادخال القسم',
