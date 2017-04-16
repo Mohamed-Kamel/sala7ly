@@ -69,7 +69,7 @@
                     @foreach($cats as $cat)
                     <div id="category_{{ $cat->id }}" class="tab-pane fade">
                         @if(isset($questions))
-                        @foreach($questions as $question) 
+                        @foreach($questions as $question)
                         @if($cat->id == $question->cat_id)
                         <div class="question-block">
                             <div class="row">
@@ -114,7 +114,7 @@
                             </div>
                         </div>
                         @endif
-                        @endforeach 
+                        @endforeach
                         @endif
                     </div>
                     @endforeach
@@ -149,7 +149,7 @@
                                 </ul>
                             </div>
                         </div>
-                        @endforeach 
+                        @endforeach
                         @endif
                     </div>
                 </div>
