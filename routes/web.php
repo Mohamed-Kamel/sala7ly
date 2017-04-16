@@ -95,3 +95,8 @@ Route::post('question/{id}/done','QuestionController@changeStatus');
 Route::get('ad/rate','RateCompany@view_rate');
 Route::get('ad/rate/delete/{id}','RateCompany@deleteRate');
 
+/**********************admin posts**************************/
+Route::get('/ad/questions', 'Admin\AdminController@showQuestions');
+
+Route::get('/ad/question/delete/{id}', 'Admin\AdminController@deleteQuestion');
+Route::get('/ad/question/restore/{id}', 'Admin\AdminController@restoreQuestion');

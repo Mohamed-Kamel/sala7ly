@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Question;
 use Illuminate\Http\Request;
 use App\User;
 use Redirect;
@@ -26,4 +27,5 @@ class AdminController extends Controller
     $users->restore();
     return Redirect::back();
   }
+
 }
