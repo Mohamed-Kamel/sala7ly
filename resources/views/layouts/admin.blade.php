@@ -14,12 +14,13 @@
         <link href="{{ asset('admin/css/animate.min.css')}}" rel="stylesheet" />
         <link href="{{ asset('admin/css/style.css')}}" rel="stylesheet" />
         <link href="{{ asset('admin/js/plugins/jquery-jvectormap/jquery-jvectormap-1.2.2.css')}}" rel="stylesheet" />
-        <link href="{{ asset('admin/js/plugins/gritter/css/jquery.gritter.css')}}" rel="stylesheet" />  
+        <link href="{{ asset('admin/js/plugins/gritter/css/jquery.gritter.css')}}" rel="stylesheet" />	
         <link href="{{ asset('admin/js/plugins/summernote/dist/summernote.css')}}" rel="stylesheet" />
         <script src="{{ asset('admin/js/plugins/pace/pace.min.js')}}"></script>
         <link href="{{ asset('admin/js/plugins/bootstrap-calendar/css/bootstrap_calendar.css')}}" rel="stylesheet" />
         <link href="{{ asset('admin/js/plugins/DataTables/media/css/dataTables.bootstrap.min.css')}}" rel="stylesheet" />
         <link href="{{ asset('admin/js/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css')}}" rel="stylesheet" />
+
         @yield('styles')
     </head>
     <body>
@@ -71,27 +72,34 @@
                         </li>
 
                         <li>
-                            <a href="">
+                            <a href="{{ url('/admin/dashboard') }}">
+
                                 <i class="fa fa-home"></i>
                                 <span>Dashbaoard</span>
                             </a>
                         </li>
                         <li>
-                            <a href="">
+
+                            <a href="{{ url('/admin/settings') }}">
+
                                 <i class="fa fa-cogs"></i>
                                 <span>Settings/ SEO</span>
                             </a>
                         </li>
                         <li>
-                            <a href="">
-                                <i class="fa fa-users"></i>
-                                <span>Users</span>
+
+                            <a href="{{ url('/admin/pages') }}">
+                                <i class="fa fa-file-text-o"></i>
+                                <span>Pages</span>
+
                             </a>
                         </li>
                         <li>
                             <a href="">
-                                <i class="fa fa-picture-o"></i>
-                                <span>Pages</span>
+
+                                <i class="fa fa-users"></i>
+                                <span>Users</span>
+
                             </a>
                         </li>
                         <li>
@@ -134,6 +142,7 @@
                             <a href="#">
                                 <b class="caret pull-right"></b>
                                 <i class="fa fa-newspaper-o"></i>
+
                                 <span>register companies</span>
                             </a>
                             <ul class="sub-menu">
@@ -199,9 +208,11 @@
         <script src="{{ asset('admin/js/apps.js')}}"></script>
         <script>
 $(document).ready(function () {
-App.init();
-Demo.init();
-PageDemo.init();
+
+    App.init();
+    Demo.init();
+    PageDemo.init();
+
 });
         </script>
         @yield('scripts')

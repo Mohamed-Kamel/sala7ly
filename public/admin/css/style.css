@@ -10340,3 +10340,24 @@ span.required {
 .sub-menu li a i{
     margin-right: 4px;
 }
+.form-group {
+    clear: both;
+    margin-bottom: 20px;
+    float: left;
+    width: 100%;
+}
+textarea{
+    resize: none;
+}
+.content-page{
+    height: 350px !important;
+}
+.show-errors {
+    margin-bottom: 20px !important;
+    display: block;
+    width: 100%;
+    float: left;
+}
+.pace.pace-active {
+    display: none;
+}

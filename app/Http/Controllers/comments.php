@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Comment;
 use  Auth;
 use Mail;
@@ -12,7 +13,7 @@ use  \App\Rating;
 class comments extends Controller
 {
 
-
+  
    public function post(Request $request, $id){
 
    	//comment`, `parent_id`, `question_id`, `created`, `user_id
@@ -26,7 +27,7 @@ class comments extends Controller
    $comment->question_id= $request->question_id;
    $comment->user_id= Auth::id();
    $comment->save();
-   
+
    	return response()->json(['success' => true],200);
 
    }
@@ -40,7 +41,7 @@ class comments extends Controller
     $rate->stars="0";
     $rate->review=" ";
     $rate->status="0";
-    
+
       $data=$request->all();
 
 
@@ -58,10 +59,10 @@ class comments extends Controller
 
                 $message->priority(3);
             });
-        
+
       }
 
-         
+
    }
 
    }

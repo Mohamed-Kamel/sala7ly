@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Question extends Model
 {
 
-  use SoftDeletes;
-  
+	use SoftDeletes;
+
+
 	public $timestamps = false;
 
 	protected function cat()

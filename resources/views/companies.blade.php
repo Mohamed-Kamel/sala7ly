@@ -48,7 +48,8 @@
                                     <div class="company-block">
                                         <div class="comp-image">
                                             <a href="{{ URL('company') }}/{{ $company->id }}">
-                                                <img @if($company->img) src="{{ url($company->img)}}"@endif  alt="{{$company->img}}">
+                                                <img @if($company->img) src="{{ url($company->img)}}"
+                                                     @endif  alt="{{$company->img}}">
                                             </a>
                                         </div>
                                         <div class="company-det">
@@ -69,9 +70,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                @endforeach
-                            @endif
-                           <!--  -->
+                            @endforeach
+                        @endif
+                        <!--  -->
                         </div>
                         <div id="category-2" class="tab-pane fade ">
                         </div>
@@ -98,7 +99,7 @@
     <script src="{{asset('js/manual-trigger.js')}}"></script>
     <script type="text/javascript">
         var contentPage;
-        $(document).ready(function(){
+        $(document).ready(function () {
             $("#search-comp").on("keyup", function (event) {
                 $("#search-results").empty();
                 $('.companies-list').show();
@@ -113,140 +114,87 @@
                         $('#search-results').show();
                         render("#search-results", data.data);
                         contentPage = data.next_page_url;
-                        console.log('content: ',contentPage);
+                        console.log('content: ', contentPage);
                     },
-                    error: function(error){
+                    error: function (error) {
                         console.log(error);
                     }
                 });
             });
-            /***********************************Scroll****************************/
 
-            $('#search-results').scrollPagination({
-                autoTrigger: true,
-                'contentPage': contentPage, // the url you are fetching the results
-//                'contentData': {'page': page},
-                'scrollTarget': $(window),
-                'heightOffset': 3,
-                'beforeLoad': function () {
-                    console.log('scroll content : '+contentPage);
-                    // before load function, you can display a preloader div
-//                    $('#loading').fadeIn();
-                },
-                'afterLoad': function (elementsLoaded) {
-                    console.log('scroll content : ');
-//                    $('#loading').fadeOut();
-//                    var i = 0;
-//                    $(elementsLoaded).fadeInWithDelay();
-//                    page++;
-//                    if ($('#content').children().size() > 140) {
-//                        // if more than 140 results already loaded, then stop pagination
-//                        $('#nomoreresults').fadeIn();
-//                        $('#content').stopScrollPagination();
-//                    }
-                }
+            $("#all").on('click', function () {
+                $.ajax({
+                    method: 'get',
+                    data: {'all': 'all'},
+                    success: function (data) {
+                        console.log(data);
+                        render('#category-1', data);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
             });
-        }());
 
-        $("#all").on('click', function () {
-            $.ajax({
-                method: 'get',
-                data: {'all': 'all'},
-                success: function (data) {
-                    console.log(data);
-                    render('#category-1', data);
-                },
-                error: function (error) {
-                    console.log(error);
-                }
+            $("#latest").on('click', function () {
+                $.ajax({
+                    method: 'get',
+                    data: {'latest': 'latest'},
+                    success: function (data) {
+                        console.log(data);
+                        render('#category-2', data);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
             });
+
+            $("#top").on('click', function () {
+                $.ajax({
+                    method: 'get',
+                    data: {'top': 'top'},
+                    success: function (data) {
+                        console.log(data);
+                        render('#category-3', data);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+
+            function render(id, data) {
+                console.log(data);
+                $(id).empty();
+                $.each(data, function (index, ele) {
+                    var company_block = $('<div class="company-block"></div>');
+                    var comp_image_block = $('<div class="comp-image"></div>');
+                    var image_a_image = $('<img src="' + ele.img + '">');
+                    var image_a = $('<a></a>').attr('href', "{{url('/company')}}/" + ele.id).append(image_a_image);
+                    comp_image_block.append(image_a);
+                    var company_det = $('<div class="company-det"></div>');
+                    var comp_title = $('<a class="comp-title"></a>').attr('href', "{{url('/company')}}/" + ele.id).text(ele.name);
+                    var sub_det = $('<div class="company-det"></div>');
+                    var stars = $('<div id="stars" class="pull-right"></div>');
+                    for (var i = 0; i < ele.rating; i++) {
+                        stars.append($('<i class="fa fa-star"></i>'));
+                    }
+                    for (var i = 0; i < (5 - ele.rating); i++) {
+                        stars.append($('<i class="fa fa-star-o"></i>'));
+                    }
+                    var city = $('<div class="pull-left" id="stars"></div>');
+                    var city_i = $('<i class="ti-location-pin"></div>').text(ele.city);
+                    city.append(city_i);
+                    sub_det.append(stars, city);
+                    company_det.append(comp_title, sub_det);
+                    company_block.append(comp_image_block, company_det);
+                    $(id).append(company_block);
+                    if (id === "#search-results") {
+                        $('.companies-list').hide();
+                    }
+                });
+            }
         });
-
-        $("#latest").on('click', function () {
-            $.ajax({
-                method: 'get',
-                data: {'latest': 'latest'},
-                success: function (data) {
-                    console.log(data);
-                    render('#category-2', data);
-                },
-                error: function (error) {
-                    console.log(error);
-                }
-            });
-        });
-
-        $("#top").on('click', function () {
-            $.ajax({
-                method: 'get',
-                data: {'top': 'top'},
-                success: function (data) {
-                    console.log(data);
-                    render('#category-3', data);
-                },
-                error: function (error) {
-                    console.log(error);
-                }
-            });
-        });
-
-        function render(id, data) {
-            console.log(data);
-            $(id).empty();
-            $.each(data, function (index, ele) {
-
-                var company_block = $('<div class="company-block"></div>');
-                var comp_image_block = $('<div class="comp-image"></div>');
-                var image_a_image = $('<img src="' + ele.img + '">');
-                var image_a = $('<a></a>').attr('href', "{{url('/company')}}/" + ele.id).append(image_a_image);
-                comp_image_block.append(image_a);
-                var company_det = $('<div class="company-det"></div>');
-                var comp_title = $('<a class="comp-title"></a>').attr('href', "{{url('/company')}}/" + ele.id).text(ele.name);
-                var sub_det = $('<div class="company-det"></div>');
-                var stars = $('<div id="stars" class="pull-right"></div>');
-                for (var i = 0; i < ele.rating; i++) {
-                    stars.append($('<i class="fa fa-star"></i>'));
-                }
-                for (var i = 0; i < (5 - ele.rating); i++) {
-                    stars.append($('<i class="fa fa-star-o"></i>'));
-                }
-                var city = $('<div class="pull-left" id="stars"></div>');
-                var city_i = $('<i class="ti-location-pin"></div>').text(ele.city);
-                city.append(city_i);
-                sub_det.append(stars, city);
-                company_det.append(comp_title, sub_det);
-                company_block.append(comp_image_block, company_det);
-                $(id).append(company_block);
-                if (id === "#search-results") {
-                    $('.companies-list').hide();
-                }
-            });
-        }
-
-
-
-        /*$(function () {
-            $('#search-results').scrollPagination({
-                'contentPage': contentPage, // the url you are fetching the results
-//                'contentData': {'page': page},
-                'scrollTarget': $(window),
-                'heightOffset': 3,
-                'beforeLoad': function () {
-                    // before load function, you can display a preloader div
-//                    $('#loading').fadeIn();
-                },
-                'afterLoad': function (elementsLoaded) {
-//                    $('#loading').fadeOut();
-//                    var i = 0;
-//                    $(elementsLoaded).fadeInWithDelay();
-//                    page++;
-//                    if ($('#content').children().size() > 140) {
-//                        // if more than 140 results already loaded, then stop pagination
-//                        $('#nomoreresults').fadeIn();
-//                        $('#content').stopScrollPagination();
-//                    }
-                }
-            });
-        });*/
     </script>
 @endsection

@@ -20,6 +20,7 @@ class CreateCompanyDetailsTable extends Migration
             $table->double('rating')->default(0);
             $table->unsignedInteger('company_id')->unique();
              $table->softDeletes();
+
         });
     }
 

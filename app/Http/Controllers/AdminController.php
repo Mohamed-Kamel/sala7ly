@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\User;
 use Redirect;
@@ -62,4 +63,5 @@ class AdminController extends Controller
 
     return Redirect::back();
   }
+
 }
