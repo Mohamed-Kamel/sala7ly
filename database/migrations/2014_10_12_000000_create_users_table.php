@@ -6,6 +6,8 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateUsersTable extends Migration
 {
+
+    
     /**
      * Run the migrations.
      *
@@ -26,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->unsignedInteger('group_id');
+            $table->softDeletes();
         });
     }
 

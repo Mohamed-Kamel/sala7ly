@@ -64,3 +64,16 @@ Route::post('userProfile/{id}','UserController@updateUser');
 Route::post("/question/{id}", "comments@post");
 Route::post("/question/{id}/mail", "comments@mailfunction");
 Route::post('question/{id}/done','QuestionController@changeStatus');
+
+// company in admin 
+
+Route::get('/ad/companies','AdminController@viewallcompanies');
+
+Route::get('/ad/companies/{id}', 'AdminController@deleteUser');
+
+Route::get('/ad/trashedcompanies','AdminController@trashedcompanies');
+
+Route::get('/ad/trashedcompanies/{id}/restore','AdminController@restorUser');
+
+
+// end company page in admin panel 

@@ -6,6 +6,9 @@ use Illuminate\Database\Migrations\Migration;
 
 class AddForeignKeysToUsers extends Migration
 {
+
+
+    Schema::enableForeignKeyConstraints();
     /**
      * Run the migrations.
      *

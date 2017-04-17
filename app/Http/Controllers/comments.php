@@ -33,8 +33,7 @@ class comments extends Controller
 
    public function   mailfunction(Request $request, $id){
 
- // dd($request->company_id);
-    // <!-- user_id`, `company_id`, `stars`, `review`, `status` -->
+ 
     $rate = new  Rating;
     $rate->user_id=Auth::id();
     $rate->company_id=$request->company_id;
