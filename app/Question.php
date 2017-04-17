@@ -10,6 +10,7 @@ class Question extends Model
 
 	use SoftDeletes;
 
+
 	public $timestamps = false;
 
 	protected function cat()

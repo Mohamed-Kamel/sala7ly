@@ -97,6 +97,20 @@ Route::post("/question/{id}/mail", "comments@mailfunction");
 Route::post('question/{id}/done','QuestionController@changeStatus');
 
 
+// company in admin 
+
+Route::get('/ad/companies','AdminController@viewallcompanies');
+
+Route::get('/ad/companies/{id}', 'AdminController@deleteUser');
+
+Route::get('/ad/trashedcompanies','AdminController@trashedcompanies');
+
+Route::get('/ad/trashedcompanies/{id}/restore','AdminController@restorUser');
+
+
+// end company page in admin panel 
+
+
 //******************** admin-ratings *********************//
 Route::get('ad/rate','RateCompany@view_rate');
 Route::get('ad/rate/delete/{id}','RateCompany@deleteRate');
@@ -106,3 +120,4 @@ Route::get('/ad/questions', 'Admin\AdminController@showQuestions');
 
 Route::get('/ad/question/delete/{id}', 'Admin\AdminController@deleteQuestion');
 Route::get('/ad/question/restore/{id}', 'Admin\AdminController@restoreQuestion');
+

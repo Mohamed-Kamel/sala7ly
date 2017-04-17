@@ -73,6 +73,7 @@
 
                         <li>
                             <a href="{{ url('/admin/dashboard') }}">
+
                                 <i class="fa fa-home"></i>
                                 <span>Dashbaoard</span>
                             </a>
@@ -86,6 +87,7 @@
                             </a>
                         </li>
                         <li>
+
                             <a href="{{ url('/admin/pages') }}">
                                 <i class="fa fa-file-text-o"></i>
                                 <span>Pages</span>
@@ -140,11 +142,12 @@
                             <a href="#">
                                 <b class="caret pull-right"></b>
                                 <i class="fa fa-newspaper-o"></i>
-                                <span>Journal</span>
+
+                                <span>register companies</span>
                             </a>
                             <ul class="sub-menu">
-                                <li><a href=""><i class="fa fa-sitemap"></i> Journal Categories</a></li>
-                                <li><a href=""> <i class="fa fa-file-text-o"></i> Journal Posts</a></li>
+                                <li><a href="{{url('ad/companies')}}"><i class="fa fa-sitemap"></i>all companies</a></li>
+                                <li><a href="{{url('ad/trashedcompanies')}}"> <i class="fa fa-file-text-o"></i> trashed companies</a></li>
                             </ul>
                         </li>
 
