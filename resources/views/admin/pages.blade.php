@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 <ol class="breadcrumb pull-right">
-    <li><a href="{{ url('admin/') }}">Home</a></li>
+    <li><a href="{{ url('/admin/dashboard') }}">Home</a></li>
     <li class="active">Pages</li>
 </ol>
 <h1 class="page-header">Pages</h1>
