@@ -265,7 +265,7 @@
                                             <i class="fa fa-eye"></i>
                                         </span>
                                                         <span class="data-icons col-sm-4">
-                                            {{ $question->numOfComments}}
+{{--                                            {{ $question->numOfComments}}--}}
                                                             <i class="ti-thought"></i>
                                         </span>
                                                         <span class="data-icons col-sm-4">
@@ -301,7 +301,7 @@
                                             </div>
                                         </div>
                                     @endforeach
-                                    {{--                                    {{ $questions->links() }}--}}
+                                    {{ $questions->links() }}
                                 </div>
                             </div>
                         @endif

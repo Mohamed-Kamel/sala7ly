@@ -74,7 +74,7 @@ Route::get('/questions', 'QuestionController@index');
 
 Route::get('/questions/cat/{id}', 'SearchController@catQuestions');
 
-Route::get('/questions/search', 'SearchController@apply');
+Route::get('/questions/search', 'SearchController@advancedSearch');
 
 Route::post('/question', 'QuestionController@add_question');
 
