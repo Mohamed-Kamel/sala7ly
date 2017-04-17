@@ -50,6 +50,8 @@ Route::get('admin/form', function(){
 
 Route::get('/', 'HomeController@index');
 Route::get('/faq', 'FaqController@index');
+Route::get('/faq/add', 'FaqController@showFaqForm');
+Route::post('/faq/add', 'FaqController@addFaq');
 Route::get('/contactus', 'ContactusController@index');
 Route::post('/contactus', 'ContactusController@send');
 
