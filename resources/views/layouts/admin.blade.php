@@ -72,21 +72,21 @@
                         </li>
 
                         <li>
-                            <a href="">
+                            <a href="{{ url('/admin/dashboard') }}">
                                 <i class="fa fa-home"></i>
                                 <span>Dashbaoard</span>
                             </a>
                         </li>
                         <li>
 
-                            <a href="{{ url('admin/settings') }}">
+                            <a href="{{ url('/admin/settings') }}">
 
                                 <i class="fa fa-cogs"></i>
                                 <span>Settings/ SEO</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('admin/pages') }}">
+                            <a href="{{ url('/admin/pages') }}">
                                 <i class="fa fa-file-text-o"></i>
                                 <span>Pages</span>
 

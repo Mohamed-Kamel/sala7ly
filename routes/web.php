@@ -26,6 +26,9 @@ Route::get('/ad/users', 'AdminController@users');
 Route::get('/ad/users/{id}', 'AdminController@deleteUser');
 Route::get('/ad/users/{id}/d', 'AdminController@restorUser');
 
+//FOR ADMIN DASHBOARD
+Route::get('/admin/dashboard', 'DashboardController@index');
+
 //FOR ADMIN PAGE
 Route::get('/admin/pages', 'PagesController@index');
 Route::post('/admin/page/add', 'PagesController@addPage');
@@ -34,6 +37,7 @@ Route::get('/admin/page/delete/{id}', 'PagesController@deletePage');
 
 //FOR ADMIN SETTINGS
 Route::get('/admin/settings', 'SettingsController@index');
+Route::post('/admin/setting/{id}', 'SettingsController@edirSettings');
 
 Route::get('admin/login', function(){
     return view('admin/login');
