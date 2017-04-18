@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 <ol class="breadcrumb pull-right">
-    <li><a href="{{ url('/admin/dashboard') }}">Home</a></li>
+    <li><a href="{{ url('/ad/dashboard') }}">Home</a></li>
     <li class="active">Settings</li>
 </ol>
 <h1 class="page-header">Settings</h1>
@@ -21,7 +21,7 @@
             </div>
             @endif
             <!--END SHOW ERRORS FOR ADD/EDIT-->
-            <form class="form-horizontal" method="post" action="{{url('/admin/setting')}}/{{$setting->id}}">
+            <form class="form-horizontal" method="post" action="{{url('/ad/setting')}}/{{$setting->id}}">
                 {{ csrf_field() }}
                 <div class="panel">
                     <ul class="nav nav-tabs nav-tabs-primary nav-justified">
