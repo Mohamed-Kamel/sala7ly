@@ -86,7 +86,6 @@
                                         <label class="col-sm-3 control-label" for="field-1"> Title <span class="required">*</span></label>
 
                                         <div class="col-sm-9">
-                                            <input type="hidden" class="form-control" placeholder="Page Title" name="title" value="{{ $page->id }}">
                                             <input type="text" class="form-control" placeholder="Page Title" name="title" value="{{ $page->title }}">
                                         </div>
                                     </div>
