@@ -2400,3 +2400,7 @@ legend {
 .hide-checkbox{
     display: none;
 }
+
+.unread{
+    background-color: #DCDCDC;
+}

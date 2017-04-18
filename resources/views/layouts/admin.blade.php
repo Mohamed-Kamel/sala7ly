@@ -72,28 +72,30 @@
                         </li>
 
                         <li>
-                            <a href="">
+                            <a href="{{ url('/ad/dashboard') }}">
+
                                 <i class="fa fa-home"></i>
                                 <span>Dashbaoard</span>
                             </a>
                         </li>
                         <li>
 
-                            <a href="{{ url('admin/settings') }}">
+                            <a href="{{ url('/ad/settings') }}">
 
                                 <i class="fa fa-cogs"></i>
                                 <span>Settings/ SEO</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ url('admin/pages') }}">
+
+                            <a href="{{ url('/ad/pages') }}">
                                 <i class="fa fa-file-text-o"></i>
                                 <span>Pages</span>
 
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="{{url('/ad/users')}}">
 
                                 <i class="fa fa-users"></i>
                                 <span>Users</span>
@@ -101,60 +103,46 @@
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="{{url('/faq/add')}}">
                                 <i class="fa fa-picture-o"></i>
                                 <span>Faqs</span>
                             </a>
                         </li>
                         <li>
-                            <a href="">
-                                <i class="fa fa-picture-o"></i>
+                            <a href="{{ url('/ad/categories') }}">
+                                <i class="fa fa-sitemap"></i>
                                 <span>Categories</span>
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="{{url('/ad/questions')}}">
                                 <i class="fa fa-picture-o"></i>
                                 <span>Questions</span>
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="{{url('/ad/rate')}}">
                                 <i class="fa fa-picture-o"></i>
                                 <span>User Contacts</span>
                             </a>
                         </li>
-                        <li class="has-sub">
-                            <a href="#">
-                                <b class="caret pull-right"></b>
-                                <i class="fa fa-folder-open"></i>
-                                <span>Albums</span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li><a href=""><i class="fa fa-diamond"></i> Albums Categories</a></li>
-                                <li><a href=""> <i class="fa fa-camera-retro"></i> Sessions</a></li>
-                            </ul>
-                        </li>
+
 
                         <li class="has-sub">
                             <a href="#">
                                 <b class="caret pull-right"></b>
                                 <i class="fa fa-newspaper-o"></i>
-                                <span>Journal</span>
+
+                                <span>register companies</span>
                             </a>
                             <ul class="sub-menu">
-                                <li><a href=""><i class="fa fa-sitemap"></i> Journal Categories</a></li>
-                                <li><a href=""> <i class="fa fa-file-text-o"></i> Journal Posts</a></li>
+                                <li><a href="{{url('/ad/companies')}}"><i class="fa fa-sitemap"></i>all companies</a></li>
+                                <li><a href="{{url('/ad/trashedcompanies')}}"> <i class="fa fa-file-text-o"></i> trashed companies</a></li>
                             </ul>
                         </li>
 
-                        <li>
-                            <a href="">
-                                <i class="fa fa-money"></i>
-                                <span>Sessions Packages</span>
-                            </a>
-                        </li>
-
+                        
+                        
                     </ul>
                 </div>
             </div>

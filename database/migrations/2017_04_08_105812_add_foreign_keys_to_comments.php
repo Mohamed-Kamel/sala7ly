@@ -6,6 +6,9 @@ use Illuminate\Database\Migrations\Migration;
 
 class AddForeignKeysToComments extends Migration
 {
+
+
+
     /**
      * Run the migrations.
      *
@@ -13,9 +16,12 @@ class AddForeignKeysToComments extends Migration
      */
     public function up()
     {
+        Schema::enableForeignKeyConstraints();
+    
         Schema::table('comments', function (Blueprint $table) {
             $table->foreign('question_id')->references('id')->on('questions');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')
+               ->onDelete('cascade');
         });
     }
 

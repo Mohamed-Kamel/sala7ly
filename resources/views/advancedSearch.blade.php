@@ -207,7 +207,7 @@
                 <div class="col-lg-9 col-md-9 col-sm-12 all-questions">
                     <div class="row">
 
-                        @if(Auth::id() && count($cats)>0)
+                        @if(Auth::user() && count($cats)>0)
 
                             <div class="col-sm-12">
                                 <div class="widget-area no-padding blank">
@@ -220,7 +220,7 @@
                                             </ul>
                                         </div>
                                     @endif
-                                    @if(Auth::user()->group_id == 1)
+                                    @if(Auth::user() && Auth::user()->group_id == 1)
                                         <div class="status-upload">
                                             <form method="post" action="{{ URL('/question') }}"
                                                   enctype="multipart/form-data">
@@ -265,7 +265,7 @@
                                             <i class="fa fa-eye"></i>
                                         </span>
                                                         <span class="data-icons col-sm-4">
-                                            {{ $question->numOfComments}}
+{{--                                            {{ $question->numOfComments}}--}}
                                                             <i class="ti-thought"></i>
                                         </span>
                                                         <span class="data-icons col-sm-4">
@@ -301,7 +301,7 @@
                                             </div>
                                         </div>
                                     @endforeach
-                                    {{--                                    {{ $questions->links() }}--}}
+                                    {{--{{ $questions->links() }}--}}
                                 </div>
                             </div>
                         @endif

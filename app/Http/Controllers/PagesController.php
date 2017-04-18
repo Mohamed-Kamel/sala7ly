@@ -22,11 +22,11 @@ class PagesController extends Controller {
         $page->content = $request->content;
 
         $page->save();
-        return redirect('/admin/pages');
+        return redirect('/ad/pages');
     }
 
     public function editPage(Request $request, $id) {
-        $page = Page::find($request->id);
+        $page = Page::find($id);
         $this->validate($request, [
             'title' => 'required|min:3|max:50',
             'content' => 'required|min:7',
@@ -36,13 +36,13 @@ class PagesController extends Controller {
         $page->content = $request->content;
 
         $page->save();
-        return redirect('/admin/pages');
+        return redirect('/ad/pages');
     }
 
-    public function deletePage(Request $request, $id) {
-        $page = Page::find($request->id);
+    public function deletePage($id) {
+        $page = Page::find($id);
         $page->delete();
-        return redirect('/admin/pages');
+        return redirect('/ad/pages');
     }
 
 

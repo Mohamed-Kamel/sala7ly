@@ -23,7 +23,8 @@ class CreateQuestionsTable extends Migration
             $table->enum('status', ['open', 'closed'])->default('open');
             $table->unsignedInteger('cat_id');
             $table->unsignedInteger('user_id');
-            $table->softDeletes();
+
+             $table->softDeletes();
         });
     }
 

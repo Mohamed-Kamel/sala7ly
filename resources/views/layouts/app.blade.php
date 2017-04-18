@@ -81,6 +81,9 @@
                 <li><a href="{{ url('/companies') }}"> شركات الصيانة </a></li>
             </ul>
         </div>
+
+        
+
         <div class="search-box pull-left">
             <div class="input-group">
                 <button class="btn btn-nobg getFullSearch" type="button"><i class="fa fa-search"> </i></button>
@@ -105,7 +108,7 @@
                     <a href="#" class="heaer-user-name">
                           
                         <img src="
-                             @if( Auth::user()->img)
+                             @if( Auth::user() && Auth::user()->img)
                              {{ url(Auth::user()->img) }}
                          @endif
                          ">
@@ -113,13 +116,13 @@
                     
                     <ul class="user-menu" role="menu">
                         <li>
-                            @if( Auth::user()->group_id == '1')
+                            @if( Auth::user() && Auth::user()->group_id == 1)
                              <a href="{{ URL('userProfile') }}/{{ Auth::user()->id }}">
                                 <i class="ti-id-badge"></i>
                                 {{ Auth::user()->name }}
                             </a>
                             @endif
-                            @if( Auth::user()->group_id == '2')
+                            @if(Auth::user() &&  Auth::user()->group_id == '2')
                              <a href="{{ URL('company') }}/{{ Auth::user()->id }}">
                                 <i class="ti-id-badge"></i>
                                 {{ Auth::user()->name }}
@@ -145,7 +148,36 @@
                 </div>
             @endif
         </div>
-
+        <!-------------------- Notification -------------------->
+        @if(Auth::user())
+        <div>
+            @if(auth()->user()->notifications)
+                <span class="no_unread">{{auth()->user()->unreadNotifications->count()}}
+                </span>
+            @endif
+            <ul>
+                <li class="dropdown">
+                                <a href="#" class="dropdown-toggle notify" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    <i class="fa fa-bell-o"> </i> <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu" id="showNotification">
+                                    @if(auth()->user()->notifications)
+                                    @foreach(auth()->user()->notifications as $note)
+                                    <li>
+                                        <a class="{{ $note->read_at == null ? 'unread' : '' }}" href="{{url('/question')}}/{{$note->data['question_id']}}">
+                                            {{$note->data['data']}}
+                                            <br>
+                                            {{$note->created_at->diffForHumans()}}
+                                        </a>
+                                    </li>
+                                    @endforeach
+                                    @endif
+                                </ul>
+                </li>
+            </ul>
+        </div>
+                        @endif
+<!-------------------- Notification -------------------->
         <!--/.nav-collapse -->
     </div>
     <!--/.container -->
@@ -242,6 +274,8 @@
 <script type="text/javascript" src="{{ asset('js/ion-checkRadio/ion.checkRadio.min.js') }}"></script>
 <script src="{{ asset('js/script.js') }}"></script>
 <script src="{{asset('js/jquery.jscroll.min.js')}}"></script>
+<script src="{{asset('StreamLab/StreamLab.js')}}"></script>
+
 <script>
     $(document).ready(function () {
         $('#option').change(function () {
@@ -262,11 +296,50 @@
             }
         });
     });
-</script>
 
+    //real time notification
+    var message, ShowDiv = $('#showNotification');
+    var slh = new StreamLabHtml();
+    var sls = new StreamLabSocket({
+       appId:"{{config('stream_lab.app_id')}}",
+       channelName:"sal7ly",
+       event:"*"
+    });
+
+     
+    sls.socket.onmessage = function(res){
+        ///res is data send from our api
+        ///set this data to our class so you can use our helper function 
+        slh.setData(res);
+        console.log({{Auth::id()}});
+        if(slh.getSource() === 'messages'){
+            message =slh.getMessage();
+
+            // var li = ShowDiv.prepend('<li></li>').addClass('unread');
+
+            // var a = li.append('<a href="{{url("/question")}}/'+ message. question_id +'">' + message.data + '</a>');
+
+            // a.append("<p></p>").text('message.created_at');
+            if({{Auth::id()}} == message.company_id){
+            ShowDiv.prepend('<li class="unread"><a href="{{url("/question")}}/'+ message.question_id +'"><b>' + message.data + '</b><br>'+ message.created_at +'</a></li>');
+            $('div .no_unread').html(message.no_unread);
+            }
+        }
+        $('.notify').on('click',function(){
+            $('div .no_unread').html('0');
+            $.get("{{url('MarkAllSeen')}}", function(){});
+        });
+        $('.notify li').on('click',function(event){
+                event.preventDefault();
+                $(this).removeClass('unread');
+                
+        });
+        
+    }
+</script>
     @yield('scripts')
     @yield('company')
-    </body>
+</body>
 
 
 </html>
