@@ -15,8 +15,18 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('key', 50);
-            $table->text('value');
+            $table->string('title', 70);
+            $table->string('copyrights', 70);
+            $table->text('meta_description');
+            $table->text('meta_keywords');
+            $table->string('fb_account', 70);
+            $table->string('tw_account', 70);
+            $table->string('yt_account', 70);
+            $table->string('gp_account', 70);
+            $table->text('google_ann');
+            $table->string('webmaster_email', 50);
+            $table->string('support_email', 50);
+            $table->string('phone', 50);
         });
     }
 

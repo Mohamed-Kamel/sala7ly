@@ -19,7 +19,8 @@ class CreateCompanyDetailsTable extends Migration
             $table->text('desc')->nullable();
             $table->double('rating')->default(0);
             $table->unsignedInteger('company_id')->unique();
-            $table->softDeletes();
+             $table->softDeletes();
+
         });
     }
 

@@ -4,8 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
 class Company_detail extends Model
 {
+
+   use SoftDeletes;
+
     public $timestamps = false;
   use SoftDeletes;
     public function user(){

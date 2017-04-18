@@ -26,30 +26,24 @@ Route::get('/ad/users', 'AdminController@users');
 Route::get('/ad/users/{id}', 'AdminController@deleteUser');
 Route::get('/ad/users/{id}/d', 'AdminController@restorUser');
 
+//FOR ADMIN DASHBOARD
+Route::get('/ad/dashboard', 'DashboardController@index');
+
 //FOR ADMIN PAGE
-Route::get('/admin/pages', 'PagesController@index');
-Route::post('/admin/page/add', 'PagesController@addPage');
-Route::post('/admin/pages/{id}', 'PagesController@editPage');
-Route::get('/admin/page/delete/{id}', 'PagesController@deletePage');
+Route::get('/ad/pages', 'PagesController@index');
+Route::post('/ad/page/add', 'PagesController@addPage');
+Route::post('/ad/pages/{id}', 'PagesController@editPage');
+Route::get('/ad/page/delete/{id}', 'PagesController@deletePage');
 
 //FOR ADMIN SETTINGS
-Route::get('/admin/settings', 'SettingsController@index');
-
-Route::get('admin/login', function(){
-    return view('admin/login');
-});
-Route::get('admin/view', function(){
-    dd('helo');
-//    return view('admin/view');
-});
-Route::get('admin/form', function(){
-    return view('admin/form');
-});
-
+Route::get('/ad/settings', 'SettingsController@index');
+Route::post('/ad/setting/{id}', 'SettingsController@editSettings');
 
 
 Route::get('/', 'HomeController@index');
 Route::get('/faq', 'FaqController@index');
+Route::get('/faq/add', 'FaqController@showFaqForm');
+Route::post('/faq/add', 'FaqController@addFaq');
 Route::get('/contactus', 'ContactusController@index');
 Route::post('/contactus', 'ContactusController@send');
 
@@ -72,7 +66,7 @@ Route::get('/questions', 'QuestionController@index');
 
 Route::get('/questions/cat/{id}', 'SearchController@catQuestions');
 
-Route::get('/questions/search', 'SearchController@apply');
+Route::get('/questions/search', 'SearchController@advancedSearch');
 
 Route::post('/question', 'QuestionController@add_question');
 
@@ -91,6 +85,20 @@ Route::post("/question/{id}/mail", "comments@mailfunction");
 Route::post('question/{id}/done','QuestionController@changeStatus');
 
 
+// company in admin 
+
+Route::get('/ad/companies','AdminController@viewallcompanies');
+
+Route::get('/ad/companies/{id}', 'AdminController@deleteUser');
+
+Route::get('/ad/trashedcompanies','AdminController@trashedcompanies');
+
+Route::get('/ad/trashedcompanies/{id}/restore','AdminController@restorUser');
+
+
+// end company page in admin panel 
+
+
 //******************** admin-ratings *********************//
 Route::get('ad/rate','RateCompany@view_rate');
 Route::get('ad/rate/delete/{id}','RateCompany@deleteRate');
@@ -101,5 +109,7 @@ Route::get('/ad/questions', 'Admin\AdminController@showQuestions');
 Route::get('/ad/question/delete/{id}', 'Admin\AdminController@deleteQuestion');
 Route::get('/ad/question/restore/{id}', 'Admin\AdminController@restoreQuestion');
 
+
 /********************** Notificaiton **************************/
 Route::get('MarkAllSeen','PostController@seen');
+

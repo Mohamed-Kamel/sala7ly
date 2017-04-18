@@ -11,6 +11,7 @@ class Question extends Model
     use Notifiable;
 	use SoftDeletes;
 
+
 	public $timestamps = false;
 
 	protected function cat()

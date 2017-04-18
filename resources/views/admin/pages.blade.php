@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 <ol class="breadcrumb pull-right">
-    <li><a href="{{ url('admin/') }}">Home</a></li>
+    <li><a href="{{ url('/admin/dashboard') }}">Home</a></li>
     <li class="active">Pages</li>
 </ol>
 <h1 class="page-header">Pages</h1>
@@ -86,7 +86,6 @@
                                         <label class="col-sm-3 control-label" for="field-1"> Title <span class="required">*</span></label>
 
                                         <div class="col-sm-9">
-                                            <input type="hidden" class="form-control" placeholder="Page Title" name="title" value="{{ $page->id }}">
                                             <input type="text" class="form-control" placeholder="Page Title" name="title" value="{{ $page->title }}">
                                         </div>
                                     </div>

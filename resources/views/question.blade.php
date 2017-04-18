@@ -399,7 +399,7 @@
 
         $.ajax({
         // url:'{{$question->id}}',
-        data: $(this).serialize(),
+         data: $(this).serialize(),
                 type: 'POST',
                 success: function(response) {
 

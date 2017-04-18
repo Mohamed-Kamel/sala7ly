@@ -26,12 +26,14 @@
 
             <div class="row">
                 <!--left column-->
-                <form class="col-lg-3 col-md-3 col-sm-12" method="get" id="search-com-form" action="{{url('/questions/search')}}">
+                <form class="col-lg-3 col-md-3 col-sm-12" method="get" id="search-com-form"
+                      action="{{url('/questions/search')}}">
                     <div class="questions-filter col-sm-12">
                         <div class="row">
                             <div class="search-company">
-                                <input id="search-comp" type="text" class="search-input-comp" placeholder="ابحث عن سؤال "
-                                       name="advancedSearch" >
+                                <input id="search-comp" type="text" class="search-input-comp"
+                                       placeholder="ابحث عن سؤال "
+                                       name="advancedSearch">
                                 <button class="search-comp-button"><i class="ti-search"></i></button>
                             </div>
 
@@ -52,7 +54,9 @@
                                         <ul class="nav nav-pills nav-stacked tree">
                                             @if(isset($cats))
                                                 @foreach($cats as $cat)
-                                                    <li><a href="{{url('/questions/cat')}}/{{$cat->id}}"> <span class="badge pull-right">{{$cat->questions->count()}}</span>{{$cat->title}} </a></li>
+                                                    <li><a href="{{url('/questions/cat')}}/{{$cat->id}}"> <span
+                                                                    class="badge pull-right">{{$cat->questions->count()}}</span>{{$cat->title}}
+                                                        </a></li>
                                                     {{--<li><a href="#"> <span class="badge pull-right">42</span>قسم الهاردوير </a></li>--}}
                                                     {{--<li><a href="#"> <span class="badge pull-right">42</span>قسم ثالث </a></li>--}}
                                                 @endforeach
@@ -112,58 +116,68 @@
                                     <div class="panel-body smoothscroll maxheight300">
                                         <div class="block-element">
                                             <label>
-                                                <input type="checkbox"  class="hide-checkbox" name="cairo" value="القاهره"/>
+                                                <input type="checkbox" class="hide-checkbox" name="cairo"
+                                                       value="القاهره"/>
                                                 القاهره
                                             </label>
                                         </div>
                                         <div class="block-element">
                                             <label>
-                                                <input type="checkbox" class="hide-checkbox" name="giza" value="الجيزه"/>
+                                                <input type="checkbox" class="hide-checkbox" name="giza"
+                                                       value="الجيزه"/>
                                                 الجيزه </label>
                                         </div>
                                         <div class="block-element">
                                             <label>
-                                                <input type="checkbox" name="sharq" class="hide-checkbox" value="الشرقيه"/>
+                                                <input type="checkbox" name="sharq" class="hide-checkbox"
+                                                       value="الشرقيه"/>
                                                 الشرقيه </label>
                                         </div>
                                         <div class="block-element">
                                             <label>
-                                                <input type="checkbox" name="alex" class="hide-checkbox" value="الاسكندريه"/>
+                                                <input type="checkbox" name="alex" class="hide-checkbox"
+                                                       value="الاسكندريه"/>
                                                 الاسكندريه </label>
                                         </div>
                                         <div class="block-element">
                                             <label>
-                                                <input type="checkbox" name="damit" class="hide-checkbox" value="دمياط"/>
+                                                <input type="checkbox" name="damit" class="hide-checkbox"
+                                                       value="دمياط"/>
                                                 دمياط </label>
                                         </div>
                                         <div class="block-element">
                                             <label>
-                                                <input type="checkbox" name="gharb" class="hide-checkbox" value="الغربيه"/>
+                                                <input type="checkbox" name="gharb" class="hide-checkbox"
+                                                       value="الغربيه"/>
                                                 الغربيه </label>
                                         </div>
                                         <div class="block-element">
                                             <label>
-                                                <input type="checkbox" name="mnof" class="hide-checkbox" value="المنوفيه"/>
+                                                <input type="checkbox" name="mnof" class="hide-checkbox"
+                                                       value="المنوفيه"/>
                                                 المنوفيه </label>
                                         </div>
                                         <div class="block-element">
                                             <label>
-                                                <input type="checkbox" class="hide-checkbox" name="matrouh" value="مطروح"/>
+                                                <input type="checkbox" class="hide-checkbox" name="matrouh"
+                                                       value="مطروح"/>
                                                 مطروح </label>
                                         </div>
                                         <div class="block-element">
                                             <label>
-                                                <input type="checkbox" name="kafr" class="hide-checkbox" value="كفرالشيخ"/>
+                                                <input type="checkbox" name="kafr" class="hide-checkbox"
+                                                       value="كفرالشيخ"/>
                                                 كفرالشيخ </label>
                                         </div>
                                         <div class="block-element">
                                             <label>
-                                                <input type="checkbox" class="hide-checkbox" name="almenia" value="المنيا"/>
+                                                <input type="checkbox" class="hide-checkbox" name="almenia"
+                                                       value="المنيا"/>
                                                 المنيا </label>
                                         </div>
                                         <div class="block-element">
                                             <label>
-                                                <input type="checkbox"   class="hide-checkbox" name="asut" value="اسيوط"/>
+                                                <input type="checkbox" class="hide-checkbox" name="asut" value="اسيوط"/>
                                                 اسيوط </label>
                                         </div>
                                         <div class="block-element">
@@ -174,7 +188,8 @@
                                         </div>
                                         <div class="block-element">
                                             <label>
-                                                <input type="checkbox" class="hide-checkbox"  name="sohage" value="سوهاج"/>
+                                                <input type="checkbox" class="hide-checkbox" name="sohage"
+                                                       value="سوهاج"/>
                                                 سوهاج </label>
                                             <!-- keep it blank // -->
                                         </div>
@@ -192,7 +207,7 @@
                 <div class="col-lg-9 col-md-9 col-sm-12 all-questions">
                     <div class="row">
 
-                        @if(Auth::id() && count($cats)>0)
+                        @if(Auth::user() && count($cats)>0)
 
                             <div class="col-sm-12">
                                 <div class="widget-area no-padding blank">
@@ -205,33 +220,35 @@
                                             </ul>
                                         </div>
                                     @endif
-                                    @if(Auth::user()->group_id == 1)
-                                    <div class="status-upload">
-                                        <form method="post" action="{{ URL('/question') }}" enctype="multipart/form-data">
-                                            {{ csrf_field() }}
-                                            <input type="text" name="title" placeholder="عنوان المشكله">
-                                            <textarea name="desc" placeholder="اكتب مشكلتك"></textarea>
-                                            <ul>
-                                                <li class="upload-img-icon">
-                                                    <a title="" data-toggle="tooltip" data-placement="bottom"
-                                                       data-original-title="اضف صورة"><input type="file" name="img"><i
-                                                                class="ti-image"></i></a>
-                                                </li>
-                                                <li class="">
-                                                    <select name="cat_id">
-                                                        @foreach($cats as $cat)
-                                                            <option value="{{$cat->id}}">{{$cat->title}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </li>
-                                            </ul>
-                                            <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i>
-                                                نشر
-                                            </button>
-                                        </form>
-                                    </div><!-- Status Upload  -->
+                                    @if(Auth::user() && Auth::user()->group_id == 1)
+                                        <div class="status-upload">
+                                            <form method="post" action="{{ URL('/question') }}"
+                                                  enctype="multipart/form-data">
+                                                {{ csrf_field() }}
+                                                <input type="text" name="title" placeholder="عنوان المشكله">
+                                                <textarea name="desc" placeholder="اكتب مشكلتك"></textarea>
+                                                <ul>
+                                                    <li class="upload-img-icon">
+                                                        <a title="" data-toggle="tooltip" data-placement="bottom"
+                                                           data-original-title="اضف صورة"><input type="file" name="img"><i
+                                                                    class="ti-image"></i></a>
+                                                    </li>
+                                                    <li class="">
+                                                        <select name="cat_id">
+                                                            @foreach($cats as $cat)
+                                                                <option value="{{$cat->id}}">{{$cat->title}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </li>
+                                                </ul>
+                                                <button type="submit" class="btn btn-success green"><i
+                                                            class="fa fa-share"></i>
+                                                    نشر
+                                                </button>
+                                            </form>
+                                        </div><!-- Status Upload  -->
                                 </div><!-- Widget Area -->
-                            @endif
+                                @endif
                             </div>
                         @endif
 
@@ -248,7 +265,7 @@
                                             <i class="fa fa-eye"></i>
                                         </span>
                                                         <span class="data-icons col-sm-4">
-                                            {{ $question->numOfComments}}
+{{--                                            {{ $question->numOfComments}}--}}
                                                             <i class="ti-thought"></i>
                                         </span>
                                                         <span class="data-icons col-sm-4">
@@ -284,7 +301,7 @@
                                             </div>
                                         </div>
                                     @endforeach
-{{--                                    {{ $questions->links() }}--}}
+                                    {{--{{ $questions->links() }}--}}
                                 </div>
                             </div>
                         @endif
