@@ -12,8 +12,8 @@ class SettingsController extends Controller {
         return view('admin/settings', compact('settings'));
     }
 
-    public function edirSettings(Request $request, $id) {
-        $settings = Setting::find($request->id);
+    public function editSettings(Request $request, $id) {
+        $settings = Setting::find($id);
         $this->validate($request, [
             'title' => 'required|min:3|max:50',
             'copyrights' => 'required|min:7',

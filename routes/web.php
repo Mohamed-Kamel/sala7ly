@@ -37,7 +37,7 @@ Route::get('/admin/page/delete/{id}', 'PagesController@deletePage');
 
 //FOR ADMIN SETTINGS
 Route::get('/admin/settings', 'SettingsController@index');
-Route::post('/admin/setting/{id}', 'SettingsController@edirSettings');
+Route::post('/admin/setting/{id}', 'SettingsController@editSettings');
 
 Route::get('admin/login', function(){
     return view('admin/login');
