@@ -17,8 +17,10 @@ class HomeController extends Controller {
      */
     public function index() {
         $cats = Cat::all();
+
         $questions = Question::orderBy('id', 'DESC')->limit('20')->get();
         $top_rated = Company_detail::orderBy('rating', 'DESC')->limit('10')->get();
+      
         return view('welcome', compact('cats', 'questions', 'top_rated'));
     }
 
@@ -51,7 +53,7 @@ class HomeController extends Controller {
         ]);
 
         $comp = Company_detail::where('company_id', '=', Auth::id())->first();
-        
+
         $comp->address = $Request->address;
 
         $comp->desc = $Request->desc;
