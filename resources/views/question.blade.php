@@ -164,7 +164,8 @@
                                         <input type="hidden" value="{{$comment->users->group_id}}">
                                         <form  method="post" action="" class="mail">
                                             {{ csrf_field() }}
-                                            <input type="hidden" name="company_id" value="{{$comment->user_id}}" >
+                                            <input type="hidden" name="company_id" value="{{$comment->user_id}}">
+                                             <input type="hidden" name="question_id" value="{{$question->id}}" >
                                             <input type="hidden" name="stars" value="0">
                                             <input type="hidden" name="review" value=" ">
                                             <input type="hidden" name="status" value="0">
@@ -270,6 +271,7 @@
                                         <form  method="post" action="" class="mail">
                                             {{ csrf_field() }}
                                             <input type="hidden" name="company_id" value="{{$comment->user_id}}" >
+                                             <input type="hidden" name="question_id" value="{{$question->id}}" >
                                          <!--    <input type="hidden" name="stars" value="0">
                                             <input type="hidden" name="review" value=" ">
                                             <input type="hidden" name="status" value="0"> -->
@@ -414,7 +416,7 @@
                 type: "post",
                 success: function(response) {
                 alert("message send to company successfully")
-                        window.location.reload();
+                        
                 }
         });
         });
