@@ -109,8 +109,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                                <i class="fa fa-picture-o"></i>
+                            <a href="{{ url('/ad/categories') }}">
+                                <i class="fa fa-sitemap"></i>
                                 <span>Categories</span>
                             </a>
                         </li>

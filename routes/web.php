@@ -35,6 +35,12 @@ Route::post('/ad/page/add', 'PagesController@addPage');
 Route::post('/ad/pages/{id}', 'PagesController@editPage');
 Route::get('/ad/page/delete/{id}', 'PagesController@deletePage');
 
+//FOR ADMIN CATEGORIES
+Route::get('/ad/categories', 'CategoriesController@index');
+Route::post('/ad/cat/add', 'CategoriesController@addCat');
+Route::post('/ad/cat/{id}', 'CategoriesController@editCat');
+Route::get('/ad/cat/delete/{id}', 'CategoriesController@deleteCat');
+
 //FOR ADMIN SETTINGS
 Route::get('/ad/settings', 'SettingsController@index');
 Route::post('/ad/setting/{id}', 'SettingsController@editSettings');
