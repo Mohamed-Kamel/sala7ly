@@ -301,7 +301,7 @@
                                             </div>
                                         </div>
                                     @endforeach
-                                    {{ $questions->links() }}
+                                    {{--{{ $questions->links() }}--}}
                                 </div>
                             </div>
                         @endif
