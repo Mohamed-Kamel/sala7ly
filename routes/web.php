@@ -27,29 +27,17 @@ Route::get('/ad/users/{id}', 'AdminController@deleteUser');
 Route::get('/ad/users/{id}/d', 'AdminController@restorUser');
 
 //FOR ADMIN DASHBOARD
-Route::get('/admin/dashboard', 'DashboardController@index');
+Route::get('/ad/dashboard', 'DashboardController@index');
 
 //FOR ADMIN PAGE
-Route::get('/admin/pages', 'PagesController@index');
-Route::post('/admin/page/add', 'PagesController@addPage');
-Route::post('/admin/pages/{id}', 'PagesController@editPage');
-Route::get('/admin/page/delete/{id}', 'PagesController@deletePage');
+Route::get('/ad/pages', 'PagesController@index');
+Route::post('/ad/page/add', 'PagesController@addPage');
+Route::post('/ad/pages/{id}', 'PagesController@editPage');
+Route::get('/ad/page/delete/{id}', 'PagesController@deletePage');
 
 //FOR ADMIN SETTINGS
-Route::get('/admin/settings', 'SettingsController@index');
-Route::post('/admin/setting/{id}', 'SettingsController@editSettings');
-
-Route::get('admin/login', function(){
-    return view('admin/login');
-});
-Route::get('admin/view', function(){
-    dd('helo');
-//    return view('admin/view');
-});
-Route::get('admin/form', function(){
-    return view('admin/form');
-});
-
+Route::get('/ad/settings', 'SettingsController@index');
+Route::post('/ad/setting/{id}', 'SettingsController@editSettings');
 
 
 Route::get('/', 'HomeController@index');
