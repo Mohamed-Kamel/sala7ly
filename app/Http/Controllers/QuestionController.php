@@ -7,9 +7,11 @@ use App\Question;
 use App\Company_detail;
 use App\Cat;
 use Auth;
+use Event;
+
 class QuestionController extends Controller {
 
-    
+
     public function index() {
 //        $questions = Question::orderBy('id', 'DESC')->get();
         $questions = Question::orderBy('id', 'DESC')->paginate(5);
@@ -17,11 +19,11 @@ class QuestionController extends Controller {
         return view('questions', compact('questions', 'cats'));
     }
 
-   
+
     public function changeStatus(Request $request,$id){
          $question = Question::find($id);
           if ($request->status ==='open')
-          { 
+          {
              $question->status = 'closed';
              $question->save();
         }
@@ -33,21 +35,20 @@ class QuestionController extends Controller {
              $question->save();
             }
            return response()->json(['success'=>"success"], 200);
-        } 
-
+        }
     public function showQuestion($id){
-        $question = Question::find($id);
+         $question = Question::find($id);
+         Event::fire('question', $question);
          $results = Question::where('title', 'LIKE', '%'.$question->title.'%')
          ->where('title', '<>', $question->title)
          ->limit(10)->get();
+
          $top_rated = Company_detail::orderBy('rating', 'DESC')->limit('10')->get();
-         return view('question', compact('question','results','top_rated'));
+         return view('question', compact('results','top_rated','question'));
     }
 
-
-
     public function add_question(AddQuestion $request) {
-        
+
         Common::globalXssClean($request);
         $question = new Question;
         $question->title = $request->title;
@@ -61,6 +62,6 @@ class QuestionController extends Controller {
         return redirect('/questions');
     }
 
-   
+
 
 }

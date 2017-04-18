@@ -11,7 +11,6 @@
 */
 Auth::routes();
 
-
 //FOR ADMIN
 // Route::get('admin/login', function(){
 //     return view('layouts.admin');
