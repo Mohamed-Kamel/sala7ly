@@ -108,7 +108,7 @@
                     <a href="#" class="heaer-user-name">
                           
                         <img src="
-                             @if( Auth::user()->img)
+                             @if( Auth::user() && Auth::user()->img)
                              {{ url(Auth::user()->img) }}
                          @endif
                          ">
@@ -116,13 +116,13 @@
                     
                     <ul class="user-menu" role="menu">
                         <li>
-                            @if( Auth::user()->group_id == '1')
+                            @if( Auth::user() && Auth::user()->group_id == 1)
                              <a href="{{ URL('userProfile') }}/{{ Auth::user()->id }}">
                                 <i class="ti-id-badge"></i>
                                 {{ Auth::user()->name }}
                             </a>
                             @endif
-                            @if( Auth::user()->group_id == '2')
+                            @if(Auth::user() &&  Auth::user()->group_id == '2')
                              <a href="{{ URL('company') }}/{{ Auth::user()->id }}">
                                 <i class="ti-id-badge"></i>
                                 {{ Auth::user()->name }}
@@ -149,7 +149,7 @@
             @endif
         </div>
         <!-------------------- Notification -------------------->
-        @if(Auth::id())
+        @if(Auth::user())
         <div>
             @if(auth()->user()->notifications)
                 <span class="no_unread">{{auth()->user()->unreadNotifications->count()}}

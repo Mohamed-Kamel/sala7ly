@@ -12,56 +12,60 @@ class AdminController extends Controller
 {
 
 
-	// view all users for admin 
-	  public function users()
-	  {
-	    
-	    $users = User::withTrashed()->get();
+    // view all users for admin
+    public function users()
+    {
 
-	    return view('admin.users',compact('users'));
-	  }
-  // view all softdeleted companies 
+        $users = User::withTrashed()->get();
 
-	  public function trashedcompanies()
-	  {
-	    
-	    $companies = User::onlyTrashed()->where('group_id','=','2')->get();
+        return view('admin.users', compact('users'));
+    }
 
-	    return view('admin.trashedcompanies',compact('companies'));
-	  }
+    // view all softdeleted companies
 
+    public function trashedcompanies()
+    {
 
-  // view all company for admin 
+        $companies = User::onlyTrashed()->where('group_id', '=', '2')->get();
 
-	  public function  viewallcompanies(){
-
-	       $companies = User::where('group_id', '=', 2)->get();
-	         
-	        return view('admin.companies',compact('companies'));
-	    }
+        return view('admin.trashedcompanies', compact('companies'));
+    }
 
 
-  //soft delete users and companies
+    // view all company for admin
 
-  public function deleteUser($id) {
+    public function viewallcompanies()
+    {
+
+        $companies = User::where('group_id', '=', 2)->get();
+
+        return view('admin.companies', compact('companies'));
+    }
 
 
-    $user = User::find($id);
-     
-    $user->delete();
+    //soft delete users and companies
 
-    return Redirect::back();
-  }
+    public function deleteUser($id)
+    {
 
-  // restore trashed users  and companies
 
-  public function restorUser($id){
+        $user = User::find($id);
 
-    $users = User::onlyTrashed()->find($id);
+        $user->delete();
 
-    $users->restore();
+        return Redirect::back();
+    }
 
-    return Redirect::back();
-  }
+    // restore trashed users  and companies
+
+    public function restorUser($id)
+    {
+
+        $users = User::onlyTrashed()->find($id);
+
+        $users->restore();
+
+        return Redirect::back();
+    }
 
 }
