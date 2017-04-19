@@ -137,6 +137,75 @@ a:hover, a:active, a:focus{
     height: 100%;
     overflow: hidden;
 }
+.user-notify {
+    float: left;
+    position: relative;
+    display: block;
+}
+.user-notify {
+    float: left;
+    position: relative;
+    margin-right: 20px;
+}
+.user-menu-notify .unread{
+    background-color: #f5f5f5;
+}
+.user-menu-notify .temp{
+    padding: 10px;
+}
+a.heaer-user-notify {
+    font-size: 27px;
+    display: block;
+    position: relative;
+}
+a.heaer-user-notify i {
+    display: block;
+    margin: 5px 0;
+}
+a.heaer-user-notify span {
+    display: block;
+    margin: 5px 0;
+    position: absolute;
+    top: -9px;
+    width: 23px;
+    height: 23px;
+    background-color: #eb0000;
+    display: block;
+    border-radius: 100%;
+    right: -10px;
+    color: #fff;
+    line-height: 20px;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 12px;
+    border: 2px solid #157cb2;
+}
+.user-menu-notify {
+    display: none;
+    position: absolute;
+    top: 44px;
+    right: -197px;
+    background-color: #fff;
+    box-shadow: 0 0 10px silver;
+    border-radius: 0 0 3px 3px;
+    width:400px;
+    max-height: 400px;
+    overflow-y: scroll;
+}
+.user-menu-notify  li a{
+    color: #555;
+    font-size: 13px;
+    display: block;
+    padding: 5px 10px;
+}
+.user-menu-notify  li{
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 5px;
+}
+.user-menu-notify  li:last-child{
+    border-bottom:none;
+    margin-bottom: 0;
+}
 .header-notifi{
     float: right;
     font-size: 22px;
@@ -145,8 +214,22 @@ a:hover, a:active, a:focus{
     display: inline-block;
     margin: 4px 0;
 }
+.user-menu-notify  li a:hover{
+    color: #258cc3;
+}
 .header-notifi i{
     padding: 10px;
+}
+.notification-time {
+    display: block;
+    color: #999;
+    font-size: 12px;
+    height: 15px;
+    line-height: 15px;
+}
+.notification-time i{
+    float: right;
+    margin-left: 3px;
 }
 .social-icon li {
     display: inline-block;
@@ -346,9 +429,10 @@ li.phone-number i{
     -o-transition: all 0.3s ease-out 0s;
     margin-right: 10px;
 }
-.header-user, .heaer-user-name{
+.header-user, .heaer-user-name {
     position: relative;
     float: left;
+    display: block;
 }
 a.heaer-user-name {
     border: 2px solid #157cb2;
@@ -367,7 +451,7 @@ a.heaer-user-name {
     box-shadow: 0 0 10px silver;
     border-radius: 0 0 3px 3px;
 }
-.header-user ul:after, .header-user ul:before {
+.header-user ul:after, .header-user ul:before, .user-menu-notify:after, .user-menu-notify:before {
     bottom: 100%;
     right: 10px;
     border: solid transparent;
@@ -377,14 +461,16 @@ a.heaer-user-name {
     position: absolute;
     pointer-events: none;
 }
-
-.header-user ul:after {
+.user-menu-notify:after, .user-menu-notify:before{
+    right: 50%;
+}
+.header-user ul:after, .user-menu-notify:after {
     border-color: rgba(136, 183, 213, 0);
     border-bottom-color: #fff;
     border-width: 10px;
     margin-left: -10px;
 }
-.header-user ul:before {
+.header-user ul:before, .user-menu-notify:before {
     border-color: rgba(194, 225, 245, 0);
     border-bottom-color: #c2e1f5;
     border-width: 10px;
@@ -2076,9 +2162,19 @@ input:checked + .slider:before {
     color: #fff !important;
 }
 .colsed-question {
-    display: block;
-    line-height: 60px;
+    display: inline-block;
+    /*line-height: 60px;*/
     color: #999;
+}
+a.delete-qtn{
+    border-radius: 3px;
+    padding: 3px 6px;
+    text-align: center;
+    margin-right: 15px;
+    display: inline-block;
+}
+a.delete-qtn i{
+        margin-left: 0;
 }
 .colsed-question i{
     color: #258cc3;
@@ -2393,14 +2489,51 @@ legend {
     margin-bottom: 20px;
     padding-bottom: 10px;
 }
-
-
-
-/*******************Kamel*****************************/
 .hide-checkbox{
     display: none;
 }
-
-.unread{
-    background-color: #DCDCDC;
+.sucess-contact {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.5);
+    height: 100vh;
+    /* line-height: 100vh; */
+    z-index: 999999;
+}
+.sub-sucess-contact {
+    position: absolute;
+    top: 35%;
+    right: 40%;
+    background-color: #fff;
+    width: 300px;
+    text-align: center;
+    border: 2px solid #dedede;
+    border-radius: 3px;
+    padding: 20px;
+    text-align: center;
+}
+.sub-sucess-contact p{
+    margin-bottom: 15px;
+}
+.sub-sucess-contact button{
+    margin: 10px 0;
+}
+.loading-message{
+    background-color: rgba(255,255,255,0.5);
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 99999;
+}
+.loading-contacts{
+    position: absolute;
+    top: 45%;
+    right: 45%;
 }

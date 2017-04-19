@@ -89,6 +89,8 @@ Route::post('userProfile/{id}','UserController@updateUser');
 Route::post("/question/{id}", "comments@post");
 Route::post("/question/{id}/mail", "comments@mailfunction");
 Route::post('question/{id}/done','QuestionController@changeStatus');
+Route::get('question/delete/{id}','QuestionController@deleteQuestion');
+Route::get('question/edit/{id}','QuestionController@editQuestion');
 
 
 // company in admin

@@ -71,7 +71,7 @@ class comments extends Controller
           $user = User::find($request->company_id);
           $note=\Notification::send($user, new \App\Notifications\contact($question));
           $values=[
-            'data' => 'new offer comes to your company from Question Title: ,'. $question->title .' from user: '. auth()->user()->name,
+            'data' => 'عرض جديد لشركتك على  : <b>'.  $question->title . '</b>' .' من المستخدم: <b>'. auth()->user()->name . '</b>',
             'question_id' => $question->id,
             'created_at' =>  Carbon::now()->diffForHumans(),
             'no_unread' =>$user->unreadNotifications->count(),
