@@ -7,26 +7,25 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class contact extends Notification
-{
+class contact extends Notification {
+
     use Queueable;
+
     protected $question;
-    
-    public function __construct(\App\Question $question)
-    {
+
+    public function __construct(\App\Question $question) {
         $this->question = $question;
     }
 
-    public function via($notifiable)
-    {
+    public function via($notifiable) {
         return ['database'];
     }
 
-    public function toArray($notifiable)
-    {
+    public function toArray($notifiable) {
         return [
-            'data' => 'new offer comes to your company from Question Title: '. $this->question->title .' from user: '. auth()->user()->name,
+            'data' => 'عرض جديد لشركتك على  : <b>' . $this->question->title . '</b>' . ' من المستخدم: <b>' . auth()->user()->name . '</b>',
             'question_id' => $this->question->id
         ];
     }
+
 }
