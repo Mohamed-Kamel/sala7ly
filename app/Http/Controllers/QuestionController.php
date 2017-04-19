@@ -31,15 +31,20 @@ class QuestionController extends Controller {
         } else {
             $question->save();
         }
+
         return response()->json(['success' => "success"], 200);
     }
 
-    public function showQuestion($id) {
-        $question = Question::find($id);
-        Event::fire('question', $question);
-        $results = Question::where('title', 'LIKE', '%' . $question->title . '%')
-                        ->where('title', '<>', $question->title)
-                        ->limit(10)->get();
+    
+    public function showQuestion($id){
+         $question = Question::find($id);
+         Event::fire('question', $question);
+         //@TODO:Question by category
+         
+         $results = Question::where('title', 'LIKE', '%'.$question->title.'%')
+         ->where('title', '<>', $question->title)
+         ->limit(10)->get();
+
 
         $top_rated = Company_detail::orderBy('rating', 'DESC')->limit('10')->get();
         return view('question', compact('results', 'top_rated', 'question'));
