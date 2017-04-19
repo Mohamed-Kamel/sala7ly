@@ -21,6 +21,7 @@ Auth::routes();
 // Route::get('ad/form', function(){
 //     return view('admin.form');
 // });
+
 Route::get('/ad/users', 'AdminController@users');
 Route::get('/ad/users/{id}', 'AdminController@deleteUser');
 Route::get('/ad/users/{id}/d', 'AdminController@restorUser');
@@ -90,7 +91,7 @@ Route::post("/question/{id}/mail", "comments@mailfunction");
 Route::post('question/{id}/done','QuestionController@changeStatus');
 
 
-// company in admin 
+// company in admin
 
 Route::get('/ad/companies','AdminController@viewallcompanies');
 
@@ -101,7 +102,7 @@ Route::get('/ad/trashedcompanies','AdminController@trashedcompanies');
 Route::get('/ad/trashedcompanies/{id}/restore','AdminController@restorUser');
 
 
-// end company page in admin panel 
+// end company page in admin panel
 
 
 //******************** admin-ratings *********************//
@@ -117,4 +118,3 @@ Route::get('/ad/question/restore/{id}', 'Admin\AdminController@restoreQuestion')
 
 /********************** Notificaiton **************************/
 Route::get('MarkAllSeen','PostController@seen');
-

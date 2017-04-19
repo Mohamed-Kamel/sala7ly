@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\Debug\Exception\FlattenException;
 
 class Handler extends ExceptionHandler
 {
@@ -44,7 +45,14 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        return parent::render($request, $exception);
+        $status = $exception->getStatusCode();
+        if (view()->exists("errors.{$status}")) {
+        return response()->view("errors.{$status}",
+        ['exception' =>$exception ], $status, $exception->getHeaders());
+        } else{
+        return $this->convertExceptionToResponse($exception);
+        }
+
     }
 
     /**

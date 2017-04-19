@@ -39,6 +39,8 @@ class QuestionController extends Controller {
     public function showQuestion($id){
          $question = Question::find($id);
          Event::fire('question', $question);
+         //@TODO:Question by category
+         
          $results = Question::where('title', 'LIKE', '%'.$question->title.'%')
          ->where('title', '<>', $question->title)
          ->limit(10)->get();
