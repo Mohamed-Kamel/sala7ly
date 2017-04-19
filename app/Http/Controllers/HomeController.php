@@ -20,7 +20,7 @@ class HomeController extends Controller {
 
         $questions = Question::orderBy('id', 'DESC')->limit('20')->get();
         $top_rated = Company_detail::orderBy('rating', 'DESC')->limit('10')->get();
-      
+
         return view('welcome', compact('cats', 'questions', 'top_rated'));
     }
 
