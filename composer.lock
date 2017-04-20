@@ -4,10 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-
-    "content-hash": "c5ec9211ab71bd6afa2f90fec319f8fd",
-
-  "packages": [
+    "content-hash": "3924fc2a963558a3d59cd15d51c99961",
+    "packages": [
         {
             "name": "5dmatweb/streamlab",
             "version": "dev-master",
@@ -50,7 +48,7 @@
                 "messages",
                 "realtime"
             ],
-            "time": "2017-03-25T15:10:30+00:00"
+            "time": "2017-03-25 15:10:30"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -3437,8 +3435,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "5dmatweb/streamlab": 20,
         "greggilbert/recaptcha": 20
-        "5dmatweb/streamlab": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
