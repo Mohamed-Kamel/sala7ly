@@ -20,6 +20,7 @@ class AdminController extends Controller
 
 	    return view('admin.users',compact('users'));
 	  }
+	  
   // view all softdeleted companies 
 
 	  public function trashedcompanies()

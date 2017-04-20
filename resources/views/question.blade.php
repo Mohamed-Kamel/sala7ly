@@ -34,6 +34,7 @@
                 @if(Auth::id() && Auth::id() == $question->user_id)
                 <div class="col-sm-4">
                     <form method="post" id="my_form" class="colsed-question">
+
                         @if($question->status === 'closed')
                         <label>
                             <input type="checkbox"  name="tour" value="closed" checked>
@@ -43,7 +44,7 @@
                         @else
                         <label id="chkbtn">
                             <input type="checkbox" class="check" name="tour" value="open" >
-                            <input type="hidden" id="hidden" value="{{ csrf_token() }}">
+                            <input type="hidden" id="hidden" value="{{ csrf_token() }}" class="btn btn-lg">
                             تم حلها
                         </label>
                         @endif
@@ -92,6 +93,7 @@
                             تم النشر بتاريخ: 
                             {{$question->created}}
                         </span>
+                     
                     </div>
                 </div>
             </div>

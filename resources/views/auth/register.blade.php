@@ -1,4 +1,5 @@
 @extends('layouts.app')
+<!-- <script src='https://www.google.com/recaptcha/api.js'></script> -->
 @section('content')
 
 <div class="container headerOffset">
@@ -141,23 +142,7 @@
 
                         <!-- end location -->
 
-                        <div class="form-group{{ $errors->has('coverphoto') ? ' has-error' : '' }}">
-                            <label  class="col-md-4 control-label">صوره الحائط</label>
-
-                            <div class="col-md-8">
-                                <div class="controls">
-                                    <input  name="coverphoto" class="input-file form-control" type="file" >
-
-
-                                    @if ($errors->has('coverphoto'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('coverphoto') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-
+                      
 
                         <div class="form-group{{ $errors->has('profilephoto') ? ' has-error' : '' }}">
                             <label  class="col-md-4 control-label">الصوره الشخصيه</label>
@@ -175,6 +160,28 @@
                                 </div>
                             </div>
                         </div>
+
+                         <!-- google reckapcha usage-->
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <label for="password" class="col-md-4 control-label"></label>
+
+                            <div class="col-md-8">
+
+                            {!! Recaptcha::render(['lang' => 'ar']) !!}
+
+                            @if ($errors->has('g-recaptcha-response'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                    </span>
+                                    @endif
+                                   
+                            </div>
+                        </div>
+                
+                        <!-- end google reckapcha usage-->
+
+                        <!-- user group -->
+
                         <div class="form-group">
                             <div class="col-md-4"></div>
                             <div class="col-md-8">
@@ -184,6 +191,9 @@
                                 </select>
                             </div>
                         </div >
+
+                        <!-- register button  -->
+
                         <div class="form-group now" >
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
@@ -191,7 +201,9 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+
+
+                    </form> <!-- end of form  -->
                 </div>
             </div>
         </div>

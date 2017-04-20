@@ -119,5 +119,8 @@ Route::get('ad/rate/delete/{id}','RateCompany@deleteRate');
 Route::get('/ad/questions', 'Admin\AdminController@showQuestions');
 
 Route::get('/ad/question/delete/{id}', 'Admin\AdminController@deleteQuestion');
+
 Route::get('/ad/question/restore/{id}', 'Admin\AdminController@restoreQuestion');
+
+
 

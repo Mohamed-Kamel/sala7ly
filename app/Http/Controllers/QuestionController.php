@@ -11,7 +11,7 @@ class QuestionController extends Controller {
 
     
     public function index() {
-//        $questions = Question::orderBy('id', 'DESC')->get();
+
         $questions = Question::orderBy('id', 'DESC')->paginate(5);
         $cats = Cat::all();
         return view('questions', compact('questions', 'cats'));
@@ -59,8 +59,6 @@ class QuestionController extends Controller {
         }
         $question->save();
         return redirect('/questions');
-    }
-
-   
+    }   
 
 }
