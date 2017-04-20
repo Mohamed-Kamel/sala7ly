@@ -20,7 +20,6 @@ class CreateMessagesTable extends Migration
             $table->timestamp('created')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->integer('sender_id')->unsigned();
             $table->integer('receiver_id')->unsigned();
-             $table->softDeletes();
         });
     }
 

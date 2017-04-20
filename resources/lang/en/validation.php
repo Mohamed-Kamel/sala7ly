@@ -85,7 +85,7 @@ return [
     'unique'               => 'The :attribute has already been taken.',
     'uploaded'             => 'The :attribute failed to upload.',
     'url'                  => 'The :attribute format is invalid.',
-
+     'recaptcha'           => 'غير صحيح حاول مره اخرى ',
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
@@ -98,7 +98,8 @@ return [
     */
 
     'custom' => [
-
+          
+          'g-recaptcha-response' => 'required|recaptcha',
     ],
 
     /*

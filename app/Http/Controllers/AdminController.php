@@ -16,6 +16,7 @@ class AdminController extends Controller
     public function users()
     {
 
+
         $users = User::withTrashed()->get();
 
         return view('admin.users', compact('users'));

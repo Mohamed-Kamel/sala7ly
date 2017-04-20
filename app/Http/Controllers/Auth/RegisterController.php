@@ -55,28 +55,25 @@ class RegisterController extends Controller
             'name'           => 'Required|string|min:5|max:50',  
             'email'          => 'Required|min:5|max:50|Email|Unique:users',
             'password'       => 'required|min:6|confirmed',
-            'phone'          => 'required|regex:/[0-9+]+/|min:8|max:14|string|unique:users',
-            'coverphoto'     => 'image|mimes:jpeg,jpg,png,gif|nullable',
-            'profilephoto'   => 'image|required|mimes:jpeg,jpg,png,gif',
-            'group'          => 'in:1,2'
+            'phone'          => 'required|regex:/[0-9+]+/|min:8|max:14|string|unique:users',           
+            'profilephoto'   => 'image|mimes:jpeg,jpg,png,gif',
+            'group'          => 'in:1,2',
+            'g-recaptcha-response' => 'required',
 
         ],
         [
                 'required'      => 'يجب ادخال هذا الحقل ',
                 'name.min'      => ' الاسم يجب ان يكون اكبر من 5 حروف',
-                'name.string'   => ' برجاء ادخال الاسم صحيح',
-                
+                'name.string'   => ' برجاء ادخال الاسم صحيح',               
                 'email.Email'   => ' يجب ادخال البريد الاليكترونى بطريقه صحيحه',
-                
                 'email.unique'  =>'عفوا هذا البريد الاليكترونى موجود مسبقا',
-                
                 'password.min'  =>'يجب ادخال كلمه مرور اكبر من 6 احرف',
                 'password.confirmed'=>'عفوا يجب ادخال كلمه المرور بطريقه صحيحه',
                 'phone.min'     =>'عفوا يجب ادخال رقم التليفون صحيح',
                 'phone.numeric' =>'عفوا يجب ادخال رقم التليفون صحيح',
                 'phone.unique'  =>'هذا الرقم محجوز مسبقا',
                 'image'         =>'يجب ادخال صوره ',
-
+                 //'recaptcha'    =>'حاول مره اخرى ',
 
         ]);
     }
@@ -89,15 +86,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $coverPath = null;
-       if (isset($data['coverphoto'])) {
+        $coverPath = "images/cover/default.jpeg";
+        
+        $profilepath="images/profile/default.jpg";
 
-        // $data['coverphoto']="null";
-        $coverPath = $data['coverphoto']->store('images/cover');
+        if (isset($data['profilephoto'])) {
 
-       }
+           $profilepath=$data['profilephoto']->store('images/cover');
+        }
        
-
          return User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
@@ -105,7 +102,7 @@ class RegisterController extends Controller
                 'phone'=>$data['phone'],
                 'city'=>$data['city'],
                 'group_id'=>$data['group'],
-                'img'   => $data['profilephoto']->store('images/profile'),
+                'img'   => $profilepath,
                 'cover' => $coverPath
 
 

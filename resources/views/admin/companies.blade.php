@@ -34,14 +34,18 @@
 						</tr>
 					</thead>
 			<tbody>
-				@foreach($companies as $company)
 
+				@foreach($companies as $company)
+              
 					<tr>
 						<td>{{$company->id}}</td>
 						<td>{{$company->name}}</td>
 						<td>{{$company->email}}</td>
 						<td>{{$company->phone}}</td>
-						<td>{{$company->company->address}} , {{$company->city}}</td>
+
+						<td>{{$company->company->address}}
+						 ,
+						  {{$company->city}}</td>
 						<td style="width: 100px;">  
 					    <div id="stars" class="pull-right">
                             @for($i=0; $i<round($company->company->rating); $i++)
@@ -71,6 +75,7 @@
 							</span>
 							</button>
 							</p>
+             
 			<!-- edit company modal  -->
 
 
@@ -162,17 +167,6 @@
 	</div>
 </div>
 
-
-
-
-
-
-    
-
-
-
-    
-            
 
 @endsection
 

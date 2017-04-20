@@ -95,7 +95,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{url('/ad/users')}}">
+                            <a href="{{url('ad/users')}}">
+
 
                                 <i class="fa fa-users"></i>
                                 <span>Users</span>
