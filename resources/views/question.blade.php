@@ -49,6 +49,8 @@
                         </label>
                         @endif
                     </form>
+                    <a href="{{url('/question/delete')}}/{{$question->id}}" class="delete-qtn btn btn-danger"><i class="ti-trash"></i></a>
+<!--                    <a href="{{url('/question/edit')}}/{{$question->id}}" class="delete-qtn btn btn-success"><i class="ti-pencil-alt"></i></a>-->
                 </div>
                 @endif
                 @if($question->status === 'closed' && Auth::id() != $question->user_id )
@@ -166,7 +168,8 @@
                                         <input type="hidden" value="{{$comment->users->group_id}}">
                                         <form  method="post" action="" class="mail">
                                             {{ csrf_field() }}
-                                            <input type="hidden" name="company_id" value="{{$comment->user_id}}" >
+                                            <input type="hidden" name="company_id" value="{{$comment->user_id}}">
+                                             <input type="hidden" name="question_id" value="{{$question->id}}" >
                                             <input type="hidden" name="stars" value="0">
                                             <input type="hidden" name="review" value=" ">
                                             <input type="hidden" name="status" value="0">
@@ -272,11 +275,12 @@
                                         <form  method="post" action="" class="mail">
                                             {{ csrf_field() }}
                                             <input type="hidden" name="company_id" value="{{$comment->user_id}}" >
+                                             <input type="hidden" name="question_id" value="{{$question->id}}" >
                                          <!--    <input type="hidden" name="stars" value="0">
                                             <input type="hidden" name="review" value=" ">
                                             <input type="hidden" name="status" value="0"> -->
                                             <input type="hidden" value="">
-                                            <button type="submit" class="btn btn-success"><i class="fa fa-handshake-o"></i> تواصل</button>
+                                            <button type="submit" class="btn btn-success"><i class="fa fa-handshake-o"></i>  تواصل</button>
                                         </form> 
                                         @endif  
                                     </div>
@@ -376,75 +380,95 @@
         <!-- /END LEFT SIDE  -->
     </div>
 </div>
-
+<div class="sucess-contact">
+    <div class="sub-sucess-contact">
+        <p>تم ارسال دعوتك بنجاح</p>
+        <img src="{{ asset('images/success.png') }}">
+        <br>
+        <button class="close-message btn btn-success">حسناً</button>
+    </div>
+</div>
+<div class="loading-message">
+    <img class="loading-contacts" src="{{ asset('images/loading.gif') }}">
+</div>
 <!-- /main container -->
-
+ 
  @endsection
 
-    @section("scripts")
-    <script>
-        $('document').ready(function(){
+@section("scripts")
+<script>
+    $('document').ready(function(){
 
 
-        $(".rep").on("click", function(event){
-        event.preventDefault();
-        var comment = $(this).find("span").attr("class");
-        console.log(comment);
-        $(".replay").find("." + comment).parent("div").toggle();
-        });
-        $('.postcomment').on('submit', function(event){
+    $(".rep").on("click", function(event){
+    event.preventDefault();
+    var comment = $(this).find("span").attr("class");
+    console.log(comment);
+    $(".replay").find("." + comment).parent("div").toggle();
+    });
+    $('.postcomment').on('submit', function(event){
 
-        event.preventDefault();
-        // console.log($(this).find(".h").val());
+    event.preventDefault();
+    // console.log($(this).find(".h").val());
 
-        $.ajax({
-        // url:'{{$question->id}}',
-         data: $(this).serialize(),
-                type: 'POST',
-                success: function(response) {
+    $.ajax({
+    // url:'{{$question->id}}',
+     data: $(this).serialize(),
+            type: 'POST',
+            success: function(response) {
 
-                window.location.reload();
-                }
+            window.location.reload();
+            }
 
-        });
-        });
-        $('.mail').on("submit", function(event){
-        event.preventDefault();
-        $.ajax({
-        url:  {{$question->user_id}} + '/mail',
-                data: $(this).serialize(),
-                type: "post",
-                success: function(response) {
-                alert("message send to company successfully")
-                        window.location.reload();
-                }
-        });
-        });
-        });
+    });
+    });
+    $('.mail').on("submit", function(event){
+    event.preventDefault();
+    //loading gif
+     $( ".loading-message" ).show();
+    $.ajax({
+    url:  {{$question->user_id}} + '/mail',
+            data: $(this).serialize(),
+            type: "post",
+            success: function(response) {
+//                alert("message send to company successfully")
+//      
+//hide loading gif
+            $( ".loading-message" ).hide();
+              $( ".sucess-contact" ).show();
+            }
+
+    });
+    });
+    });
 
 
 
-        $(function() {
-        $('#icr-1').click(function(event) {
-        event.preventDefault();
-        var checked = $('.check').val();
-        var csrf = $("#hidden").val();
-        console.log(checked);
-        $.ajax({
-        method: "post",
-                url:{{ $question->id }} + '/done',
-                data: {
-                "status": checked,
-                        "_token": csrf
-                },
-                success: function(response) {
-                window.location.reload();
-                }
-        });
-        });
-        });
-    </script>
-    @endsection
+    $(function() {
+    $('#icr-1').click(function(event) {
+    event.preventDefault();
+    var checked = $('.check').val();
+    var csrf = $("#hidden").val();
+    console.log(checked);
+    $.ajax({
+    method: "post",
+            url:{{ $question->id }} + '/done',
+            data: {
+            "status": checked,
+                    "_token": csrf
+            },
+            success: function(response) {
+            window.location.reload();
+            }
+    });
+    });
+    });
+
+    $('.close-message').on('click', function (e) {
+        $('.sucess-contact').hide();
+    });
+</script>
+@endsection
 
 
 

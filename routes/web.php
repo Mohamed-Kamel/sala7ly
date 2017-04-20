@@ -11,7 +11,6 @@
 */
 Auth::routes();
 
-
 //FOR ADMIN
 // Route::get('admin/login', function(){
 //     return view('layouts.admin');
@@ -22,34 +21,29 @@ Auth::routes();
 // Route::get('ad/form', function(){
 //     return view('admin.form');
 // });
+
 Route::get('/ad/users', 'AdminController@users');
 Route::get('/ad/users/{id}', 'AdminController@deleteUser');
 Route::get('/ad/users/{id}/d', 'AdminController@restorUser');
 
 //FOR ADMIN DASHBOARD
-Route::get('/admin/dashboard', 'DashboardController@index');
+Route::get('/ad/dashboard', 'DashboardController@index');
 
 //FOR ADMIN PAGE
-Route::get('/admin/pages', 'PagesController@index');
-Route::post('/admin/page/add', 'PagesController@addPage');
-Route::post('/admin/pages/{id}', 'PagesController@editPage');
-Route::get('/admin/page/delete/{id}', 'PagesController@deletePage');
+Route::get('/ad/pages', 'PagesController@index');
+Route::post('/ad/page/add', 'PagesController@addPage');
+Route::post('/ad/pages/{id}', 'PagesController@editPage');
+Route::get('/ad/page/delete/{id}', 'PagesController@deletePage');
+
+//FOR ADMIN CATEGORIES
+Route::get('/ad/categories', 'CategoriesController@index');
+Route::post('/ad/cat/add', 'CategoriesController@addCat');
+Route::post('/ad/cat/{id}', 'CategoriesController@editCat');
+Route::get('/ad/cat/delete/{id}', 'CategoriesController@deleteCat');
 
 //FOR ADMIN SETTINGS
-Route::get('/admin/settings', 'SettingsController@index');
-Route::post('/admin/setting/{id}', 'SettingsController@editSettings');
-
-Route::get('admin/login', function(){
-    return view('admin/login');
-});
-Route::get('admin/view', function(){
-    dd('helo');
-//    return view('admin/view');
-});
-Route::get('admin/form', function(){
-    return view('admin/form');
-});
-
+Route::get('/ad/settings', 'SettingsController@index');
+Route::post('/ad/setting/{id}', 'SettingsController@editSettings');
 
 
 Route::get('/', 'HomeController@index');
@@ -95,9 +89,11 @@ Route::post('userProfile/{id}','UserController@updateUser');
 Route::post("/question/{id}", "comments@post");
 Route::post("/question/{id}/mail", "comments@mailfunction");
 Route::post('question/{id}/done','QuestionController@changeStatus');
+Route::get('question/delete/{id}','QuestionController@deleteQuestion');
+Route::get('question/edit/{id}','QuestionController@editQuestion');
 
 
-// company in admin 
+// company in admin
 
 Route::get('/ad/companies','AdminController@viewallcompanies');
 
@@ -108,7 +104,7 @@ Route::get('/ad/trashedcompanies','AdminController@trashedcompanies');
 Route::get('/ad/trashedcompanies/{id}/restore','AdminController@restorUser');
 
 
-// end company page in admin panel 
+// end company page in admin panel
 
 
 //******************** admin-ratings *********************//
@@ -123,4 +119,5 @@ Route::get('/ad/question/delete/{id}', 'Admin\AdminController@deleteQuestion');
 Route::get('/ad/question/restore/{id}', 'Admin\AdminController@restoreQuestion');
 
 
-
+/********************** Notificaiton **************************/
+Route::get('MarkAllSeen','PostController@seen');

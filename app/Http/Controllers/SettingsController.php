@@ -42,7 +42,7 @@ class SettingsController extends Controller {
         $settings->phone = $request->phone;
 
         $settings->save();
-        return redirect('/admin/settings');
+        return redirect('/ad/settings');
     }
 
 }

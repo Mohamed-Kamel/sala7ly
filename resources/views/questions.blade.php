@@ -201,7 +201,8 @@
                                         </ul>
                                     </div>
                                 @endif
-                                @if(Auth::user()->group_id == 1)
+
+                                @if(Auth::user() != null && Auth::user()->group_id == 1)
                                 <div class="status-upload">
                                     <form method="post" action="{{ URL('/question') }}" enctype="multipart/form-data">
                                         {{ csrf_field() }}

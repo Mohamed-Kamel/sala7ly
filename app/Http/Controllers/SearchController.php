@@ -7,6 +7,7 @@ use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
 use App\Question;
 use DB;
+
 class SearchController extends Controller
 {
     /**
@@ -14,11 +15,12 @@ class SearchController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function questions(Request $request){
+    public function questions(Request $request)
+    {
         // clean the request from XSS
         Common::globalXssClean($request);
-        $results = Question::where('title', 'LIKE', '%'.$request->question.'%')
-            ->orWhere('desc', 'LIKE', '%'.$request->question.'%')
+        $results = Question::where('title', 'LIKE', '%' . $request->question . '%')
+            ->orWhere('desc', 'LIKE', '%' . $request->question . '%')
             ->paginate(4);
         return view('search', compact('results'));
     }
@@ -41,54 +43,47 @@ class SearchController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function advancedSearch(Request $request){
+    public function advancedSearch(Request $request)
+    {
         Common::globalXssClean($request);
-        $query = DB::table('questions')
+        $questions = DB::table('questions')
             ->select(['cats.title AS cat_name', 'questions.*', 'users.*'])
             ->join('users', 'users.id', '=', 'questions.user_id')
-            ->join('cats', 'cats.id', '=', 'questions.cat_id');
+            ->join('cats', 'cats.id', '=', 'questions.cat_id')
+            ->where(function ($query) use ($request) {
 
-//        $query->where(function($query) use ($request){
-            foreach ($request->all() as $key => $value){
-                switch ($key){
-                    case 'open':
-                        $query->where('status', '=', 'open');
-                    break;
-
-                    case 'last':
-                        $query->orderBy('questions.id', 'DESC');
-                    break;
-
-                    case 'advancedSearch':
-                        $query->where('questions.title', 'LIKE', '%'.$value.'%')->orWhere('questions.desc', 'LIKE', '%'.$value.'%');
-                    break;
+                if ($request->has('open')) {
+                    $query->where('status', '=', 'open');
                 }
-            }
-//        });
 
-//        dd($request->all());
-        $query->where(function($query) use ($request){
-            foreach ($request->all() as $key => $value){
-                if(!($key == 'all' || $key == 'open' || $key == 'last' || $key == 'advancedSearch') ){
-                    $query->orWhere('users.city', '=', $value);
+                if ($request->has('last')) {
+                    $query->orderBy('questions.id', 'DESC');
                 }
-            }
-        });
-//        echo $query->toSql();
-//        exit;
-        $questions = $query->paginate(5);
 
-        foreach ($questions as $question){
+                if ($request->has('advancedSearch')) {
+                    $query->where('questions.title', 'LIKE', '%' . $request->get('advancedSearch') . '%')->orWhere('questions.desc', 'LIKE', '%' . $request->get('advancedSearch') . '%');
+                }
+            })
+            ->where(function ($query) use ($request) {
+                foreach ($request->all() as $key => $value) {
+                    if (!($key == 'all' || $key == 'open' || $key == 'last' || $key == 'advancedSearch')) {
+                        $query->orWhere('users.city', '=', $value);
+                    }
+                }
+//            })->paginate(5);
+            })->get();
+
+        foreach ($questions as $question) {
             $question->numOfComments = Question::find($question->id)->allComments->count();
         }
         $cats = Cat::all();
+//
+//        return view('advancedSearch', [
+//            'questions' => $questions->appends($request->except('page')),
+//            'cats' => $cats
+//        ]);
 
-        return view('advancedSearch',[
-            'questions' => $questions->appends($request->except('page')),
-            'cats' => $cats
-        ]);
-
-//        return view('advancedSearch', compact('questions', 'cats'));
+        return view('advancedSearch', compact('questions', 'cats'));
     }
 
 
@@ -127,3 +122,6 @@ class SearchController extends Controller
 
 
 }
+
+
+

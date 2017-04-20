@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 <ol class="breadcrumb pull-right">
-    <li><a href="{{ url('/admin/dashboard') }}">Home</a></li>
+    <li><a href="{{ url('/ad/dashboard') }}">Home</a></li>
     <li class="active">Pages</li>
 </ol>
 <h1 class="page-header">Pages</h1>
@@ -45,7 +45,7 @@
                             <i class="fa fa-pencil"></i>
                             Edit
                         </a>
-                        <a href="{{url('/admin/page/delete')}}/{{$page->id}}" class="btn btn-danger btn-rounded">
+                        <a href="{{url('/ad/page/delete')}}/{{$page->id}}" class="btn btn-danger btn-rounded">
                             <i class="fa fa-trash"></i>
                             Delete
                         </a>
@@ -78,7 +78,7 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                             <h4 class="modal-title">Edit Page "{{ $page->title }}"</h4>
                         </div>
-                        <form class="form-horizontal" method="post" action="{{url('/admin/pages')}}/{{$page->id}}"> 
+                        <form class="form-horizontal" method="post" action="{{url('/ad/pages')}}/{{$page->id}}"> 
                             <div class="modal-body">
                                 <div class="panel-body">
                                     {{ csrf_field() }}
@@ -128,7 +128,7 @@
                 <h4 class="modal-title">Add New Page</h4>
             </div>
 
-            <form class="form-horizontal" method="post" action="{{url('/admin/page/add')}}"> 
+            <form class="form-horizontal" method="post" action="{{url('/ad/page/add')}}"> 
                 {{ csrf_field() }}
                 <div class="modal-body">
                     <div class="panel-body">

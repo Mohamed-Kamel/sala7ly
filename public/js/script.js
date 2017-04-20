@@ -13,6 +13,10 @@ $('.search-close').on('click', function (e) {
 $('.heaer-user-name').on('click', function (e) {
     $('.header-user>ul').toggle("slow");
 });
+//USER MENU NOTIFICATION
+$('.heaer-user-notify').on('click', function (e) {
+    $('.user-menu-notify').toggle("slow");
+});
 
 //TABS PANEL
 $('.nav-tabs> li:first-child').addClass('active');

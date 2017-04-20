@@ -80,7 +80,7 @@
             <!--START YOUR UER ADD RATIG-->
             <div class="leave-comment-rating">
                 <div class="error_review">
-                    @if(!($user->id == Auth::id()))
+                    @if(Auth::id() && Auth::user()->group_id == 1)
                     <a class="btn btn-success" href="#reviews-anchor" id="open-review-box">اترك تعليقك </a>
                     @endif
                 </div>
