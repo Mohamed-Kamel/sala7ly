@@ -29,7 +29,7 @@
             <div id="header" class="header navbar navbar-default navbar-fixed-top">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a href="" class="navbar-brand"><img src="" class="logo" alt="" /></a>
+                        <a href="" class="navbar-brand"><img src="{{ asset('images/logo2.png') }}" class="logo" alt="" /></a>
                         <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
@@ -40,7 +40,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown navbar-user">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <span class="image"><img src="" alt="marwa" /></span>
+                                <span class="image"><img src="{{ asset('images/team1.png') }}" alt="marwa" /></span>
                                 <span class="hidden-xs">marwa</span> <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu pull-right">
@@ -57,7 +57,7 @@
                     <ul class="nav">
                         <li class="nav-user">
                             <div class="image">
-                                <img src="" alt="" />
+                                <img src="{{ asset('images/team1.png') }}" alt="" />
                             </div>
                             <div class="info">
                                 <div class="name dropdown">
@@ -104,8 +104,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{url('/faq/add')}}">
-                                <i class="fa fa-picture-o"></i>
+                            <a href="{{url('/ad/faqs')}}">
+                                <i class="fa fa-info-circle"></i>
                                 <span>Faqs</span>
                             </a>
                         </li>
@@ -117,13 +117,13 @@
                         </li>
                         <li>
                             <a href="{{url('/ad/questions')}}">
-                                <i class="fa fa-picture-o"></i>
+                                <i class="fa fa-question-circle"></i>
                                 <span>Questions</span>
                             </a>
                         </li>
                         <li>
                             <a href="{{url('/ad/rate')}}">
-                                <i class="fa fa-picture-o"></i>
+                                <i class="fa fa-handshake-o"></i>
                                 <span>User Contacts</span>
                             </a>
                         </li>
@@ -137,8 +137,8 @@
                                 <span>register companies</span>
                             </a>
                             <ul class="sub-menu">
-                                <li><a href="{{url('/ad/companies')}}"><i class="fa fa-sitemap"></i>all companies</a></li>
-                                <li><a href="{{url('/ad/trashedcompanies')}}"> <i class="fa fa-file-text-o"></i> trashed companies</a></li>
+                                <li><a href="{{url('/ad/companies')}}"><i class="fa fa-users"></i>all companies</a></li>
+                                <li><a href="{{url('/ad/trashedcompanies')}}"> <i class="fa fa-trash"></i> trashed companies</a></li>
                             </ul>
                         </li>
 

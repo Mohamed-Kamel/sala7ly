@@ -26,12 +26,12 @@ class FaqController extends Controller {
      * @param AddFaq $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function addFaq(AddFaq $request){
-        Common::globalXssClean($request);
-        $faq = new Faq();
-        $faq->question = $request->question;
-        $faq->answer = $request->answer;
-        $faq->save();
-        return back();
-    }
+//    public function addFaq(AddFaq $request){
+//        Common::globalXssClean($request);
+//        $faq = new Faq();
+//        $faq->question = $request->question;
+//        $faq->answer = $request->answer;
+//        $faq->save();
+//        return back();
+//    }
 }
