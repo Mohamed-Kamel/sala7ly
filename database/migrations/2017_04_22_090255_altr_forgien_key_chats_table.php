@@ -14,8 +14,6 @@ class AltrForgienKeyChatsTable extends Migration
     public function up()
     {
         Schema::table('chats', function (Blueprint $table) {
-            $table->integer('sender_id')->unsigned();
-            $table->integer('receiver_id')->unsigned();
             $table->foreign('sender_id')->references('id')->on('users');
             $table->foreign('receiver_id')->references('id')->on('users');
         });
