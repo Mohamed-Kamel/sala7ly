@@ -8,6 +8,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading"> <i class="ti-user"></i> تسجيل مستخدم جديد</div>
                 <div class="panel-body">
+                
                     <form class="form-horizontal" role="form" enctype="multipart/form-data" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
@@ -175,7 +176,8 @@
                             </div>
                         </div>
 
-                        <!-- google reckapcha usage-->
+{{-- 
+                         <!-- google reckapcha usage-->
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label"></label>
 
@@ -193,7 +195,7 @@
                         </div>
 
                         <!-- end google reckapcha usage-->
-
+ --}}
                         <!-- user group -->
 
                         <!--                        <div class="form-group">
