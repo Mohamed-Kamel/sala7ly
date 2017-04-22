@@ -22,6 +22,17 @@
         <!--START RIGHT SIDE-->
         <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
             <div class="row">
+                 <!--START SHOW ERRORS FOR ADD/EDIT-->
+        @if (count($errors) > 0)
+        <div class="show-errors alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+        <!--END SHOW ERRORS FOR ADD/EDIT-->
                 <div class="col-sm-8">
                     <div class="question-user-img">
                         <img src="@if( $question->user->img){{ url($question->user->img) }}@endif">
@@ -50,7 +61,7 @@
                         @endif
                     </form>
                     <a href="{{url('/question/delete')}}/{{$question->id}}" class="delete-qtn btn btn-danger"><i class="ti-trash"></i></a>
-<!--                    <a href="{{url('/question/edit')}}/{{$question->id}}" class="delete-qtn btn btn-success"><i class="ti-pencil-alt"></i></a>-->
+                    <a href="#edit_question" data-toggle="modal" class="delete-qtn btn btn-success"><i class="ti-pencil-alt"></i></a>
                 </div>
                 @endif
                 @if($question->status === 'closed' && Auth::id() != $question->user_id )
@@ -105,7 +116,7 @@
                     <p>
                         {{$question->desc}}
                     </p>
-                    <img @if($question->img) src="{{ url($question->img) }}" @endif>
+                    <img @if($question->img) src="{{URL ($question->img)}}" @endif>
                 </div>
             </div>
 
@@ -151,10 +162,11 @@
                                     <img @if($comment->users->img) src="{{ url($comment->users->img)}}"@endif  alt="{{$comment->users->name}}">
                                 </a>
                                 @endif
+                                   
                             </div>
                             <div class="comment-box">
                                 <div class="comment-head">
-                                     @if($comment->users->group_id == '2' )
+                                    @if($comment->users->group_id == '2' )
                                     <h6 class="comment-name by-author"><a href="{{ url('/company') }}/{{ $comment->users->id }}">{{$comment->users->name}}</a></h6>
                                     @endif
                                      @if($comment->users->group_id == '1' )
@@ -164,6 +176,9 @@
                                     
                                     <div class="replay-desc">
                                          <span><i class="ti-timer"></i>  {{$comment->created}}</span>
+                                        @if(Auth::id() == $comment->user_id )
+                                        <a href="{{url('/comment/delete')}}/{{$comment->id}}" class=""><i class="ti-trash"></i></a>
+                                        @endif
                                         @if($question->user_id==Auth::id() && $question->status=='open'  && $comment->users->group_id=='2')
                                         <input type="hidden" value="{{$comment->users->group_id}}">
                                         <form  method="post" action="" class="mail">
@@ -208,6 +223,14 @@
                                     @if($comment->users->group_id == '1' )
                                     <h6 class="comment-name by-author"><a href="{{ url('/userProfile') }}/{{ $comment->users->id }}">{{$comment->users->name}}</a></h6>
                                     @endif
+                                     
+                                    <div class="replay-desc">
+                                          <span><i class="ti-timer"></i>  {{$reply->created}}</span>
+                                     @if(Auth::id() == $reply->user_id )
+                                        <a href="{{url('/comment/delete')}}/{{$reply->id}}" class=""><i class="ti-trash"></i></a>
+                                        @endif
+                                    </div>
+                                   
                                     </div>
                                     <div class="comment-content">
                                         {{$reply->comment}}
@@ -269,6 +292,9 @@
                                     @endif
                                     <div class="replay-desc">
                                         <span><i class="ti-timer"></i>  {{$comment->created}}</span>
+                                         @if(Auth::id() == $comment->user_id )
+                                        <a href="{{url('/comment/delete')}}/{{$comment->id}}" class=""><i class="ti-trash"></i></a>
+                                        @endif
                                         @if($question->user_id==Auth::id() && $question->status=='open' && $comment->users->group_id=='2')
 
                                         <!-- user_id`, `company_id`, `stars`, `review`, `status` -->
@@ -391,6 +417,54 @@
 <div class="loading-message">
     <img class="loading-contacts" src="{{ asset('images/loading.gif') }}">
 </div>
+<!--START EDIT Question-->
+<div class="modal fade" id="edit_question">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Edit {{$question->title}}</h4>
+            </div>
+            <form class="form-horizontal" method="post" action="{{url('/question/edit')}}/{{$question->id}}"  enctype="multipart/form-data"> 
+                <div class="modal-body">
+                    <div class="panel-body">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="field-1"> عنوان السؤال </label>
+
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" placeholder="عنوان السؤال" name="title" value="{{ $question->title }}">
+                            </div>
+                        </div>
+                        <div class="form-group-separator"></div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="field-1"> وصف السؤال </label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control content-page" placeholder="وصف السؤال" name="desc">{{ $question->desc }}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group-separator"></div>
+                        
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" for="field-1"> الصورة </label>
+                            <div class="col-sm-9">
+                                <input type="file" class="form-control" name="img" value="{{ $question->img }}">  
+                            </div>
+                        </div>
+                        <div class="form-group-separator"></div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success" name="submit"><i class="fa fa-check-circle"></i> Save</button>
+                    <a href="javascript:;" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-ban"></i> Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--END EDIT PAGE CONTENT-->
 <!-- /main container -->
  
  @endsection

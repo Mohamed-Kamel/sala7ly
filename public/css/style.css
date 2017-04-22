@@ -137,32 +137,28 @@ a:hover, a:active, a:focus{
     height: 100%;
     overflow: hidden;
 }
-.user-notify {
+.user-notify, .user-messages {
     float: left;
     position: relative;
     display: block;
-}
-.user-notify {
-    float: left;
-    position: relative;
     margin-right: 20px;
 }
-.user-menu-notify .unread{
+.user-menu-notify .unread, .header-user-message .unread{
     background-color: #f5f5f5;
 }
 .user-menu-notify .temp{
     padding: 10px;
 }
-a.heaer-user-notify {
+a.heaer-user-notify , a.header-user-message{
     font-size: 27px;
     display: block;
     position: relative;
 }
-a.heaer-user-notify i {
+a.heaer-user-notify i , a.header-user-message i{
     display: block;
     margin: 5px 0;
 }
-a.heaer-user-notify span {
+a.heaer-user-notify span, a.header-user-message span{
     display: block;
     margin: 5px 0;
     position: absolute;
@@ -180,7 +176,7 @@ a.heaer-user-notify span {
     font-size: 12px;
     border: 2px solid #157cb2;
 }
-.user-menu-notify {
+.user-menu-notify, .user-menu-message {
     display: none;
     position: absolute;
     top: 44px;
@@ -192,17 +188,17 @@ a.heaer-user-notify span {
     max-height: 400px;
     overflow-y: scroll;
 }
-.user-menu-notify  li a{
+.user-menu-notify  li a, .user-menu-message li a{
     color: #555;
     font-size: 13px;
     display: block;
     padding: 5px 10px;
 }
-.user-menu-notify  li{
+.user-menu-notify  li, .user-menu-message li{
     border-bottom: 1px solid #ddd;
     margin-bottom: 5px;
 }
-.user-menu-notify  li:last-child{
+.user-menu-notify  li:last-child, .user-menu-message li:last-child{
     border-bottom:none;
     margin-bottom: 0;
 }
@@ -2174,7 +2170,7 @@ a.delete-qtn{
     display: inline-block;
 }
 a.delete-qtn i{
-        margin-left: 0;
+    margin-left: 0;
 }
 .colsed-question i{
     color: #258cc3;
@@ -2442,7 +2438,23 @@ select.form-control{
     background-color: #157cb2;
     border-color: #157cb2;
 }
+.registration .form-control {
+    height: 36px;
+}
+.register-option .controls {
+    border-bottom: 1px solid #dedede;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    color: #777;
+}
+.register-option .controls.active{
+    border-bottom: 1px solid #258cc3;
+    color: #258cc3;
+}
 
+.register-option .controls .sub-controls input{
+    margin-left: 5px;
+}
 /*COMPANY PROFILE*/
 .text-muted i {
     float: right;
@@ -2536,4 +2548,7 @@ legend {
     position: absolute;
     top: 45%;
     right: 45%;
+}
+.user-phone{
+    display: none;
 }

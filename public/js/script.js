@@ -17,12 +17,26 @@ $('.heaer-user-name').on('click', function (e) {
 $('.heaer-user-notify').on('click', function (e) {
     $('.user-menu-notify').toggle("slow");
 });
+//USER MENU MESSAGES
+$('.header-user-message').on('click', function (e) {
+    $('.user-menu-message').toggle("slow");
+});
 
 //TABS PANEL
 $('.nav-tabs> li:first-child').addClass('active');
 $('.tab-content> .tab-pane:first-child').addClass('in').addClass('active');
 
-//FAQS
+//Registration
+$('.company-user input').on('click', function (e) {
+    $('.user-phone').show();
+    $('.company-user').addClass('active');
+    $('.regular-user').removeClass('active');
+});
+$('.regular-user input').on('click', function (e) {
+    $('.user-phone').hide();
+    $('.regular-user').addClass('active');
+     $('.company-user').removeClass('active');
+});
 
 
 //QUESTION PAGE

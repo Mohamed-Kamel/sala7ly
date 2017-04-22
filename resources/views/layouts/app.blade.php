@@ -126,7 +126,41 @@
                             
                         </ul>
                     </div>
-
+                    <!--START MESSAGES MENU-->
+                    <div class="user-messages">
+                        <a href="#" class="header-user-message message">
+                            <i class="ti-email"></i>
+                            <span class="no_unread">3</span>
+                        </a>
+                        <ul class="user-menu-message" role="menu" id="">
+                           
+                            <li class="">
+                                <a  href="">
+                                   Mesage here
+                                    <span class="notification-time">
+                                        <i class="ti-timer"></i> 
+                                    </span> 
+                                    <span class="notification-time">
+                                        <i class="ti-user"></i>  Mohammed
+                                    </span> 
+                                </a>
+                            </li>
+                            <li class="">
+                                <a  href="">
+                                   Mesage here
+                                    <span class="notification-time">
+                                        <i class="ti-timer"></i> 
+                                    </span> 
+                                    <span class="notification-time">
+                                        <i class="ti-user"></i>  Ahmed
+                                    </span> 
+                                </a>
+                            </li>
+                            
+                            
+                        </ul>
+                    </div>
+                    <!--/END MESSAGES MENU-->
                     <div class="header-user">
 
                         <a href="#" class="heaer-user-name">
