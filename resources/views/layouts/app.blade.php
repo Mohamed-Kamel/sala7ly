@@ -4,6 +4,12 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--SEO-->
+        @foreach(Helper::settings() as $setting )
+        <title>{{$setting->title}}</title>
+        <meta name="description" content="{{$setting->meta_description}}">
+        <meta name="Keywords" content="{{$setting->meta_keywords}}">
+        @endforeach
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Sala7ly</title>
@@ -30,9 +36,9 @@
                             <div class="text-right">
                                 <ul class="userMenu ">
                                     <li>
-                                        <a href="{{ URL('/page') }}/1"> من نحن</a>
-                                        <a href="{{ URL('/page') }}/2"> مساعدة </a>
-                                        <a href="{{ URL('/page') }}/3"> سياسة الخصوصية </a>
+                                        @foreach(Helper::pages() as $page )
+                                        <a href="{{ URL('/page') }}/{{$page->id}}"> {{$page->title}} </a>
+                                        @endforeach
                                         <a href="{{ url('/contactus') }}"> اتصل بنا</a>
                                         <a href="{{ url('/faq') }}">الاسألة الشائعة</a>
                                     </li>
@@ -42,18 +48,20 @@
                         <div class="col-lg-6 col-sm-12 col-xs-12 col-md-6">
                             <div class="text-left">
                                 <ul>
+                                    @foreach(Helper::settings() as $setting )
                                     <li class="phone-number">
-                                        <a href="callto:+0111232656">
+                                        <a href="callto:{{$setting->phone}}">
                                             <i class="glyphicon glyphicon-phone-alt "></i>
-                                            88 01680 53 1352
+                                           {{$setting->phone}}
                                         </a>
                                     </li>
                                     <li class="phone-number">
-                                        <a href="mailto:admin@admin.com">
+                                        <a href="{{$setting->webmaster_email}}">
                                             <i class="fa fa-envelope-o"></i>
-                                            88 01680 53 1352
+                                           {{$setting->webmaster_email}}
                                         </a>
                                     </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -237,13 +245,17 @@
                         <div class="col-lg-4  col-md-4 col-sm-6 col-xs-6">
                             <h3> مساعدة </h3>
                             <ul>
+                                 @foreach(Helper::settings() as $setting )
                                 <li class="supportLi">
                                     <p> اذا اردت الاستفسار عن شيئ ما قم بالاتصال بنا </p>
-                                    <h4><a class="inline" href="callto:+88016000000"> <i class="fa fa-phone"> </i> 88
-                                            0160 000 000 </a></h4>
-                                    <h4><a class="inline" href="mailto:help@tshopweb.com"> <i class="fa fa-envelope-o"> </i>
-                                            help@tshopweb.com </a></h4>
+                                    <h4><a class="inline" href="callto:{{$setting->phone}}"> <i class="fa fa-phone"> </i>
+                                            {{$setting->phone}}</a></h4>
+                                    <h4><a class="inline" href="{{$setting->webmaster_email}}"> <i class="fa fa-envelope-o"> </i>
+                                            {{$setting->webmaster_email}} </a></h4>
+                                    <h4><a class="inline" href="{{$setting->support_email}}"> <i class="fa fa-envelope-o"> </i>
+                                            {{$setting->support_email}} </a></h4>
                                 </li>
+                                 @endforeach
                             </ul>
                         </div>
 
@@ -252,9 +264,9 @@
                         <div class="col-lg-4  col-md-4 col-sm-6 col-xs-6">
                             <h3> روابط تهمك </h3>
                             <ul>
-                                <li><a href="{{ URL('/page') }}/1"> من نحن</a></li>
-                                <li><a href="{{ URL('/page') }}/2"> مساعدة </a></li>
-                                <li><a href="{{ URL('/page') }}/3"> سياسة الخصوصية </a></li>
+                                @foreach(Helper::pages() as $page )
+                                <li><a href="{{ URL('/page') }}/{{$page->id}}"> {{$page->title}} </a></li>
+                                @endforeach
                                 <li><a href="{{ url('/contactus') }}"> اتصل بنا</a></li>
                                 <li> <a href="{{ url('/faq') }}">الاسألة الشائعة</a></li>
                             </ul>
@@ -274,11 +286,12 @@
                                 </li>
                             </ul>
                             <ul class="social">
-                                <li><a href="http://facebook.com"> <i class=" fa fa-facebook"> &nbsp; </i> </a></li>
-                                <li><a href="http://twitter.com"> <i class="fa fa-twitter"> &nbsp; </i> </a></li>
-                                <li><a href="https://plus.google.com"> <i class="fa fa-google-plus"> &nbsp; </i> </a></li>
-                                <li><a href="http://youtube.com"> <i class="fa fa-pinterest"> &nbsp; </i> </a></li>
-                                <li><a href="http://youtube.com"> <i class="fa fa-youtube"> &nbsp; </i> </a></li>
+                                @foreach(Helper::settings() as $setting )
+                                <li><a href="{{$setting->fb_account}}"> <i class=" fa fa-facebook"> &nbsp; </i> </a></li>
+                                <li><a href="{{$setting->tw_account}}"> <i class="fa fa-twitter"> &nbsp; </i> </a></li>
+                                <li><a href="{{$setting->gp_account}}"> <i class="fa fa-google-plus"> &nbsp; </i> </a></li>
+                                <li><a href="{{$setting->yt_account}}"> <i class="fa fa-youtube"> &nbsp; </i> </a></li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -290,8 +303,9 @@
 
             <div class="footer-bottom">
                 <div class="container">
-                    <p class="text-center"> &copy; Salahly 2014. All right reserved. </p>
-
+                    @foreach(Helper::settings() as $setting )
+                    <p class="text-center"> {{$setting->copyrights}}</p>
+                    @endforeach
                 </div>
             </div>
         </footer>

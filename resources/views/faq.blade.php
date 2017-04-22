@@ -3,7 +3,15 @@
 <div class="container main-container headerOffset">
     <div class="row">
         <div class="col-sm-12 header-ann">
-            <img src="{{ asset('images/footer-ann.jpg') }}">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-2178725799240442"
+                 data-ad-slot="4745084170"
+                 data-ad-format="auto"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
         </div>
     </div>
     <div class="row">
@@ -39,7 +47,15 @@
         </div>
         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <div class="anouncment-sidebar">
-                <img src="{{ asset('images/sidebar-ann.jpg') }}">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-2178725799240442"
+                     data-ad-slot="4745084170"
+                     data-ad-format="auto"></ins>
+                <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
         </div>
     </div>

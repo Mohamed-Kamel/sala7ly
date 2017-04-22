@@ -9,7 +9,15 @@
         <div class="container main-container headerOffset">
             <div class="row">
                 <div class="col-sm-12 header-ann">
-                    <img src="{{ asset('images/footer-ann.jpg') }}">
+                     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-2178725799240442"
+                         data-ad-slot="4745084170"
+                         data-ad-format="auto"></ins>
+                    <script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
                 </div>
             </div>
             <!-- Main component call to action -->
