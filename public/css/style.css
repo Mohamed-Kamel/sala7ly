@@ -89,7 +89,7 @@ a:hover, a:active, a:focus{
 }
 
 .navbar-brand {
-    padding: 10px;
+    padding: 10px 15px;
     color: #FFFFFF;
     font-size: 28px;
     font-weight: bold;
@@ -266,8 +266,10 @@ li.phone-number {
     display: inline-block;
     margin-right: 15px;
 }
-li.phone-number a{
+li.phone-number a {
     color: #fff;
+    font-weight: normal;
+    text-transform: lowercase;
 }
 li.phone-number i{
     margin-left: 5px;
@@ -298,11 +300,13 @@ li.phone-number i{
 .use_menu li a, .use_menu li{
     display: inline-block;
 }
+
 .use_menu li a {
-    /*border: 1px solid #fff;*/
+    /* border: 1px solid #fff; */
     padding: 2px 10px;
     margin-left: 15px;
     font-size: 12px;
+    margin: 2px 5px;
 }
 .use_menu li a i{
     margin-left: 4px;
@@ -348,6 +352,7 @@ li.phone-number i{
     left: 0;
     -webkit-animation-duration: 1s;
     animation-duration: 1s;
+    border-radius: 3px;
 }
 .hvr-ripple-out:hover:before, .hvr-ripple-out:focus:before, .hvr-ripple-out:active:before {
     -webkit-animation-name: hvr-ripple-out;
@@ -975,7 +980,7 @@ a.inline {
     -o-border-radius: 50%;
     -ms-border-radius: 50%;
     border-radius: 50%;
-    float: left;
+    float: right;
     height: 36px;
     line-height: 36px;
     margin: 0 8px 0 0;
@@ -1151,6 +1156,11 @@ a.inline {
     line-height: 50px;
 
 }
+.btn-nobg {
+    padding: 5px 5px;
+    border-radius: 3px !important;
+    margin: -2px 0;
+}
 .iconbox-center .icon::after {
     content: "";
     position: absolute;
@@ -1159,7 +1169,7 @@ a.inline {
     height: 72px;
     background: transparent;
     top: -9px;
-    left: -9px;
+    left: -8px;
     border :1px solid #ccc;
     border-radius: 50%;
     -moz-border-radius: 50%;
@@ -1191,9 +1201,10 @@ a.inline {
     /*background-color: #f5f5f5;*/
     padding-top: 30px;
 }
-.anouncment-sidebar{
+.anouncment-sidebar {
     border: 1px solid #dedede;
     margin-bottom: 30px;
+    border-radius: 3px;
 }
 .anouncment-sidebar img{
     width: 100%;
@@ -2118,6 +2129,8 @@ input:checked + .slider:before {
     font-weight: 700;
     float: right;
     margin-left: 10px;
+    padding-bottom: 0;
+    line-height: 28px;
 }
 .comment-box .comment-name a {
     color: #283035;
@@ -2227,10 +2240,11 @@ form.mail .btn-success i{
 .comp-image a{
     display: inline-block;
 }
-.comp-image a img{
+.comp-image a img {
     width: 60px;
     height: 60px;
     margin-left: 15px;
+    border-radius: 3px;
 }
 .comp-title {
     color: #258cc3;
@@ -2249,6 +2263,7 @@ form.mail .btn-success i{
     margin-bottom: 20px;
     position: relative;
     height: 40px;
+    border-radius: 3px;
 }
 .search-company input {
     width: 100%;
@@ -2256,10 +2271,14 @@ form.mail .btn-success i{
     border-color: transparent;
     color: #999;
     padding-right: 15px;
+        border-radius: 3px;
 }
 .search-company input:focus, textarea:focus {
     border: 1px solid #258cc3;
     outline: 0;
+}
+.search-company input:focus .search-company {
+    border: 1px solid transparent;
 }
 .search-company button {
     position: absolute;
