@@ -16,7 +16,7 @@ class AddForeignKeysToQuestions extends Migration
         Schema::table('questions', function (Blueprint $table) {
             $table->foreign('cat_id')->references('id')->on('cats')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            DB::statement('CREATE INDEX questions_title_idx ON questions (title(100));')->onDelete('cascade');
+            DB::statement('CREATE INDEX questions_title_idx ON questions (title(100));');
         });
     }
 
