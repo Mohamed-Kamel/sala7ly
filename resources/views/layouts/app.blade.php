@@ -25,14 +25,16 @@
                     'csrfToken' => csrf_token(),
             ]) !!};</script>
         <!--Start of Zendesk Chat Script-->
-<script type="text/javascript">
-window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
-d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
-_.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
-$.src="https://v2.zopim.com/?3h1xWVfBfnylkgNcfUjOFCUUMm2DF0rk";z.t=+new Date;$.
-type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
-</script>
-<!--End of Zendesk Chat Script-->
+
+        <script type="text/javascript">
+        window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+        d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+        _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
+        $.src="https://v2.zopim.com/?3h1xWVfBfnylkgNcfUjOFCUUMm2DF0rk";z.t=+new Date;$.
+        type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
+        </script>
+        <!--End of Zendesk Chat Script-->
+
     </head>
 <body>
 
@@ -89,36 +91,33 @@ type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
             <!-- this part for mobile -->
 
 
-        </div>
 
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="{{ url('/') }}"> الرئيسية </a></li>
-                <li><a href="{{ url('questions') }}"> الاسئلة </a></li>
-                <li><a href="{{ url('/companies') }}"> شركات الصيانة </a></li>
-            </ul>
-        </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav menu-header">
+                        <li><a href="{{ url('/') }}"> الرئيسية </a></li>
+                        <li><a href="{{ url('/questions') }}"> الاسئلة </a></li>
+                        <li><a href="{{ url('/companies') }}"> شركات الصيانة </a></li>
+                    </ul>
+                </div>
 
-
-        <div class="search-box pull-left">
-            <div class="input-group">
-                <button class="btn btn-nobg getFullSearch" type="button"><i class="fa fa-search"> </i></button>
-            </div>
-            <!-- /input-group -->
-        </div>
-        <div class="user-header">
-            @if (Auth::guest())
-                <ul class="use_menu">
-                    <li><a class="hvr-ripple-out" href="{{ route('login') }}"> <i class="fa fa-sign-in"></i> تسجيل
-                            الدخول</a></li>
-                    <li><a class="hvr-ripple-out" href="{{ route('register') }}"> <i class="ti-user"></i> مستخدم
-                            جديد</a></li>
-                </ul>
-            @else
-                <div class="user-notify">
-                    <a href="#" class="heaer-user-notify notify">
-                        <i class="ti-bell"></i>
-                        @if(auth()->user()->notifications)
+<!--                <div class="search-box pull-left">
+                    <div class="input-group">
+                        <button class="btn btn-nobg getFullSearch" type="button"><i class="fa fa-search"> </i></button>
+                    </div>
+                </div>-->
+                <div class="user-header">
+                    @if (Auth::guest())
+                    <ul class="use_menu">
+                        <li><a class="hvr-ripple-out" href="{{ route('login') }}"> <i class="fa fa-sign-in"></i> تسجيل
+                                الدخول</a></li>
+                        <li><a class="hvr-ripple-out" href="{{ route('register') }}"> <i class="ti-user"></i> مستخدم
+                                جديد</a></li>
+                    </ul>
+                    @else
+                    <div class="user-notify">
+                        <a href="#" class="heaer-user-notify notify">
+                            <i class="ti-bell"></i>
+                            @if(auth()->user()->notifications)
                             <span class="no_unread">{{auth()->user()->unreadNotifications->count()}}
                             </span>
                         @endif
@@ -214,6 +213,24 @@ type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
                     </ul>
 
                 </div>
+
+
+                <!--/.nav-collapse -->
+            </div>
+            <!--/.container -->
+<!--            <form action="{{url('/search')}}">
+                <div class="search-full text-right"><a class="pull-right search-close"> <i class=" fa fa-times-circle"> </i>
+                    </a>
+                    <div class="searchInputBox pull-right">
+                        <input type="search" data-searchurl="search?=" name="question" placeholder="ابحث عن سؤال"
+                               class="search-input">
+                        <button class="btn-nobg search-btn" type="submit"><i class="fa fa-search"> </i></button>
+                    </div>
+                </div>
+            </form>-->
+            <!--/.search-full-->
+
+
             @endif
         </div>
 
