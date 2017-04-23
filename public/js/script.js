@@ -3,7 +3,13 @@ $(function () {
         var pgurl = window.location.href;
        
         $(".nav li a").each(function () {
-            if ($(this).attr("href") === pgurl || $(this).attr("href") === '')
+            if ($(this).attr("href") === pgurl || $(this).attr("href") === '/')
+                $(this).addClass("active");
+            
+        });
+
+        $(".userMenu li a").each(function () {
+            if ($(this).attr("href") === pgurl || $(this).attr("href") === '/')
                 $(this).addClass("active");
             
         });

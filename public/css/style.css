@@ -111,8 +111,9 @@ a:hover, a:active, a:focus{
 .navbar.stuck .navbar-top {
     margin-top: -30px;
 }
-.nav li a.active{
+.nav li a.active {
     background-color: #157cb2;
+    padding-top: 16px;
 }
 .menu-header li a{
     padding-top: 16px;
@@ -279,13 +280,16 @@ li.phone-number a {
 li.phone-number i{
     margin-left: 5px;
 }
+.userMenu li{
+    
+}
 .userMenu li a {
     color: #FFFFFF;
     display: block;
     float: right;
     font-size: 11px;
     line-height: 30px;
-    padding: 0 0 0 20px;
+    padding: 0 10px;
     text-decoration: none;
     transition: opacity 0.2s ease-out 0s;
     -webkit-transition: opacity 0.21s ease-out 0s;
@@ -1406,6 +1410,9 @@ a.qustion-user:hover{
 }
 .footer-ann img{
     max-width: 100%;
+}
+.userMenu li a.active{
+    background-color: #258cc3;
 }
 /* =============================================================== */
 /* Questions PAGE START
