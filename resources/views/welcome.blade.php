@@ -4,11 +4,11 @@
 <section class="banner-home" style="background-image: url('{{ asset('images/banner.jpg') }}')">
     <div class="img-overlay"></div>
     <div class="home-search">
-        <form class="container">
+        <form class="container" action="{{url('/search')}}">
             <p>فيكسيت اكبر منصة لحلول مشاكل السوفتوير و الهاردوير</p>
             <div class="search-banner">
-                <input type="text" placeholder="ابحث عن مشكلتك ">
-                <button type="submit">ابحث</button>
+                <input type="text" placeholder="ابحث عن مشكلتك " data-searchurl="search?=" name="question">
+                <button type="submit" class="search-btn">ابحث</button>
             </div>
         </form>
     </div>
