@@ -39,7 +39,8 @@
                         @for($i=5; $i>round($user->company->rating) ; $i--)
                         <i class="fa fa-star-o" aria-hidden="true"></i>
                         @endfor
-                        <div class="hidden-xs">التقييم</div>
+                        <div class="hidden-xs">التقيم</div>
+                        <div class="hidden-xs">{{$user->company->rating}}</div>
                 </div>
             </div>
             <div class="btn-group" role="group">
@@ -68,7 +69,28 @@
             @endif
         </div>
     </div>
+
+    <!-- Company Description -->
+    <div class="container main-container headerOffset">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12">
+            <p class="text-center">{{$user->company->desc}}</p>
+            </div>
+        <div>
+    </div>
+    <!-- Company Description -->
     <div class="main row">
+        <!-- Edit Profile Errors -->
+        @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+        <!-- End Edit Profile Errors -->
         <!-- user review  -->
         <div class="col-md-8 users-rating">    
             <div class="row ">
@@ -188,6 +210,11 @@
                             <label for="name">الهاتف</label>
                             <input type="text" class="form-control" id="phone" name="phone" value="{{$user->phone}}">
                         </div>
+                        <div class="form-group">
+                            <label for="name">وصف الشركة</label>
+                            <textarea rows="4" cols="50" class="form-control" id="desc" name="desc">{{$user->company->desc}}</textarea>
+                
+                        </div>
                         <div class="form-group profile-imge-edit">
                             <label for="name">الصورة الشخصية</label>
                             <input type="file" class="form-control" id="img" name="img" aria-describedby="fileHelp">
@@ -210,15 +237,6 @@
             </div>
         </div>
     </form>
-    @if (count($errors) > 0)
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
 
 </div>  
 
@@ -253,7 +271,7 @@
     //         var img=$('#img');
     //         var cover=$('#cover');
     //         var formdata = new FormData();
-    //         formdata.append('name', name);
+    //         formdata.append('name', name); 
     //         formdata.append('id', id);
     //         formdata.append('city', city);
     //         formdata.append('email', email);
