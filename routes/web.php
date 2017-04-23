@@ -128,3 +128,8 @@ Route::get('/ad/question/restore/{id}', 'Admin\AdminController@restoreQuestion')
 
 /********************** Notificaiton **************************/
 Route::get('MarkAllSeen','PostController@seen');
+
+
+/*******************************Chat *******************/
+Route::get('/pm/{id}', 'ChatController@index');
+Route::post('/pm/{id}', 'ChatController@sendMessage');

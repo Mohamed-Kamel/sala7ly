@@ -16,7 +16,7 @@ class CreateMessagesTable extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->increments('id');
             $table->text('msg');
-            $table->enum('status', ['read', 'unread']);
+            $table->timestamp('readed_at')->nullable()->default(null);
             $table->timestamp('created')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->integer('sender_id')->unsigned();
             $table->integer('receiver_id')->unsigned();

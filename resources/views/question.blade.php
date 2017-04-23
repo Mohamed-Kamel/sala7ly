@@ -521,6 +521,7 @@
             data: $(this).serialize(),
             type: "post",
             success: function(response) {
+            console.log(response);
 //                alert("message send to company successfully")
 //      
 //hide loading gif

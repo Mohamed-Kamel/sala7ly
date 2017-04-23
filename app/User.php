@@ -63,13 +63,33 @@ class User extends Authenticatable
         return $this->hasMany('App\Comment');
     }
 
+//
+//    public function sender_msg(){
+//        return $this->hasMany('App\User', 'id');
+//    }
+//
+//    public function receiver_msg(){
+//        return $this->hasMany('App\User', 'id');
+//    }
+//
+//
+//    public function receiver_unreaded_msg(){
+//        return $this->hasMany('App\User', 'id');
+//    }
+
 
     public function sender_msg(){
-        return $this->hasMany('App\User', 'id');
+        return $this->belongsToMany('App\User', 'messages' ,'sender_id', 'receiver_id')->withPivot('msg', 'created');
     }
 
     public function receiver_msg(){
-        return $this->hasMany('App\User', 'id');
+        return $this->belongsToMany('App\User', 'messages' ,'receiver_id', 'sender_id')->withPivot('msg', 'created');
+    }
+
+
+    public function unreaded_receiver_msg(){
+        return $this->belongsToMany('App\User', 'messages', 'receiver_id', 'sender_id')
+        ->where('messages.readed_at', null);
     }
 
 
