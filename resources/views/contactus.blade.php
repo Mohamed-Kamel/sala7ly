@@ -3,7 +3,15 @@
 <div class="container main-container headerOffset">
     <div class="row">
         <div class="col-sm-12 header-ann">
-            <img src="{{ asset('images/footer-ann.jpg') }}">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-2178725799240442"
+                 data-ad-slot="4745084170"
+                 data-ad-format="auto"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
         </div>
     </div>
     <div class="row">
@@ -21,7 +29,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">اتصل بنا  </div>
                 <form action="" method="POST">
-                     {{csrf_field()}}
+                    {{csrf_field()}}
                     <div class="panel-body">
                         <div class="form-group">
                             <div class="input-group">
@@ -59,13 +67,14 @@
 
 
         <div class="col-md-6">
+            @foreach(Helper::settings() as $setting )                   
             <legend>مواقع التواصل الاجتماعي</legend>
             <div class="social-box">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <p class="p-mini">
-                                <a href="https://facebook.com/niseorg">
+                                <a href="{{$setting->fb_account}}">
                                     <i class='fa fa-facebook-square ico'></i>
                                 </a>
                             </p>
@@ -76,11 +85,11 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <p class="p-mini">
-                                <a href="https://twitter.com/niseorg">
+                                <a href="{{$setting->tw_account}}">
                                     <i class='ti-twitter-alt ico'></i>
                                 </a>
                             </p>
@@ -91,12 +100,26 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <p class="p-mini">
-                                <a href="https://plus.google.com/">
+                                <a href="{{$setting->gp_account}}">
                                     <i class='ti-google ico'></i>
+                                </a>
+                            </p>
+                        </div>
+                        <div class="panel-footer">
+                            Google+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <p class="p-mini">
+                                <a href="{{$setting->yt_account}}">
+                                    <i class='ti-youtube ico'></i>
                                 </a>
                             </p>
                         </div>
@@ -111,12 +134,13 @@
                 <legend>لمزيد من المعلومات</legend>
                 <p class="text-align: left;">
                 <address>
-                    <i class='fa fa-envelope' style="color: #258cc3; margin-left: 3px; margin-bottom: 7px;"></i> info@salahly.com<br>
-                    <i class='fa fa-envelope' style="color: #258cc3; margin-left: 3px; margin-bottom: 7px;"></i> support@salahly.com<br>
-                   <i class='glyphicon glyphicon-phone-alt' style="color: #258cc3; margin-left: 3px; margin-bottom: 7px;"></i>  +254 178 623 151
+                    <i class='fa fa-envelope' style="color: #258cc3; margin-left: 3px; margin-bottom: 7px;"></i> {{$setting->support_email}}<br>
+                    <i class='fa fa-envelope' style="color: #258cc3; margin-left: 3px; margin-bottom: 7px;"></i> {{$setting->webmaster_email}}<br>
+                    <i class='glyphicon glyphicon-phone-alt' style="color: #258cc3; margin-left: 3px; margin-bottom: 7px;"></i>  {{$setting->phone}}
                 </address>
                 </p>
             </div>
+            @endforeach
         </div>
     </div>
     <!-- /.row  -->
