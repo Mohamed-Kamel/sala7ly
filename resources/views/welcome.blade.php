@@ -1,8 +1,17 @@
 @extends('layouts.app')
 @section('content')
 <!--START BANNER HOME-->
-<section class="banner-home">
-    <img src="{{ asset('images/banner.jpg') }}">
+<section class="banner-home" style="background-image: url('{{ asset('images/banner.jpg') }}')">
+    <div class="img-overlay"></div>
+    <div class="home-search">
+        <form class="container">
+            <p>فيكسيت اكبر منصة لحلول مشاكل السوفتوير و الهاردوير</p>
+            <div class="search-banner">
+                <input type="text" placeholder="ابحث عن مشكلتك ">
+                <button type="submit">ابحث</button>
+            </div>
+        </form>
+    </div>
 </section>
 <!--END BANNER HOME-->
 
