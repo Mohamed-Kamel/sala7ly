@@ -133,3 +133,4 @@ Route::get('MarkAllSeen','PostController@seen');
 /*******************************Chat *******************/
 Route::get('/pm/{id}', 'ChatController@index');
 Route::post('/pm/{id}', 'ChatController@sendMessage');
+Route::get('/msg/read/{id}', 'ChatController@readAll');

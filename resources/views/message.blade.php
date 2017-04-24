@@ -1,9 +1,6 @@
 @extends('layouts.app')
 
 @section('style')
-    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
 
     <style type="text/css">
         #messages {
@@ -14,9 +11,7 @@
             padding: 5px;
         }
     </style>
-<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
 
 @endsection
 
@@ -24,7 +19,7 @@
 @section('content')
 
 
-
+@if(auth()->user())
 <div class="container spark-screen">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
@@ -53,6 +48,7 @@
                                 <form action="sendmessage" method="POST">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}" >
                                     <input type="hidden" name="user" value="{{Auth::user()->name}}" >
+                                    <input type="hidden" name="receiver_id" value="{{$user->id}}" >
                                     {{-- <input type="hidden" name="receiver_id" value="{{$user->id}}" > --}}
                                     <textarea class="form-control msg"></textarea>
                                     <br/>
@@ -66,48 +62,53 @@
         </div>
     </div>
 </div>
-
+@endif
 
 @endsection
 
 
 @section('scripts')
 
-<script src="{{asset('js/jquery.min.js')}}"></script>
+{{--<script src="{{asset('js/jquery.min.js')}}"></script>--}}
 {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>      --}}
-<script src="{{asset('js/bootstrap.min.js')}}"></script>
+{{--<script src="{{asset('js/bootstrap.min.js')}}"></script>--}}
 <script>
-    var socket = io.connect('http://localhost:8890');
-
-    socket.on('message', function (data) {
-        data = jQuery.parseJSON(data);
-        console.log(data.user);
-        $( "#messages" ).append( "<strong>"+data.user+"</strong><p>"+data.message+"</p>" );
-      });
-
 
     $(".send-msg").on('click', function(e){
         e.preventDefault();
         var token = $("input[name='_token']").val();
         var user = $("input[name='user']").val();
         var msg = $(".msg").val();
-        console.log(token, user, msg);
+        var receiver_id = $("input[name='receiver_id']").val();
+        console.log(token, user, msg, receiver_id);
         if(msg != ''){
             $.ajax({
                 method: 'post',
                 // url: "sendmessage",
                 data: {'_token':token,
-                        'message':msg,
-                        'user':user
-                    },
+                    'message':msg,
+                    'user':user,
+                    'receiver_id':receiver_id
+                },
                 success:function(data){
-                    console.log(data);
-                    $(".msg").val('');
+//                    console.log(data);
+                    $('.msg').val('');
                 }
             });
         }else{
             alert("Please Add Message.");
         }
-    })
+    });
+
+    var socket = io.connect('http://localhost:8890');
+
+    socket.on('message', function (data) {
+        data = jQuery.parseJSON(data);
+        console.log(data);
+        $("#messages").append( "<strong>"+data.user+"</strong><p>"+data.message+"</p>");
+        if(data.receiver_id == {{auth()->user()->id}}) {
+            $("#no_msgs").find(".no_unread").text(parseInt($("#no_msgs").find(".no_unread").text())+1);
+        }
+      });
 </script>
 @endsection
