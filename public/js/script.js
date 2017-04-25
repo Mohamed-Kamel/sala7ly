@@ -1,3 +1,20 @@
+//Active Links
+$(function () {
+        var pgurl = window.location.href;
+       
+        $(".nav li a").each(function () {
+            if ($(this).attr("href") === pgurl || $(this).attr("href") === '/')
+                $(this).addClass("active");
+            
+        });
+
+        $(".userMenu li a").each(function () {
+            if ($(this).attr("href") === pgurl || $(this).attr("href") === '/')
+                $(this).addClass("active");
+            
+        });
+    });
+
 //Search 
 $('.search-box .getFullSearch').on('click', function (e) {
     $('.search-full').addClass("active"); //you can list several class names 
@@ -10,16 +27,34 @@ $('.search-close').on('click', function (e) {
 });
 
 //USER MENU
-$('.heaer-user-name').on('click', function (e) {
+ $('.heaer-user-name').click( function(event){
+    event.stopPropagation();
     $('.header-user>ul').toggle("slow");
+    $('.user-menu-notify').hide();
+    $('.user-menu-message').hide();
 });
+
 //USER MENU NOTIFICATION
 $('.heaer-user-notify').on('click', function (e) {
+    event.stopPropagation();
     $('.user-menu-notify').toggle("slow");
+    $('.header-user>ul').hide();
+    $('.user-menu-message').hide();
 });
+
 //USER MENU MESSAGES
 $('.header-user-message').on('click', function (e) {
+    event.stopPropagation();
     $('.user-menu-message').toggle("slow");
+     $('.header-user>ul').hide();
+    $('.user-menu-notify').hide();
+});
+
+
+$(document).click(function () {
+    $('.header-user>ul').hide();
+    $('.user-menu-notify').hide();
+    $('.user-menu-message').hide();
 });
 
 //TABS PANEL

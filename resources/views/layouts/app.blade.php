@@ -19,15 +19,13 @@
     <link href="{{ asset('css/themify-icons.css')}}" rel="stylesheet">
     <link href="{{ asset('css/style.css')}}" rel="stylesheet">
     <link href="{{ asset('css/custom-style.css')}}" rel="stylesheet">
-
-    {{--<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>--}}
-    {{--<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>--}}
     <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
     <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([
                     'csrfToken' => csrf_token(),
             ]) !!};</script>
+
     <!--Start of Zendesk Chat Script-->
     <script type="text/javascript">
         window.$zopim || (function (d, s) {
@@ -90,11 +88,11 @@
                         </ul>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
     <!--/.navbar-top-->
-
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
@@ -109,19 +107,12 @@
 
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="{{ url('/') }}"> الرئيسية </a></li>
+                <li><a href="{{ url('') }}/"> الرئيسية </a></li>
                 <li><a href="{{ url('questions') }}"> الاسئلة </a></li>
                 <li><a href="{{ url('/companies') }}"> شركات الصيانة </a></li>
             </ul>
         </div>
 
-
-        <div class="search-box pull-left">
-            <div class="input-group">
-                <button class="btn btn-nobg getFullSearch" type="button"><i class="fa fa-search"> </i></button>
-            </div>
-            <!-- /input-group -->
-        </div>
         <div class="user-header">
             @if (Auth::guest())
                 <ul class="use_menu">
@@ -157,13 +148,14 @@
                             <li class="temp">لا يوجد شعارات</li>
                         @endif
 
+
                     </ul>
                 </div>
                 <!--START MESSAGES MENU-->
                 @if(auth()->user())
 
                     <div class="user-messages">
-                        <a id="no_msgs" href="#"  class="header-user-message message">
+                        <a id="no_msgs" href="#" class="header-user-message message">
                             <i class="ti-email"></i>
                             <span class="no_unread">{{auth()->user()->unreaded_receiver_msg->count()}}</span>
                         </a>
@@ -236,21 +228,8 @@
 
         <!--/.nav-collapse -->
     </div>
-    <!--/.container -->
-    <form action="{{url('/search')}}">
-        <div class="search-full text-right"><a class="pull-right search-close"> <i class=" fa fa-times-circle"> </i>
-            </a>
-            <div class="searchInputBox pull-right">
-                <input type="search" data-searchurl="search?=" name="question" placeholder="ابحث عن سؤال"
-                       class="search-input">
-                <button class="btn-nobg search-btn" type="submit"><i class="fa fa-search"> </i></button>
-            </div>
-        </div>
-    </form>
-    <!--/.search-full-->
 
 </div>
-
 
 <div class="page-container">
     @yield('content')
@@ -397,7 +376,8 @@
             // var a = li.append('<a href="{{url("/question")}}/'+ message. question_id +'">' + message.data + '</a>');
 
             // a.append("<p></p>").text('message.created_at');
-            if ({{Auth::id()}} == message.company_id)
+            if ({{Auth::id()}} == message.company_id
+        )
             {
                 $('.temp').remove();
                 ShowDiv.prepend('<li class="unread"><a href="{{url("/question")}}/' + message.question_id + '">' + message.data + '<span class="notification-time"><i class="ti-timer"></i>' + message.created_at + '</span></a></li>');
@@ -414,21 +394,22 @@
             $(this).removeClass('unread');
         });
     }
-/******************************************************************************/
+    /*************************************NodJS Chat*****************************************/
     var socket = io.connect('http://localhost:8890');
 
     socket.on('message', function (data) {
         data = jQuery.parseJSON(data);
         console.log(data);
-        $("#messages").append( "<strong>"+data.user+"</strong><p>"+data.message+"</p>");
-        if(data.receiver_id == {{auth()->user()->id}}) {
-            $("#no_msgs").find(".no_unread").text(parseInt($("#no_msgs").find(".no_unread").text())+1);
+        $("#messages").append("<strong>" + data.user + "</strong><p>" + data.message + "</p>");
+        @if(auth()->user())
+        if (data.receiver_id == {{auth()->user()->id}}) {
+            $("#no_msgs").find(".no_unread").text(parseInt($("#no_msgs").find(".no_unread").text()) + 1);
         }
+        @endif
     });
 </script>
 @yield('scripts')
 @yield('company')
 </body>
-
-
 </html>
+
