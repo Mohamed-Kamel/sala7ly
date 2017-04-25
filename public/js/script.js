@@ -70,7 +70,7 @@ $('.company-user input').on('click', function (e) {
 $('.regular-user input').on('click', function (e) {
     $('.user-phone').hide();
     $('.regular-user').addClass('active');
-     $('.company-user').removeClass('active');
+    $('.company-user').removeClass('active');
 });
 
 

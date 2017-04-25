@@ -19,6 +19,7 @@
         <link href="{{ asset('css/themify-icons.css')}}" rel="stylesheet">
         <link href="{{ asset('css/style.css')}}" rel="stylesheet">
         <link href="{{ asset('css/custom-style.css')}}" rel="stylesheet">
+        <link href="{{ asset('css/responsive.css')}}" rel="stylesheet">
         <!-- Scripts -->
         <script>
             window.Laravel = {!! json_encode([
@@ -56,7 +57,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-sm-12 col-xs-12 col-md-6">
+                        <div class="col-lg-6 col-sm-12 col-xs-12 col-md-6 hidden-xs">
                             <div class="text-left">
                                 <ul>
                                     @foreach(Helper::settings() as $setting )
@@ -89,8 +90,6 @@
                     <a class="navbar-brand" href="{{ url('/') }}">
                         <img style="height:40px;" src="{{ asset('images/logo.png') }}" alt="Salahly"> </a>
                     <!-- this part for mobile -->
-
-
                 </div>
 
                 <div class="navbar-collapse collapse">
@@ -101,13 +100,6 @@
                     </ul>
                 </div>
 
-
-                <div class="search-box pull-left">
-                    <div class="input-group">
-                        <button class="btn btn-nobg getFullSearch" type="button"><i class="fa fa-search"> </i></button>
-                    </div>
-                    <!-- /input-group -->
-                </div>
                 <div class="user-header">
                     @if (Auth::guest())
                     <ul class="use_menu">
@@ -118,7 +110,7 @@
                     </ul>
                     @else
                     <div class="user-notify">
-                        <a href="#" class="heaer-user-notify notify">
+                        <a href="javascript:;" class="heaer-user-notify notify">
                             <i class="ti-bell"></i>
                             @if(auth()->user()->notifications)
                             <span class="no_unread">{{auth()->user()->unreadNotifications->count()}}
@@ -149,7 +141,7 @@
                     @if(auth()->user())
 
                     <div class="user-messages">
-                        <a href="#" id="msgs" class="header-user-message message" >
+                        <a href="javascript:;" id="msgs" class="header-user-message message" >
                             <i class="ti-email" ></i>
                             <span class="no_unread">{{auth()->user()->unreaded_receiver_msg->count()}}</span>
                         </a>
@@ -158,7 +150,7 @@
                             <li class="">
                                 <a href="{{url('/pm')}}/{{$msg->pivot->sender_id}}">
                                     {{substr($msg->pivot->msg, 0, 50)}} ....
-                                    <span class="notification-time">
+                                    <span class="notification-time msg-opt">
                                         {{\Carbon\Carbon::parse($msg->pivot->created)->diffForHumans()}}
                                         <i class="ti-timer"></i>
                                     </span>
@@ -175,7 +167,7 @@
                     <!--/END MESSAGES MENU-->
                     <div class="header-user">
 
-                        <a href="#" class="heaer-user-name">
+                        <a href="javascript:;" class="heaer-user-name">
 
                             <img src="
                                  @if( Auth::user() && Auth::user()->img)
@@ -218,23 +210,18 @@
                     </div>
                     @endif
                 </div>
-
-                <!--/.nav-collapse -->
             </div>
-
         </div>
-
 
         <div class="page-container">
             @yield('content')
         </div>
 
-
         <footer>
             <div class="footer">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-4  col-md-4 col-sm-6 col-xs-6">
+                        <div class="col-lg-4  col-md-4 col-sm-6 col-xs-12">
                             <h3> مساعدة </h3>
                             <ul>
                                 @foreach(Helper::settings() as $setting )
@@ -253,7 +240,7 @@
 
                         <div style="clear:both" class="hide visible-xs"></div>
 
-                        <div class="col-lg-4  col-md-4 col-sm-6 col-xs-6">
+                        <div class="col-lg-4  col-md-4 col-sm-6 col-xs-12">
                             <h3> روابط تهمك </h3>
                             <ul>
                                 @foreach(Helper::pages() as $page )
@@ -266,7 +253,7 @@
 
                         <div style="clear:both" class="hide visible-xs"></div>
 
-                        <div class="col-lg-4  col-md-4 col-sm-6 col-xs-6">
+                        <div class="col-lg-4  col-md-4 col-sm-6 col-xs-12">
                             <h3> كن على اتصال </h3>
                             <ul>
                                 <li>
@@ -312,7 +299,7 @@
         <script src="{{asset('StreamLab/StreamLab.js')}}"></script>
 
         <script>
-                                               $(document).ready(function () {
+            $(document).ready(function () {
                                        $('#option').change(function () {
                                        $('.next').css({"display": ""})
                                        });
@@ -367,7 +354,7 @@
                                                event.preventDefault();
                                                        $(this).removeClass('unread');
                                                });
-                                               }
+                                            }
 
         </script>
         @yield('scripts')

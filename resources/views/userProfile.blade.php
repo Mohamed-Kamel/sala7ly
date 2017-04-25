@@ -4,6 +4,9 @@
 <div class="container main-container headerOffset">
     @if(isset($users))
     <div class="row">
+        <div class="col-lg-12 col-sm-12" style="text-align: center;">
+            <a href="#" class="btn message-me hvr-icon-pulse"> راسلني الآن</a>
+        </div>
         <div class="col-lg-12 col-sm-12">
             <div class="card hovercard">
                 <div class="card-overlay"></div>
@@ -42,8 +45,6 @@
     </div>
     @endif
 
-
-    <div class="row">
         <div class="col-m-12">
             @if(isset($users->questions))
             @foreach ($users->questions as $question)
@@ -99,7 +100,6 @@
             @endforeach
             @endif
         </div>
-    </div>
 
     @endif
     <form action="{{url('userProfile')}}/{{Auth::id()}}" method="post" enctype="multipart/form-data">

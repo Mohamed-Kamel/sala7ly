@@ -22,7 +22,6 @@
             <div class="super-title">
                 <h2>كيف التعامل مع الموقع</h2>
                 <div class="seperator"></div>
-                <p>حبه كلام هيتكتب هنا باختصال شديد</p>
             </div>
         </div>
         <div class="row">
@@ -32,7 +31,7 @@
                         <span class="ti-user"></span>
                     </div>
                     <h4>سجل بالموقع</h4>
-                    <p>حبه كلام هيتكتب هنا باختصال شديد</p>
+                   <p> قم بالتسجيل بالموقع كصاحب شركة او كمستخدم عادي بدون اي قيود</p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-4 col-xs-12">
@@ -41,7 +40,7 @@
                         <span class="ti-pencil-alt"></span>
                     </div>
                     <h4>اسأل سؤالك</h4>
-                    <p>حبه كلام هيتكتب هنا باختصال شديد</p>
+                    <p> قم بإضافة استفسارك و تلقى الاجابات و العروض من شركات الصيانة و المستخدمين ايضاً</p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-4 col-xs-12">
@@ -50,7 +49,7 @@
                         <span class="ti-thumb-up"></span>
                     </div>
                     <h4>كن ع اتصال مع شركتك</h4>
-                    <p>حبه كلام هيتكتب هنا باختصال شديد</p>
+                    <p> بعد اختيارك للعرض المناسب قم بالتواصل مع الشركة لحل مشكلتك  </p>
                 </div>
             </div>
         </div>
@@ -104,7 +103,7 @@
                                             <h2 class="question-title-block"><a href="{{ URL('question') }}/{{ $question->id }}">{{ $question->title }}</a></h2>
                                         </div>
                                         <div class="col-sm-12">
-                                            <a href="#" class="qustion-user">
+                                            <a href="{{ URL('userProfile') }}/{{ $question->user->id }}" class="qustion-user">
                                                 <i class="ti-user"></i>
                                                 {{ $question->user->name }}
                                             </a>
