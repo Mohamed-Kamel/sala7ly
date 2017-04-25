@@ -20,8 +20,8 @@
     <link href="{{ asset('css/style.css')}}" rel="stylesheet">
     <link href="{{ asset('css/custom-style.css')}}" rel="stylesheet">
 
-    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    {{--<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>--}}
+    {{--<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>--}}
     <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
     <!-- Scripts -->
     <script>
@@ -334,10 +334,11 @@
 <!-- Latest compiled and minified JavaScript -->
 
 <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/ion-checkRadio/ion.checkRadio.min.js') }}"></script>
 <script src="{{ asset('js/script.js') }}"></script>
-<script src="{{asset('js/jquery.jscroll.min.js')}}"></s cript>
+<script src="{{asset('js/jquery.jscroll.min.js')}}"></script>
 <script src="{{asset('StreamLab/StreamLab.js')}}"></script>
 
 <script>
@@ -413,7 +414,17 @@
             $(this).removeClass('unread');
         });
     }
+/******************************************************************************/
+    var socket = io.connect('http://localhost:8890');
 
+    socket.on('message', function (data) {
+        data = jQuery.parseJSON(data);
+        console.log(data);
+        $("#messages").append( "<strong>"+data.user+"</strong><p>"+data.message+"</p>");
+        if(data.receiver_id == {{auth()->user()->id}}) {
+            $("#no_msgs").find(".no_unread").text(parseInt($("#no_msgs").find(".no_unread").text())+1);
+        }
+    });
 </script>
 @yield('scripts')
 @yield('company')

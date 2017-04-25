@@ -11,7 +11,7 @@
             padding: 5px;
         }
     </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>--}}
 
 @endsection
 
@@ -69,10 +69,8 @@
 
 @section('scripts')
 
-{{--<script src="{{asset('js/jquery.min.js')}}"></script>--}}
-{{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>      --}}
-{{--<script src="{{asset('js/bootstrap.min.js')}}"></script>--}}
 <script>
+
 
     $(".send-msg").on('click', function(e){
         e.preventDefault();
@@ -91,7 +89,7 @@
                     'receiver_id':receiver_id
                 },
                 success:function(data){
-//                    console.log(data);
+                    //                    console.log(data);
                     $('.msg').val('');
                 }
             });
@@ -99,16 +97,41 @@
             alert("Please Add Message.");
         }
     });
+    {{--$(".send-msg").on('click', function(e){--}}
+        {{--e.preventDefault();--}}
+        {{--var token = $("input[name='_token']").val();--}}
+        {{--var user = $("input[name='user']").val();--}}
+        {{--var msg = $(".msg").val();--}}
+        {{--var receiver_id = $("input[name='receiver_id']").val();--}}
+        {{--console.log(token, user, msg, receiver_id);--}}
+        {{--if(msg != ''){--}}
+            {{--$.ajax({--}}
+                {{--method: 'post',--}}
+                {{--// url: "sendmessage",--}}
+                {{--data: {'_token':token,--}}
+                    {{--'message':msg,--}}
+                    {{--'user':user,--}}
+                    {{--'receiver_id':receiver_id--}}
+                {{--},--}}
+                {{--success:function(data){--}}
+{{--//                    console.log(data);--}}
+                    {{--$('.msg').val('');--}}
+                {{--}--}}
+            {{--});--}}
+        {{--}else{--}}
+            {{--alert("Please Add Message.");--}}
+        {{--}--}}
+    {{--});--}}
 
-    var socket = io.connect('http://localhost:8890');
+    {{--var socket = io.connect('http://localhost:8890');--}}
 
-    socket.on('message', function (data) {
-        data = jQuery.parseJSON(data);
-        console.log(data);
-        $("#messages").append( "<strong>"+data.user+"</strong><p>"+data.message+"</p>");
-        if(data.receiver_id == {{auth()->user()->id}}) {
-            $("#no_msgs").find(".no_unread").text(parseInt($("#no_msgs").find(".no_unread").text())+1);
-        }
-      });
+    {{--socket.on('message', function (data) {--}}
+        {{--data = jQuery.parseJSON(data);--}}
+        {{--console.log(data);--}}
+        {{--$("#messages").append( "<strong>"+data.user+"</strong><p>"+data.message+"</p>");--}}
+        {{--if(data.receiver_id == {{auth()->user()->id}}) {--}}
+            {{--$("#no_msgs").find(".no_unread").text(parseInt($("#no_msgs").find(".no_unread").text())+1);--}}
+        {{--}--}}
+      {{--});--}}
 </script>
 @endsection
