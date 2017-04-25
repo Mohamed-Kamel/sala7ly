@@ -1,8 +1,17 @@
 @extends('layouts.app')
 @section('content')
 <!--START BANNER HOME-->
-<section class="banner-home">
-    <img src="{{ asset('images/banner.jpg') }}">
+<section class="banner-home" style="background-image: url('{{ asset('images/banner.jpg') }}')">
+    <div class="img-overlay"></div>
+    <div class="home-search">
+        <form class="container" action="{{url('/search')}}">
+            <p>فيكسيت اكبر منصة لحلول مشاكل السوفتوير و الهاردوير</p>
+            <div class="search-banner">
+                <input type="text" placeholder="ابحث عن مشكلتك " data-searchurl="search?=" name="question">
+                <button type="submit" class="search-btn">ابحث</button>
+            </div>
+        </form>
+    </div>
 </section>
 <!--END BANNER HOME-->
 
@@ -13,7 +22,6 @@
             <div class="super-title">
                 <h2>كيف التعامل مع الموقع</h2>
                 <div class="seperator"></div>
-                <p>حبه كلام هيتكتب هنا باختصال شديد</p>
             </div>
         </div>
         <div class="row">
@@ -23,7 +31,7 @@
                         <span class="ti-user"></span>
                     </div>
                     <h4>سجل بالموقع</h4>
-                    <p>حبه كلام هيتكتب هنا باختصال شديد</p>
+                   <p> قم بالتسجيل بالموقع كصاحب شركة او كمستخدم عادي بدون اي قيود</p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-4 col-xs-12">
@@ -32,7 +40,7 @@
                         <span class="ti-pencil-alt"></span>
                     </div>
                     <h4>اسأل سؤالك</h4>
-                    <p>حبه كلام هيتكتب هنا باختصال شديد</p>
+                    <p> قم بإضافة استفسارك و تلقى الاجابات و العروض من شركات الصيانة و المستخدمين ايضاً</p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-4 col-xs-12">
@@ -41,7 +49,7 @@
                         <span class="ti-thumb-up"></span>
                     </div>
                     <h4>كن ع اتصال مع شركتك</h4>
-                    <p>حبه كلام هيتكتب هنا باختصال شديد</p>
+                    <p> بعد اختيارك للعرض المناسب قم بالتواصل مع الشركة لحل مشكلتك  </p>
                 </div>
             </div>
         </div>
@@ -95,7 +103,7 @@
                                             <h2 class="question-title-block"><a href="{{ URL('question') }}/{{ $question->id }}">{{ $question->title }}</a></h2>
                                         </div>
                                         <div class="col-sm-12">
-                                            <a href="#" class="qustion-user">
+                                            <a href="{{ URL('userProfile') }}/{{ $question->user->id }}" class="qustion-user">
                                                 <i class="ti-user"></i>
                                                 {{ $question->user->name }}
                                             </a>
@@ -123,7 +131,15 @@
             </div>
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <div class="anouncment-sidebar">
-                    <img src="{{ asset('images/sidebar-ann.jpg') }}">
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-2178725799240442"
+                         data-ad-slot="4745084170"
+                         data-ad-format="auto"></ins>
+                    <script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
                 </div>
                 <div class="most-rated-comp">
                     <h2>
@@ -157,7 +173,15 @@
         </div>
         <div class="row">
             <div class="col-sm-12 footer-ann">
-                <img src="{{ asset('images/footer-ann.jpg') }}">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-2178725799240442"
+                     data-ad-slot="4745084170"
+                     data-ad-format="auto"></ins>
+                <script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
         </div>
     </div>

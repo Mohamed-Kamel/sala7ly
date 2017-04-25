@@ -35,6 +35,12 @@ Route::post('/ad/page/add', 'PagesController@addPage');
 Route::post('/ad/pages/{id}', 'PagesController@editPage');
 Route::get('/ad/page/delete/{id}', 'PagesController@deletePage');
 
+//FOR ADMIN FAQS
+Route::get('/ad/faqs', 'FaqsController@index');
+Route::post('/ad/faq/add', 'FaqsController@addFaq');
+Route::post('/ad/faq/{id}', 'FaqsController@editFaq');
+Route::get('/ad/faq/delete/{id}', 'FaqsController@deleteFaq');
+
 //FOR ADMIN CATEGORIES
 Route::get('/ad/categories', 'CategoriesController@index');
 Route::post('/ad/cat/add', 'CategoriesController@addCat');
@@ -48,8 +54,8 @@ Route::post('/ad/setting/{id}', 'SettingsController@editSettings');
 
 Route::get('/', 'HomeController@index');
 Route::get('/faq', 'FaqController@index');
-Route::get('/faq/add', 'FaqController@showFaqForm');
-Route::post('/faq/add', 'FaqController@addFaq');
+//Route::get('/faq/add', 'FaqController@showFaqForm');
+//Route::post('/faq/add', 'FaqController@addFaq');
 Route::get('/contactus', 'ContactusController@index');
 Route::post('/contactus', 'ContactusController@send');
 
@@ -90,7 +96,8 @@ Route::post("/question/{id}", "comments@post");
 Route::post("/question/{id}/mail", "comments@mailfunction");
 Route::post('question/{id}/done','QuestionController@changeStatus');
 Route::get('question/delete/{id}','QuestionController@deleteQuestion');
-Route::get('question/edit/{id}','QuestionController@editQuestion');
+Route::get('comment/delete/{id}','QuestionController@deleteComment');
+Route::post('question/edit/{id}','QuestionController@editQuestion');
 
 
 // company in admin
@@ -123,3 +130,9 @@ Route::get('/ad/question/restore/{id}', 'Admin\AdminController@restoreQuestion')
 
 /********************** Notificaiton **************************/
 Route::get('MarkAllSeen','PostController@seen');
+
+
+/*******************************Chat *******************/
+Route::get('/pm/{id}', 'ChatController@index');
+Route::post('/pm/{id}', 'ChatController@sendMessage');
+Route::get('/msg/read/{id}', 'ChatController@readAll');

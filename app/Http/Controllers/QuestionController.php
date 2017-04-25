@@ -10,6 +10,7 @@ use App\Cat;
 use App\Comment;
 use Auth;
 use Event;
+use Redirect;
 
 class QuestionController extends Controller {
 
@@ -35,16 +36,14 @@ class QuestionController extends Controller {
         return response()->json(['success' => "success"], 200);
     }
 
-    
-    public function showQuestion($id){
-         $question = Question::find($id);
-         Event::fire('question', $question);
-         //@TODO:Question by category
-         
-         $results = Question::where('title', 'LIKE', '%'.$question->title.'%')
-         ->where('title', '<>', $question->title)
-         ->limit(10)->get();
+    public function showQuestion($id) {
+        $question = Question::find($id);
+        Event::fire('question', $question);
+        //@TODO:Question by category
 
+        $results = Question::where('title', 'LIKE', '%' . $question->title . '%')
+                        ->where('title', '<>', $question->title)
+                        ->limit(10)->get();
 
         $top_rated = Company_detail::orderBy('rating', 'DESC')->limit('10')->get();
         return view('question', compact('results', 'top_rated', 'question'));
@@ -63,7 +62,6 @@ class QuestionController extends Controller {
         }
         $question->save();
         return redirect('/questions');
-
     }
 
     public function deleteQuestion($id) {
@@ -72,20 +70,29 @@ class QuestionController extends Controller {
         $comments->forceDelete();
         $question->forceDelete();
         return redirect('/');
+//        Recommended redirect on his profile
     }
 
-    public function editQuestion(AddQuestion $request, $id) {
-        Common::globalXssClean($request);
+    public function deleteComment($id) {
+        $comment = Comment::find($id);
+        $comment->forceDelete();
+        return Redirect::back();
+    }
+
+    public function editQuestion(Request $request, $id) {
+        $this->validate($request, [
+            'title' => 'required|min:5|max:255',
+            'desc' => 'required|min:10',
+            'img' => 'mimes:jpeg,png|max:3072',
+        ]);
         $question = Question::find($id);
         $question->title = $request->title;
         $question->desc = $request->desc;
-//        $question->cat_id = $request->cat_id;
-        $question->user_id = $request->user_id;
-        if ($request->hasFile('img')) {
+        if ($request->file('img')) {
             $question->img = $request->file('img')->store("images/questions");
         }
         $question->save();
-        return redirect('/question/' . $id);
+        return Redirect::back();
     }
 
 }

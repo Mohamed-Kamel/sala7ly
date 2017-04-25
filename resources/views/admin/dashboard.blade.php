@@ -31,7 +31,7 @@
         </div>
         <div class="col-md-3">
             <div class="widget widget-stat bg-grey-light text-white">
-                <div class="widget-stat-btn"><a href="#" data-click="widget-reload"><i class="fa fa-address-card-o"></i></a></div>
+                <div class="widget-stat-btn"><a href="#" data-click="widget-reload"><i class="fa fa-repeat"></i></a></div>
                 <div class="widget-stat-icon"><i class="fa fa-user-secret"></i></div>
                 <div class="widget-stat-info">
                     <div class="widget-stat-title">Administrators</div>
@@ -66,7 +66,7 @@
         <div class="col-md-3">
             <div class="widget widget-stat bg-danger text-white">
                 <div class="widget-stat-btn"><a href="#" data-click="widget-reload"><i class="fa fa-repeat"></i></a></div>
-                <div class="widget-stat-icon"><i class="fa fa-picture-o"></i></div>
+                <div class="widget-stat-icon"><i class="fa fa-info-circle"></i></div>
                 <div class="widget-stat-info">
                     <div class="widget-stat-title">Faqs</div>
                     <div class="widget-stat-number">{{$faqs}}</div>
@@ -77,7 +77,7 @@
         <div class="col-md-3">
             <div class="widget widget-stat bg-primary text-white">
                 <div class="widget-stat-btn"><a href="#" data-click="widget-reload"><i class="fa fa-repeat"></i></a></div>
-                <div class="widget-stat-icon"><i class="fa fa-picture-o"></i></div>
+                <div class="widget-stat-icon"><i class="fa fa-handshake-o"></i></div>
                 <div class="widget-stat-info">
                     <div class="widget-stat-title">Contacts</div>
                     <div class="widget-stat-number">{{$contacts}}</div>

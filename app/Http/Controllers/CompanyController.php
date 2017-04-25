@@ -61,6 +61,7 @@ class CompanyController extends Controller
             'review' => 'required',
             'stars' => 'required'
         ], ['required' => "برجاء ادخال تعليقك"]);
+
         $review_before = Rating::where("user_id", "=", Auth::id())->where("company_id", "=", $request->company_id)->where("status", "=", '1')->first(); 
         if ($review_before) {
             return Response::json(['error' => 'لقد تم عمل تقيم من قبل'], 404); // Status code here
@@ -76,23 +77,40 @@ class CompanyController extends Controller
             $review->created_at = Carbon::now();
             $review->status = '1';
             $review->save();
+
+            $no_rate = Rating::where('company_id','=', $request->company_id)->where('status', '=', '1')->count();
+            $sum_rate = Rating::where('company_id','=', $request->company_id)->where('status', '=', '1')->sum('stars');
+            $newRate = $sum_rate / $no_rate;
+            $user = User::find($request->company_id)->company;
+            $user ->rating = $newRate;
+            $user->save();
+
         }
         return redirect('company/'.$request->company_id);
 
     }
     public function editProfile(Request $request){
         $this->validate(request(), [
-            'name'           => 'required|string|min:5|max:50',  
+            'name'           => 'required|string|min:4|max:50',  
             'phone'          => 'required|regex:/[0-9+]+/|min:8|max:14|string',
             'img'     => 'mimes:jpeg,jpg,png,gif',
             'cover'   => 'mimes:jpeg,jpg,png,gif',
-        ], [    'required'      => 'يجب ادخال هذا الحقل ',
-                'name.min'      => ' الاسم يجب ان يكون اكبر من 5 حروف',
-                'name.string'   => ' برجاء ادخال الاسم صحيح',
-                'email.Email'   => ' يجب ادخال البريد الاليكترونى بطريقه صحيحه',
-                'email.unique'  =>'عفوا هذا البريد الاليكترونى موجود مسبقا',
-                'phone.min'     =>'عفوا يجب ادخال رقم التليفون صحيح',
-                'phone.numeric' =>'عفوا يجب ادخال رقم التليفون صحيح',
+            'desc'           => 'required|string|min:4',
+        ], [    'name.required'      => 'يجب ادخال حقل الاسم .',
+                'phone.required'      => 'يجب ادخال حقل الهاتف .',
+                'name.min'      => ' الاسم يجب ان يكون اكبر من 5 حروف .',
+                'name.string'   => ' برجاء ادخال الاسم صحيح .',
+                'phone.min'     => 'عفوا يجب ادخال رقم التليفون صحيح .',
+                'phone.numeric' => 'عفوا يجب ادخال رقم التليفون صحيح .',
+                'img.mimes' => 'برجاء اختيار صورة .',
+                'cover.mimes' => 'برجاء اختيار صورة .',
+                'desc.required'=> 'يدب ادخال وصف الشركة .',
+                'desc.string'=> 'يجب ادخال وصف الشركة بشكل صحيح .',
+                'desc.min' => 'يجب ادخال وصف الشركة بشكل صحيح .',
+                'phone.regex' => 'برجاء ادخال رقم الهاتف بشكل صحيح .',
+                'phone.min' => 'برجاء ادخال رقم الهاتف بشكل صحيح .',
+                'phone.max' => 'برجاء ادخال رقم الهاتف بشكل صحيح .',
+                'phone.string' => 'برجاء ادخال رقم الهاتف بشكل صحيح .',
                 ]);
 
         $user= User::find(Auth::id());

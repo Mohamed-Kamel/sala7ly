@@ -43,18 +43,27 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $exception)
-    {
-        $status = $exception->getStatusCode();
-        if (view()->exists("errors.{$status}")) {
-        return response()->view("errors.{$status}",
-        ['exception' =>$exception ], $status, $exception->getHeaders());
-        } else{
-        return $this->convertExceptionToResponse($exception);
-        }
+    // public function render($request, Exception $exception)
+    // {
 
-    }
+    //     // if($exception instanceof NotFoundHttpException)
+    //  {
+    //  return response()->view('error.404', [], 404);
+    //  }
+    //   return parent::render($request, $exception);
+    //   }
 
+    //     $status = $exception->getStatusCode();
+    //     if (view()->exists("errors.{$status}")) {
+    //     return response()->view("errors.{$status}",
+    //     ['exception' =>$exception ], $status, $exception->getHeaders());
+    //     } else{
+    //     return $this->convertExceptionToResponse($exception);
+    //     }
+
+    // }
+
+    
     /**
      * Convert an authentication exception into an unauthenticated response.
      *

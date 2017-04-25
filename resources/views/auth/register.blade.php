@@ -8,8 +8,23 @@
             <div class="panel panel-default">
                 <div class="panel-heading"> <i class="ti-user"></i> تسجيل مستخدم جديد</div>
                 <div class="panel-body">
+                
                     <form class="form-horizontal" role="form" enctype="multipart/form-data" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
+
+                        <div class="register-option">
+                            <div class="col-md-6 controls regular-user active">
+                                <div class="sub-controls">
+                                    <input type="radio" id="option1"  value="1" name="group" @if(old('group')!=2) checked @endif>  التسجيل كمستخدم عادي
+                                </div>
+                            </div>
+                            <div class="col-md-6 controls company-user">
+                                <div class="sub-controls">
+                                    <input type="radio" id="option2"  value="2" name="group" @if(old('group')==2) checked @endif>  التسجيل كصاحب شركة
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- user name -->
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">اسم المستخدم</label>
@@ -17,7 +32,7 @@
                             <div class="col-md-8 controls">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user fa-lg" aria-hidden="true"></i></span>
-                                    <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}"  autofocus>
+                                    <input id="name" required type="text" class="form-control" name="name" value="{{ old('name') }}"  autofocus>
                                 </div>
                                 <div>
 
@@ -51,7 +66,7 @@
 
                         <!-- insert user phone -->
 
-                        <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                        <div class="user-phone form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
                             <label for="phone" class="col-md-4 control-label">التليفون</label>
 
 
@@ -63,7 +78,7 @@
                                         <span class="input-group-addon">
                                             <i class="fa fa-phone fa-lg" aria-hidden="true"></i></span>
 
-                                        <input id="phone" type="text" class="form-control" name="phone" value="{{ old('phone') }}" required autofocus>
+                                        <input id="phone" type="text" class="form-control" name="phone" value="{{ old('phone') }}"  autofocus>
 
                                     </div>
                                     <div>
@@ -142,7 +157,7 @@
 
                         <!-- end location -->
 
-                      
+
 
                         <div class="form-group{{ $errors->has('profilephoto') ? ' has-error' : '' }}">
                             <label  class="col-md-4 control-label">الصوره الشخصيه</label>
@@ -161,36 +176,37 @@
                             </div>
                         </div>
 
+ 
                          <!-- google reckapcha usage-->
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label"></label>
 
                             <div class="col-md-8">
 
-                            {!! Recaptcha::render(['lang' => 'ar']) !!}
+                                {!! Recaptcha::render(['lang' => 'ar']) !!}
 
-                            @if ($errors->has('g-recaptcha-response'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
-                                    </span>
-                                    @endif
-                                   
+                                @if ($errors->has('g-recaptcha-response'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                </span>
+                                @endif
+
                             </div>
                         </div>
-                
-                        <!-- end google reckapcha usage-->
 
+                        <!-- end google reckapcha usage-->
+ 
                         <!-- user group -->
 
-                        <div class="form-group">
-                            <div class="col-md-4"></div>
-                            <div class="col-md-8">
-                                <select class="selectpicker form-control" name="group"  id="option" >
-                                    <option class=""   id="option1"  value="1" selected>مستخدم عادي</option>
-                                    <option class=""   id="option2" value="2">صاحب شركه</option>
-                                </select>
-                            </div>
-                        </div >
+                        <!--                        <div class="form-group">
+                                                    <div class="col-md-4"></div>
+                                                    <div class="col-md-8">
+                                                        <select class="selectpicker form-control" name="group"  id="option" >
+                                                            <option class=""   id="option1"  value="1" selected>مستخدم عادي</option>
+                                                            <option class=""   id="option2" value="2">صاحب شركه</option>
+                                                        </select>
+                                                    </div>
+                                                </div >-->
 
                         <!-- register button  -->
 

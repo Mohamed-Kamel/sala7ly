@@ -12,9 +12,12 @@ return [
     | In version 2 of reCAPTCHA, public_key is the Site key,
     | and private_key is the Secret key.
     |
-    */
-    'public_key'     => env('RECAPTCHA_PUBLIC_KEY', '6Ldurh0UAAAAAMjBuWKgydM-p2ufM2kxGqn4DqlR'), 
-    'private_key'    => env('RECAPTCHA_PRIVATE_KEY', '6Ldurh0UAAAAAEbGXP1as85a8OD7h3gkX1e3K3Or'),
+    // */
+    // 'public_key'     => env('RECAPTCHA_PUBLIC_KEY', '6Ldurh0UAAAAAMjBuWKgydM-p2ufM2kxGqn4DqlR'), 
+    // 'private_key'    => env('RECAPTCHA_PRIVATE_KEY', '6Ldurh0UAAAAAEbGXP1as85a8OD7h3gkX1e3K3Or'),
+    
+    'public_key'     => env('RECAPTCHA_PUBLIC_KEY'), 
+    'private_key'    => env('RECAPTCHA_PRIVATE_KEY'),
 
     /*
     |--------------------------------------------------------------------------

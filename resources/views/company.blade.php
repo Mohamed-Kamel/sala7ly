@@ -3,6 +3,9 @@
 @section('content')
 <div class="container main-container headerOffset">
     <div class="row">
+        <div class="col-lg-12 col-sm-12" style="text-align: center;">
+            <a href="#" class="btn message-me hvr-icon-pulse"> راسلني الآن</a>
+        </div>
         <div class="col-lg-12 col-sm-12">
             <div class="card hovercard">
                 <div class="card-overlay"></div>
@@ -56,30 +59,47 @@
             <div class="btn-group" role="group">
                 <div  id="favorites" class="btn " ><i class="ti-location-pin" aria-hidden="true"></i>
                     <div class="hidden-xs">{{$user->city}}</div>
+
+                 </div>
+             </div>
+                <div class="btn-group" role="group">
+                    <div id="following" class="btn" ><i class="ti-email" aria-hidden="true"></i>
+                        @if($status || $user->id == Auth::id() )
+                        <div class="hidden-xs ">{{$user->email}}</div>
+                        @else
+                        <div class="hidden-xs blurry-text">لم يتم التواصل من قبل</div>
+                        @endif
+                    </div>
                 </div>
-            </div>
-            <div class="btn-group" role="group">
-                <div id="following" class="btn" ><i class="ti-email" aria-hidden="true"></i>
-                    @if($status || $user->id == Auth::id() )
-                    <div class="hidden-xs ">{{$user->email}}</div>
-                    @else
-                    <div class="hidden-xs blurry-text">لم يتم التواصل من قبل</div>
-                    @endif
+                <div class="btn-group" role="group">
+                    <div id="following" class="btn" ><i class="ti-headphone-alt" aria-hidden="true"></i>
+                        @if($status || $user->id == Auth::id() )
+                        <div class="hidden-xs">{{$user->phone}}</div>
+                        @else
+                        <div class="hidden-xs blurry-text">لم يتم التواصل من قبل</div>
+                        @endif
+                    </div>
                 </div>
+                @endif
             </div>
-            <div class="btn-group" role="group">
-                <div id="following" class="btn" ><i class="ti-headphone-alt" aria-hidden="true"></i>
-                    @if($status || $user->id == Auth::id() )
-                    <div class="hidden-xs">{{$user->phone}}</div>
-                    @else
-                    <div class="hidden-xs blurry-text">لم يتم التواصل من قبل</div>
-                    @endif
-                </div>
+            <div class="col-lg-12 col-sm-12">
+                <p class="text-center comp_desc">{{$user->company->desc}}</p>
             </div>
-            @endif
         </div>
     </div>
+
     <div class="main row">
+        <!-- Edit Profile Errors -->
+        @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+        <!-- End Edit Profile Errors -->
         <!-- user review  -->
         <div class="col-md-8 users-rating">    
             <div class="row ">
@@ -109,7 +129,7 @@
                                 <span><i class="ti-check"></i> حفظ</span>
                             </button>
                             <a class="btn btn-danger" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
-                                <i class="ti-na"></i> الغاء
+                                <i class="ti-na"></i> إلغاء
                             </a>
                         </div>
                     </form>
@@ -122,14 +142,15 @@
             <div class="row">
                 <div class="col-sm-2">
                     <div class="thumbnail">
-                        <img class="img-responsive user-photo" src="{{ asset($user_comment->user_rate->img) }}">
+                        <a href="{{ url('/userProfile') }}/{{ $user_comment->user_rate->id }}"><img class="img-responsive user-photo" src="{{ asset($user_comment->user_rate->img) }}"></a>
                     </div><!-- /thumbnail -->
                 </div><!-- /col-sm-2 -->
 
                 <div class="col-sm-10">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            {{$user_comment->user_rate->name}}
+                            <a href="{{ url('/userProfile') }}/{{ $user_comment->user_rate->id }}">{{$user_comment->user_rate->name}}</a>
+
                             <div  id="stars" class="btn" >
                                 @for($i=0 ; $i<round($user_comment->stars) ; $i++)
                                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -138,7 +159,7 @@
                                     <i class="fa fa-star-o" aria-hidden="true"></i>
                                     @endfor
                             </div>
-                            <span class="text-muted" style="float: left"><i class="ti-timer"></i>{{$user_comment->created_at->diffForHumans()}}</span>
+                            <span class="text-muted" style="float: left; line-height: 34px; display: block;"><i class="ti-timer"></i>{{$user_comment->created_at->diffForHumans()}}</span>
                         </div>
                         <div class="panel-body">
                             {{$user_comment->review}}
@@ -199,6 +220,11 @@
                             <label for="name">الهاتف</label>
                             <input type="text" class="form-control" id="phone" name="phone" value="{{$user->phone}}">
                         </div>
+                        <div class="form-group">
+                            <label for="name">وصف الشركة</label>
+                            <textarea rows="4" cols="50" class="form-control" id="desc" name="desc">{{$user->company->desc}}</textarea>
+
+                        </div>
                         <div class="form-group profile-imge-edit">
                             <label for="name">الصورة الشخصية</label>
                             <input type="file" class="form-control" id="img" name="img" aria-describedby="fileHelp">
@@ -221,26 +247,9 @@
             </div>
         </div>
     </form>
-    @if (count($errors) > 0)
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
 
 </div>  
-
-
-
-
-
 <!-- end google map --> 
-
-
-
 <!--end edit modal-->
 
 @endsection
@@ -264,7 +273,7 @@
     //         var img=$('#img');
     //         var cover=$('#cover');
     //         var formdata = new FormData();
-    //         formdata.append('name', name);
+    //         formdata.append('name', name); 
     //         formdata.append('id', id);
     //         formdata.append('city', city);
     //         formdata.append('email', email);

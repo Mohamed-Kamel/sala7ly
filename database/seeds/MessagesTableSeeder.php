@@ -18,7 +18,6 @@ class MessagesTableSeeder extends Seeder
         for($i = 0; $i<60; $i++){
             Message::create([
                 'msg' =>$faker->paragraph,
-                'status' => 'unread',
                 'created' => \Carbon\Carbon::now(),
                 'sender_id' => rand(1, 10),
                 'receiver_id' => rand(11, 20)
