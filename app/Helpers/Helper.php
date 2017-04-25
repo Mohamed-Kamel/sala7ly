@@ -6,6 +6,7 @@
  * and open the template in the editor.
  */
 namespace App\Helpers;
+
 use App\Page;
 use App\Setting;
 
@@ -15,6 +16,7 @@ class Helper
     {
          return Page::all();
     }
+
     public static function settings()
     {
          return Setting::all();
