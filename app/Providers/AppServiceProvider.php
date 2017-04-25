@@ -4,7 +4,7 @@ namespace App\Providers;
 use Event;
 
 use Illuminate\Support\ServiceProvider;
-
+use Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Event::listen('question', 'App\Events\viewQuestionHandler');
+        Schema::defaultStringLength(191);
     }
 
     /**

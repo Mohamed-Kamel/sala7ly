@@ -30,18 +30,29 @@
             </div>
         </div>
         <div class="col-sm-12 company-details btn-group-justified btn-group-lg">
+         
             @if(isset($user))
-            <div class="btn-group" role="group">
-                <div  id="stars" class="btn" >
-                    @for($i=0 ; $i<round($user->company->rating) ; $i++)
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        @endfor
-                        @for($i=5; $i>round($user->company->rating) ; $i--)
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                        @endfor
-                        <div class="hidden-xs">التقييم</div>
-                </div>
-            </div>
+                 
+                @if($user->company->aprovment == 'waiting')
+                   <div class="btn-group"  style="background-color: red">
+                    <div   class="btn"  >
+                    <p style="font-size: 22px;" >بانتظار الموافقه على الحساب.</p>
+                    </div>
+                   </div>
+
+                   @else
+                   <div class="btn-group" role="group">
+                        <div  id="stars" class="btn" >
+                            @for($i=0 ; $i<round($user->company->rating) ; $i++)
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                @endfor
+                                @for($i=5; $i>round($user->company->rating) ; $i--)
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                                @endfor
+                                <div class="hidden-xs">التقييم</div>
+                        </div>
+                    </div>
+                @endif
             <div class="btn-group" role="group">
                 <div  id="favorites" class="btn " ><i class="ti-location-pin" aria-hidden="true"></i>
                     <div class="hidden-xs">{{$user->city}}</div>

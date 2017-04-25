@@ -102,6 +102,8 @@ Route::get('/ad/companies/{id}', 'AdminController@deleteUser');
 Route::get('/ad/trashedcompanies','AdminController@trashedcompanies');
 
 Route::get('/ad/trashedcompanies/{id}/restore','AdminController@restorUser');
+Route::get('/ad/aprove','AdminController@waitingcompany');
+Route::get('/ad/aprove/{id}','AdminController@aprove');
 
 
 // end company page in admin panel

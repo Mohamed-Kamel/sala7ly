@@ -189,24 +189,24 @@
                             @foreach($comment->reply() as $reply)
                             <li>
                                 <div class="comment-avatar">
-                                    @if($comment->users->group_id == '2' )
+                                    @if($reply->users->group_id == '2' )
                                     <a href="{{ url('/company') }}/{{ $comment->users->id }}">
-                                        <img @if($comment->users->img) src="{{ url($comment->users->img)}}"@endif  alt="{{$comment->users->name}}">
+                                        <img @if($reply->users->img) src="{{ url($reply->users->img)}}"@endif  alt="{{$reply->users->name}}">
                                     </a>
                                     @endif
-                                    @if($comment->users->group_id == '1' )
+                                    @if($reply->users->group_id == '1' )
                                     <a href="{{ url('/userProfile') }}/{{ $comment->users->id }}">
-                                        <img @if($comment->users->img) src="{{ url($comment->users->img)}}"@endif  alt="{{$comment->users->name}}">
+                                        <img @if($reply->users->img) src="{{ url($reply->users->img)}}"@endif  alt="{{$reply->users->name}}">
                                     </a>
                                     @endif
                                 </div>
                                 <div class="comment-box">
                                     <div class="comment-head">
-                                    @if($comment->users->group_id == '2' )
-                                    <h6 class="comment-name by-author"><a href="{{ url('/company') }}/{{ $comment->users->id }}">{{$comment->users->name}}</a></h6>
+                                    @if($reply->users->group_id == '2' )
+                                    <h6 class="comment-name by-author"><a href="{{ url('/company') }}/{{ $reply->users->id }}">{{$reply->users->name}}</a></h6>
                                     @endif
-                                    @if($comment->users->group_id == '1' )
-                                    <h6 class="comment-name by-author"><a href="{{ url('/userProfile') }}/{{ $comment->users->id }}">{{$comment->users->name}}</a></h6>
+                                    @if($reply->users->group_id == '1' )
+                                    <h6 class="comment-name by-author"><a href="{{ url('/userProfile') }}/{{ $reply->users->id }}">{{$reply->users->name}}</a></h6>
                                     @endif
                                     </div>
                                     <div class="comment-content">

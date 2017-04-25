@@ -73,7 +73,7 @@ class RegisterController extends Controller
                 'phone.numeric' =>'عفوا يجب ادخال رقم التليفون صحيح',
                 'phone.unique'  =>'هذا الرقم محجوز مسبقا',
                 'image'         =>'يجب ادخال صوره ',
-                 //'recaptcha'    =>'حاول مره اخرى ',
+                 'recaptcha'    =>'حاول مره اخرى ',
 
         ]);
     }
