@@ -213,11 +213,13 @@
                             <li>
                                 <div class="comment-avatar">
                                     @if($reply->users->group_id == '2' )
+
                                     <a href="{{ url('/company') }}/{{ $reply->users->id }}">
                                         <img @if($reply->users->img) src="{{ url($reply->users->img)}}"@endif  alt="{{$reply->users->name}}">
                                     </a>
                                     @endif
                                     @if($reply->users->group_id == '1' )
+
                                     <a href="{{ url('/userProfile') }}/{{ $reply->users->id }}">
                                         <img @if($reply->users->img) src="{{ url($reply->users->img)}}"@endif  alt="{{$reply->users->name}}">
                                     </a>

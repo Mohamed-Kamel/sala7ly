@@ -14,7 +14,7 @@ class AddForeignKeysToCompanyDetails extends Migration
     public function up()
     {
         Schema::table('company_details', function (Blueprint $table) {
-            $table->foreign('company_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('company_id')->references('id')->on('users');
         });
     }
 

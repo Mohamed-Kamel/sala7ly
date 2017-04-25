@@ -41,9 +41,11 @@ use RegistersUsers;
     
     protected function validator(array $data) {
         return Validator::make($data, [
+
                     'name' => 'required|string|min:5|max:50',
                     'email' => 'required|min:5|max:50|Email|Unique:users',
                     'password' => 'required|min:6|confirmed',
+                    'phone' => 'regex:/[0-9+]+/|min:8|max:14|string|unique:users',
                     'profilephoto' => 'image|mimes:jpeg,jpg,png,gif',
                     'group' => 'in:1,2',
                     'g-recaptcha-response' => 'required',

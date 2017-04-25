@@ -4,10 +4,8 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddForeignKeysToUsers extends Migration
+class AlterCompanyDetailsTable extends Migration
 {
-
-  
     /**
      * Run the migrations.
      *
@@ -15,8 +13,8 @@ class AddForeignKeysToUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreign('group_id')->references('id')->on('groups');
+        Schema::table('company_details', function (Blueprint $table) {
+           $table->enum('aprovment', ['aprove', 'waiting'])->default("waiting");
         });
     }
 
@@ -27,8 +25,8 @@ class AddForeignKeysToUsers extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign('users_group_id_foreign');
+        Schema::table('company_details', function (Blueprint $table) {
+            //
         });
     }
 }
