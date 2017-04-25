@@ -69,8 +69,8 @@
         <div class="col-md-6">
             @foreach(Helper::settings() as $setting )                   
             <legend>مواقع التواصل الاجتماعي</legend>
-            <div class="social-box">
-                <div class="col-md-3">
+            <div class="row social-box">
+                <div class="col-md-3 col-sm-6 col-xs-6">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <p class="p-mini">
@@ -85,7 +85,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-3 col-sm-6 col-xs-6">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <p class="p-mini">
@@ -100,7 +100,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-3 col-sm-6 col-xs-6">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <p class="p-mini">
@@ -114,7 +114,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 col-sm-6 col-xs-6">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <p class="p-mini">

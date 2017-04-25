@@ -274,12 +274,12 @@
                                             </h2>
                                         </div>
                                         <div class="col-sm-12">
-                                            <a href="#" class="qustion-user">
+                                            <a href="{{ URL('userProfile') }}/{{ $question->user->id }}" class="qustion-user">
                                                 <i class="ti-user"></i>
                                                 {{ $question->user->name }}
                                             </a>
 
-                                            <a href="#" class="qustion-user">
+                                            <a href="{{ URL('questions') }}" class="qustion-user">
                                                 <i class="ti-tag"></i>
                                                 {{ $question->cat->title }}
                                             </a>

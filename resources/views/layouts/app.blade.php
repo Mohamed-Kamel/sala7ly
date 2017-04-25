@@ -12,13 +12,13 @@
 @endforeach
 <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Sala7ly</title>
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css')}}">
     <link href="{{ asset('css/themify-icons.css')}}" rel="stylesheet">
     <link href="{{ asset('css/style.css')}}" rel="stylesheet">
     <link href="{{ asset('css/custom-style.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/responsive.css')}}" rel="stylesheet">
     <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
     <!-- Scripts -->
     <script>
@@ -59,7 +59,7 @@
                     <div class="text-right">
                         <ul class="userMenu ">
                             <li>
-                                <@foreach(Helper::pages() as $page )
+                                @foreach(Helper::pages() as $page )
                                     <a href="{{ URL('/page') }}/{{$page->id}}"> {{$page->title}} </a>
                                 @endforeach
                                 <a href="{{ url('/contactus') }}"> اتصل بنا</a>
@@ -68,7 +68,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-6 col-sm-12 col-xs-12 col-md-6">
+                <div class="col-lg-6 col-sm-12 col-xs-12 col-md-6 hidden-xs">
                     <div class="text-left">
                         <ul>
                             @foreach(Helper::settings() as $setting )
@@ -88,7 +88,6 @@
                         </ul>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -100,9 +99,6 @@
                         class="icon-bar"> </span> <span class="icon-bar"> </span></button>
             <a class="navbar-brand" href="{{ url('/') }}">
                 <img style="height:40px;" src="{{ asset('images/logo.png') }}" alt="Salahly"> </a>
-            <!-- this part for mobile -->
-
-
         </div>
 
         <div class="navbar-collapse collapse">
@@ -123,7 +119,7 @@
                 </ul>
             @else
                 <div class="user-notify">
-                    <a href="#" class="heaer-user-notify notify">
+                    <a href="javascript:;" class="heaer-user-notify notify">
                         <i class="ti-bell"></i>
                         @if(auth()->user()->notifications)
                             <span class="no_unread">{{auth()->user()->unreadNotifications->count()}}
@@ -153,14 +149,13 @@
                 </div>
                 <!--START MESSAGES MENU-->
                 @if(auth()->user())
-
                     <div class="user-messages">
-                        <a id="no_msgs" href="#" class="header-user-message message">
+                        <a id="no_msgs" href="javascript:;" class="header-user-message message">
                             <i class="ti-email"></i>
                             <span class="no_unread">{{auth()->user()->unreaded_receiver_msg->count()}}</span>
                         </a>
                         <ul class="user-menu-message" role="menu">
-
+                            @if(auth()->user()->received_msgs->count() > 0)
                             @foreach(auth()->user()->received_msgs as $user)
                                 <li class="">
                                     <a href="{{url('/pm')}}/{{$user->pivot->sender_id}}">
@@ -176,13 +171,18 @@
                                     </a>
                                 </li>
                             @endforeach
+                            @else
+                                <li class="temp">
+                                    ﻻ يوجد رسائل واردة
+                                </li>
+                            @endif
                         </ul>
                     </div>
                 @endif
             <!--/END MESSAGES MENU-->
                 <div class="header-user">
 
-                    <a href="#" class="heaer-user-name">
+                    <a href="javascript:;" class="heaer-user-name">
 
                         <img src="
                                  @if( Auth::user() && Auth::user()->img)
@@ -240,7 +240,7 @@
     <div class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4  col-md-4 col-sm-6 col-xs-6">
+                <div class="col-lg-4  col-md-4 col-sm-6 col-xs-12">
                     <h3> مساعدة </h3>
                     <ul>
                         @foreach(Helper::settings() as $setting )
@@ -261,7 +261,7 @@
 
                 <div style="clear:both" class="hide visible-xs"></div>
 
-                <div class="col-lg-4  col-md-4 col-sm-6 col-xs-6">
+                <div class="col-lg-4  col-md-4 col-sm-6 col-xs-12">
                     <h3> روابط تهمك </h3>
                     <ul>
                         @foreach(Helper::pages() as $page )
@@ -274,7 +274,7 @@
 
                 <div style="clear:both" class="hide visible-xs"></div>
 
-                <div class="col-lg-4  col-md-4 col-sm-6 col-xs-6">
+                <div class="col-lg-4  col-md-4 col-sm-6 col-xs-12">
                     <h3> كن على اتصال </h3>
                     <ul>
                         <li>
@@ -325,10 +325,8 @@
         $('#option').change(function () {
             $('.next').css({"display": ""})
         });
-
         $('#no_msgs').on('click', function (event) {
             event.preventDefault();
-
 //            alert('herl');
             $.ajax({
                 url: "{{url('/msg/read')}}/{{auth()->id()}}",
@@ -372,9 +370,7 @@
         if (slh.getSource() === 'messages') {
             message = slh.getMessage();
             // var li = ShowDiv.prepend('<li></li>').addClass('unread');
-
             // var a = li.append('<a href="{{url("/question")}}/'+ message. question_id +'">' + message.data + '</a>');
-
             // a.append("<p></p>").text('message.created_at');
             if ({{Auth::id()}} == message.company_id
         )
@@ -396,7 +392,6 @@
     }
     /*************************************NodJS Chat*****************************************/
     var socket = io.connect('http://localhost:8890');
-
     socket.on('message', function (data) {
         data = jQuery.parseJSON(data);
         console.log(data);
@@ -412,4 +407,3 @@
 @yield('company')
 </body>
 </html>
-

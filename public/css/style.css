@@ -16,6 +16,7 @@ body{
 /*COMMON STYLE*/
 textarea{
     resize: none;
+    height: 100px !important;
 }
 ul, ol { list-style: none; list-style-image: none; margin: 0; padding: 0;
          color:#858585;
@@ -156,7 +157,7 @@ a:hover, a:active, a:focus{
     padding: 10px;
 }
 a.heaer-user-notify , a.header-user-message{
-    font-size: 27px;
+    font-size: 25px;
     display: block;
     position: relative;
 }
@@ -174,13 +175,16 @@ a.heaer-user-notify span, a.header-user-message span{
     background-color: #eb0000;
     display: block;
     border-radius: 100%;
-    right: -10px;
+    right: -11px;
     color: #fff;
     line-height: 20px;
     text-align: center;
     font-family: sans-serif;
     font-size: 12px;
     border: 2px solid #157cb2;
+}
+.msg-opt{
+    margin-bottom: 5px;
 }
 .user-menu-notify, .user-menu-message {
     display: none;
@@ -281,7 +285,7 @@ li.phone-number i{
     margin-left: 5px;
 }
 .userMenu li{
-    
+
 }
 .userMenu li a {
     color: #FFFFFF;
@@ -456,7 +460,7 @@ a.heaer-user-name {
     top: 44px;
     right: 0;
     background-color: #fff;
-    min-width: 160px;
+    min-width: 190px;
     padding: 10px;
     box-shadow: 0 0 10px silver;
     border-radius: 0 0 3px 3px;
@@ -922,7 +926,7 @@ ul.user-notify {
     margin: auto;
     background-color: rgba(255, 255, 255, 0.47);
     border-radius: 4px;
-        padding: 20px 10px;
+    padding: 20px;
 }
 .search-banner input {
     width: 80%;
@@ -932,7 +936,7 @@ ul.user-notify {
     border-radius: 0 3px 3px 0;
 }
 .search-banner input:focus{
-   outline: 0;
+    outline: 0;
 }
 .search-banner button {
     width: 19%;
@@ -1286,16 +1290,22 @@ a.inline {
     margin-bottom: 15px;
     border-radius: 4px 4px 0 0;
 }
+.main-comp-block-top {
+    padding: 0 5px;
+    border-radius: 3px;
+}
 .company-rate-block {
     height: 60px;
     background-color: #f5f5f5;
     margin-bottom: 10px;
+    border-radius: 3px;
 }
 .company-rate-block img {
     width: 60px;
     float: right;
     height: 60px;
     margin-left: 15px;
+    border-radius: 0 3px 3px 0;
 }
 .company-rate-block h3{
     font-size: 16px;
@@ -1328,7 +1338,90 @@ a.inline {
     border-radius: 4px 4px 0 0;
 }
 .company-rate-block:last-child{
-    margin-bottom: 0;
+    margin-bottom: 10px;
+}
+.en_num{
+    font-family: sans-serif;
+}
+.comp_desc {
+
+    margin: 25px 0;
+}
+.company-details {
+    float: right;
+    margin: 0 15px;
+    background-color: #f5f5f5;
+    border-radius: 3px;
+    border: 1px solid #dedede;
+}
+.message-me{
+    background-color: #eb0000;
+    border: 1px solid #eb0000;
+    color: #fff;
+    border-radius: 3px !important;
+}
+@-webkit-keyframes hvr-icon-pulse {
+    25% {
+        -webkit-transform: scale(1.3);
+        transform: scale(1.3);
+    }
+
+    75% {
+        -webkit-transform: scale(0.8);
+        transform: scale(0.8);
+    }
+}
+
+@keyframes hvr-icon-pulse {
+    25% {
+        -webkit-transform: scale(1.3);
+        transform: scale(1.3);
+    }
+
+    75% {
+        -webkit-transform: scale(0.8);
+        transform: scale(0.8);
+    }
+}
+.message-me:hover{
+    color: #fff !important;
+}
+.hvr-icon-pulse {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    padding-right: 33px;
+    color: #fff;
+}
+.hvr-icon-pulse:before {
+    content: "\f003";
+    position: absolute;
+    right: 1em;
+    padding: 0 1px;
+    font-family: FontAwesome;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+    color: #fff;
+    margin-left: 3px;
+}
+.hvr-icon-pulse:hover:before, .hvr-icon-pulse:focus:before, .hvr-icon-pulse:active:before {
+    -webkit-animation-name: hvr-icon-pulse;
+    animation-name: hvr-icon-pulse;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    color: #fff;
 }
 .nav-tabs{
     position: relative;
@@ -1397,6 +1490,7 @@ a.qustion-user:hover{
 .qustion-user i{
     margin-left: 5px;
     float: right;
+    line-height: 20px;
 }
 .qustion-user i.ti-timer{
     float: right;
@@ -1620,6 +1714,9 @@ a.qustion-user:hover{
     font-size: 13px;
     color: #555;
 }
+.questions-filter .nav-stacked > li a.active{
+    color: #fff;
+}
 .questions-filter .panel-default>.panel-heading {
     color: #333;
     background-color: #f5f5f5;
@@ -1777,7 +1874,7 @@ a.qustion-user:hover{
 }
 /* USER PROFILE PAGE */
 .card {
-    margin-top: 20px;
+    margin-top: 15px;
     background-color: rgba(214, 224, 226, 0.2);
     -webkit-border-top-left-radius:5px;
     -moz-border-top-left-radius:5px;
@@ -1808,6 +1905,7 @@ a.qustion-user:hover{
     right: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.38);
+    border-radius: 3px;
 }
 .card.hovercard .card-background {
     height: 130px;
@@ -2281,13 +2379,11 @@ form.mail .btn-success i{
     .comments-container {
         width: 480px;
     }
-
     .comments-list .comment-box {
-        width: 390px;
+        width: 235px;
     }
-
     .reply-list .comment-box {
-        width: 320px;
+        width: 165px;
     }
 }
 .leave-comment {
@@ -2343,7 +2439,8 @@ form.mail .btn-success i{
     border-color: transparent;
     color: #999;
     padding-right: 15px;
-        border-radius: 3px;
+    border-radius: 3px;
+    padding-left: 30px;
 }
 .search-company input:focus, textarea:focus {
     border: 1px solid #258cc3;
@@ -2482,16 +2579,16 @@ select.form-control{
 .registration i.fa.fa-lg.fa-lock {
     font-size: 20px;
 }
-.input-group-addon{
-    border-radius: 0;
+.input-group-addon {
+    border-radius: 0 3px 3px 0;
 }
 .form-control{
     border-radius: 0;
     box-shadow: none;
 }
-.btn{
-    border-radius: 0;
+.btn {
     margin-left: 5px;
+    border-radius: 3px;
 }
 .modal{
     background-color: rgba(0, 0, 0, 0.74);
@@ -2522,7 +2619,7 @@ select.form-control{
     color: #fff;
     background-color: #258cc3;
     border-color: #258cc3;
-    border-radius: 2px;
+    border-radius: 3px;
 }
 .btn-success.active, .btn-success.focus, .btn-success:active, .btn-success:focus, .btn-success:hover, .open>.dropdown-toggle.btn-success {
     color: #fff;
@@ -2531,6 +2628,7 @@ select.form-control{
 }
 .registration .form-control {
     height: 36px;
+    border-radius: 3px;
 }
 .register-option .controls {
     border-bottom: 1px solid #dedede;
@@ -2551,6 +2649,7 @@ select.form-control{
     float: right;
     margin-left: 3px;
     padding: 3px 0;
+    line-height: 23px;
 }
 .leave-comment-rating {
     margin: 20px 0;
@@ -2642,4 +2741,13 @@ legend {
 }
 .user-phone{
     display: none;
+}
+
+/*MESSAGE PAGE*/
+#messages {
+    border: 1px solid black;
+    height: 300px;
+    margin-bottom: 8px;
+    overflow: scroll;
+    padding: 5px;
 }

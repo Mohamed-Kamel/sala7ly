@@ -20,7 +20,7 @@
         <div class="breadcrumbDiv col-lg-12">
             <ul class="breadcrumb">
                 <li><a href="{{url('/')}}"><i class="ti-home"></i> الرئيسية</a></li>
-                <li><a href="{{url('/questions')}}"> الاسألة</a></li>
+                <li><a href="{{url('/questions')}}"> الأسئلة</a></li>
                 <li class="active">{{$question->title}}</li>
             </ul>
         </div>
@@ -212,24 +212,24 @@
                             @foreach($comment->reply() as $reply)
                             <li>
                                 <div class="comment-avatar">
-                                    @if($comment->users->group_id == '2' )
-                                    <a href="{{ url('/company') }}/{{ $comment->users->id }}">
-                                        <img @if($comment->users->img) src="{{ url($comment->users->img)}}"@endif  alt="{{$comment->users->name}}">
+                                    @if($reply->users->group_id == '2' )
+                                    <a href="{{ url('/company') }}/{{ $reply->users->id }}">
+                                        <img @if($reply->users->img) src="{{ url($reply->users->img)}}"@endif  alt="{{$reply->users->name}}">
                                     </a>
                                     @endif
-                                    @if($comment->users->group_id == '1' )
-                                    <a href="{{ url('/userProfile') }}/{{ $comment->users->id }}">
-                                        <img @if($comment->users->img) src="{{ url($comment->users->img)}}"@endif  alt="{{$comment->users->name}}">
+                                    @if($reply->users->group_id == '1' )
+                                    <a href="{{ url('/userProfile') }}/{{ $reply->users->id }}">
+                                        <img @if($reply->users->img) src="{{ url($reply->users->img)}}"@endif  alt="{{$reply->users->name}}">
                                     </a>
                                     @endif
                                 </div>
                                 <div class="comment-box">
                                     <div class="comment-head">
-                                    @if($comment->users->group_id == '2' )
-                                    <h6 class="comment-name by-author"><a href="{{ url('/company') }}/{{ $comment->users->id }}">{{$comment->users->name}}</a></h6>
+                                    @if($reply->users->group_id == '2' )
+                                    <h6 class="comment-name by-author"><a href="{{ url('/company') }}/{{ $reply->users->id }}">{{$reply->users->name}}</a></h6>
                                     @endif
-                                    @if($comment->users->group_id == '1' )
-                                    <h6 class="comment-name by-author"><a href="{{ url('/userProfile') }}/{{ $comment->users->id }}">{{$comment->users->name}}</a></h6>
+                                    @if($reply->users->group_id == '1' )
+                                    <h6 class="comment-name by-author"><a href="{{ url('/userProfile') }}/{{ $reply->users->id }}">{{$reply->users->name}}</a></h6>
                                     @endif
                                      
                                     <div class="replay-desc">
@@ -378,7 +378,7 @@
             </div>
             <div class="most-rated-comp">
                 <h2>
-                    اسالة ذات صلة تم حلها    
+                    اسئلة ذات صلة تم حلها    
                 </h2>
                 @foreach($results as $result)
                 <div class="related-questions-block">
