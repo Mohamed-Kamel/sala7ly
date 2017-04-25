@@ -75,13 +75,13 @@ class User extends Authenticatable
 
     public function unreaded_receiver_msg(){
         return $this->belongsToMany('App\User', 'messages', 'receiver_id', 'sender_id')
-        ->where('messages.readed_at', null)->distinct()->withPivot('sender_id');
+        ->where('messages.readed_at', null)->withPivot('sender_id');
     }
 
 
     public function received_msgs(){
         return $this->belongsToMany('App\User', 'messages' , 'receiver_id', 'sender_id')
-            ->distinct()->orderBy('messages.id', 'desc')
+            ->orderBy('messages.id', 'desc')
             ->withPivot('sender_id');
     }
 
