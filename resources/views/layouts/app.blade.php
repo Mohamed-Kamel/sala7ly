@@ -16,6 +16,7 @@
         <!-- Styles -->
         <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css')}}">
+        <link rel="stylesheet" href="{{ asset('css/animate.css')}}">
         <link href="{{ asset('css/themify-icons.css')}}" rel="stylesheet">
         <link href="{{ asset('css/style.css')}}" rel="stylesheet">
         <link href="{{ asset('css/custom-style.css')}}" rel="stylesheet">
@@ -116,7 +117,7 @@ type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
                 </ul>
             @else
                 <div class="user-notify">
-                    <a href="#" class="heaer-user-notify notify">
+                    <a href="javascript:;" class="heaer-user-notify notify">
                         <i class="ti-bell"></i>
                         @if(auth()->user()->notifications)
                             <span class="no_unread">{{auth()->user()->unreadNotifications->count()}}
@@ -146,7 +147,7 @@ type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
                 <!--START MESSAGES MENU-->
             @if(auth()->user())
                 <div class="user-messages">
-                    <a href="#" class="header-user-message message">
+                    <a href="javascript:;" class="header-user-message message">
                         <i class="ti-email"></i>
                         <span class="no_unread">{{auth()->user()->unreaded_receiver_msg->count()}}</span>
                     </a>
@@ -158,7 +159,7 @@ type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
                                 {{substr($msg->pivot->msg, 0, 50)}} ....
                                 <span class="notification-time">
                                     {{\Carbon\Carbon::parse($msg->pivot->created)->diffForHumans()}}
-                                        <i class="ti-timer"></i> 
+                                        <i class="ti-timer"></i>
                                     </span>
                                 <span class="notification-time">
                                 {{$msg->name}}
@@ -173,7 +174,7 @@ type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
                 <!--/END MESSAGES MENU-->
                 <div class="header-user">
 
-                    <a href="#" class="heaer-user-name">
+                    <a href="javascript:;" class="heaer-user-name">
 
                         <img src="
                                  @if( Auth::user() && Auth::user()->img)
@@ -320,6 +321,7 @@ type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
 <script src="{{ asset('js/script.js') }}"></script>
 <script src="{{asset('js/jquery.jscroll.min.js')}}"></script>
 <script src="{{asset('StreamLab/StreamLab.js')}}"></script>
+<script src="{{asset('js/wow.js')}}"></script>
 
 <script>
     $(document).ready(function () {
