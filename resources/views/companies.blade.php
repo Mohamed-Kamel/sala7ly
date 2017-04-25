@@ -66,11 +66,11 @@
                                 <div class="sub-det">
                                     <div id="stars" class="pull-right">
                                         @for($i=0; $i<round($company->company->rating); $i++)
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                            @endfor
-                                            @for($i=5; $i>round($company->company->rating); $i--)
-                                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                                            @endfor
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        @endfor
+                                        @for($i=5; $i>round($company->company->rating); $i--)
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        @endfor
                                     </div>
                                     <span class="pull-left">
                                         <i class="ti-location-pin"> {{ $company->city }}</i>

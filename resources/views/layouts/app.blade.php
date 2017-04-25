@@ -19,7 +19,8 @@
     <link href="{{ asset('css/style.css')}}" rel="stylesheet">
     <link href="{{ asset('css/custom-style.css')}}" rel="stylesheet">
     <link href="{{ asset('css/responsive.css')}}" rel="stylesheet">
-    <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
+    {{--<script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>--}}
+    <script src="{{asset('js/socket.io.min.js')}}"></script>
     <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([
@@ -369,9 +370,9 @@
         console.log({{Auth::id()}});
         if (slh.getSource() === 'messages') {
             message = slh.getMessage();
-            // var li = ShowDiv.prepend('<li></li>').addClass('unread');
-            // var a = li.append('<a href="{{url("/question")}}/'+ message. question_id +'">' + message.data + '</a>');
-            // a.append("<p></p>").text('message.created_at');
+            {{--// var li = ShowDiv.prepend('<li></li>').addClass('unread');--}}
+            {{--// var a = li.append('<a href="{{url("/question")}}/'+ message. question_id +'">' + message.data + '</a>');--}}
+            {{--// a.append("<p></p>").text('message.created_at');--}}
             if ({{Auth::id()}} == message.company_id
         )
             {
@@ -399,6 +400,10 @@
         @if(auth()->user())
         if (data.receiver_id == {{auth()->user()->id}}) {
             $("#no_msgs").find(".no_unread").text(parseInt($("#no_msgs").find(".no_unread").text()) + 1);
+            var msg = $('<span></span>').addClass('notification-time').text(data.user).append($('<i></i>').addClass('ti-user'));
+            var time = $('<span></span>').addClass('notification-time').text("{{\Carbon\Carbon::parse(\Carbon\Carbon::now())->diffForHumans()}}").append($('<i></i>').addClass('ti-timer'));
+            var ele = $('<li></li>').append($('<a></a>').attr('href', "{{url('pm')}}/"+data.receiver_id).text(data.message).append(time).append(msg));
+            $('.user-menu-message').prepend(ele);
         }
         @endif
     });

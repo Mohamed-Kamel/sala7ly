@@ -2,6 +2,7 @@
 
 namespace Illuminate\Foundation\Auth;
 
+use App\Company_detail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
@@ -34,8 +35,19 @@ trait RegistersUsers
 
         $this->guard()->login($user);
 
-        return $this->registered($request, $user)
-                        ?: redirect($this->redirectPath());
+
+        //****** custom auth ********
+        /*******************
+         *********************/
+        $registered = $this->registered($request, $user);
+        if(Auth::user()->group_id == 2){
+            $company = new Company_detail;
+            $company->company_id = Auth::id();
+            $company->save();
+            return redirect('/company_details');
+        }else{
+            return $registered ?: redirect($this->redirectPath());
+        }
     }
 
     /**
