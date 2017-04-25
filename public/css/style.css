@@ -1359,6 +1359,7 @@ a.inline {
     border: 1px solid #eb0000;
     color: #fff;
     border-radius: 3px !important;
+    float: right;
 }
 @-webkit-keyframes hvr-icon-pulse {
     25% {
@@ -2747,19 +2748,20 @@ legend {
 .post-like {
     text-align: left;
     width: 100%;
+    padding-left: 10px;
 }
 .like-red{
-  color: red !important;
+    color: red !important;
 }
 .post-like span{
-  font-family: sans-serif;
+    font-family: sans-serif;
 }
 .rejected-comment, .accepted-comment{
-  display: none;
+    display: none;
 }
 .fail-img{
-  width: 200px;
-  height: 200px;
+    width: 200px;
+    height: 200px;
 }
 i.fa.fa-heart.lik-comment {
     cursor: pointer;
@@ -2767,9 +2769,58 @@ i.fa.fa-heart.lik-comment {
 /*end like AHMED MAGDI*/
 /*MESSAGE PAGE*/
 #messages {
-    border: 1px solid black;
     height: 300px;
     margin-bottom: 8px;
-    overflow: scroll;
+    overflow-y: scroll;
     padding: 5px;
+    padding: 20px 30px;
+}
+
+#messages .sender img {
+    width: 50px;
+    height: 50px;
+    float: right;
+    margin-left: 15px;
+    border-radius: 100%;
+}
+#messages .sender {
+    float: right;
+    width: 100%;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #dedede;
+    padding-bottom: 10px;
+}
+#messages .sender p {
+    display: block;
+}
+#messages .reciever{
+/*    float: left;
+    width: 100%;
+    margin-bottom: 15px;*/
+}
+#messages .reciever img {
+/*    float: left;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;*/
+}
+#messages .reciever p {
+/*    text-align: left;
+    margin-left: 60px;
+    margin-bottom: 15px;
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 10px;*/
+}
+#messages .sender .mesaage-content{
+/*    float: right;
+    margin-right: 60px;*/
+}
+#messages .reciever .mesaage-content {
+/*    float: left;
+    margin-left: 10px;*/
+}
+
+.waiting-approve i{
+    color: #fedc2f;
 }

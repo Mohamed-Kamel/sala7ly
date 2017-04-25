@@ -406,15 +406,7 @@
         <!-- START LEFT SIDE -->
         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
             <div class="anouncment-sidebar">
-                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-2178725799240442"
-                     data-ad-slot="4745084170"
-                     data-ad-format="auto"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- wza2ef --><ins class="adsbygoogle"    style="display:block"    data-ad-client="ca-pub-2178725799240442"    data-ad-slot="4745084170"    data-ad-format="auto"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
             </div>
             <div class="most-rated-comp">
                 <h2>
@@ -493,7 +485,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">Edit {{$question->title}}</h4>
+                <h4 class="modal-title">تعديل:  {{$question->title}}</h4>
             </div>
             <form class="form-horizontal" method="post" action="{{url('/question/edit')}}/{{$question->id}}"  enctype="multipart/form-data">
                 <div class="modal-body">
@@ -527,8 +519,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-success" name="submit"><i class="fa fa-check-circle"></i> Save</button>
-                    <a href="javascript:;" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-ban"></i> Cancel</a>
+                    <button type="submit" class="btn btn-success" name="submit"><i class="fa fa-check-circle"></i> حفظ</button>
+                    <a href="javascript:;" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-ban"></i> إلغاء</a>
                 </div>
             </form>
         </div>
