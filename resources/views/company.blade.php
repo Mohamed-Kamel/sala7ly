@@ -3,6 +3,9 @@
 @section('content')
 <div class="container main-container headerOffset">
     <div class="row">
+        <div class="col-lg-12 col-sm-12" style="text-align: center;">
+            <a href="#" class="btn message-me hvr-icon-pulse"> راسلني الآن</a>
+        </div>
         <div class="col-lg-12 col-sm-12">
             <div class="card hovercard">
                 <div class="card-overlay"></div>
@@ -30,55 +33,61 @@
             </div>
         </div>
         <div class="col-sm-12 company-details btn-group-justified btn-group-lg">
+         
             @if(isset($user))
-            <div class="btn-group" role="group">
-                <div  id="stars" class="btn" >
-                    @for($i=0 ; $i<round($user->company->rating) ; $i++)
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        @endfor
-                        @for($i=5; $i>round($user->company->rating) ; $i--)
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                        @endfor
-                        <div class="hidden-xs">التقيم</div>
-                        <div class="hidden-xs">{{$user->company->rating}}</div>
-                </div>
-            </div>
+                 
+                @if($user->company->aprovment == 'waiting')
+                   <div class="btn-group"  style="background-color: red">
+                    <div   class="btn"  >
+                    <p style="font-size: 22px;" >بانتظار الموافقه على الحساب.</p>
+                    </div>
+                   </div>
+
+                   @else
+                   <div class="btn-group" role="group">
+                        <div  id="stars" class="btn" >
+                            @for($i=0 ; $i<round($user->company->rating) ; $i++)
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                @endfor
+                                @for($i=5; $i>round($user->company->rating) ; $i--)
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                                @endfor
+                                <div class="hidden-xs">التقييم</div>
+                        </div>
+                    </div>
+                @endif
             <div class="btn-group" role="group">
                 <div  id="favorites" class="btn " ><i class="ti-location-pin" aria-hidden="true"></i>
                     <div class="hidden-xs">{{$user->city}}</div>
+
+                 </div>
+             </div>
+                <div class="btn-group" role="group">
+                    <div id="following" class="btn" ><i class="ti-email" aria-hidden="true"></i>
+                        @if($status || $user->id == Auth::id() )
+                        <div class="hidden-xs ">{{$user->email}}</div>
+                        @else
+                        <div class="hidden-xs blurry-text">لم يتم التواصل من قبل</div>
+                        @endif
+                    </div>
                 </div>
-            </div>
-            <div class="btn-group" role="group">
-                <div id="following" class="btn" ><i class="ti-email" aria-hidden="true"></i>
-                    @if($status || $user->id == Auth::id() )
-                    <div class="hidden-xs ">{{$user->email}}</div>
-                    @else
-                    <div class="hidden-xs blurry-text">لم يتم التواصل من قبل</div>
-                    @endif
+                <div class="btn-group" role="group">
+                    <div id="following" class="btn" ><i class="ti-headphone-alt" aria-hidden="true"></i>
+                        @if($status || $user->id == Auth::id() )
+                        <div class="hidden-xs">{{$user->phone}}</div>
+                        @else
+                        <div class="hidden-xs blurry-text">لم يتم التواصل من قبل</div>
+                        @endif
+                    </div>
                 </div>
+                @endif
             </div>
-            <div class="btn-group" role="group">
-                <div id="following" class="btn" ><i class="ti-headphone-alt" aria-hidden="true"></i>
-                    @if($status || $user->id == Auth::id() )
-                    <div class="hidden-xs">{{$user->phone}}</div>
-                    @else
-                    <div class="hidden-xs blurry-text">لم يتم التواصل من قبل</div>
-                    @endif
-                </div>
+            <div class="col-lg-12 col-sm-12">
+                <p class="text-center comp_desc">{{$user->company->desc}}</p>
             </div>
-            @endif
         </div>
     </div>
 
-    <!-- Company Description -->
-    <div class="container main-container headerOffset">
-        <div class="row">
-            <div class="col-lg-12 col-sm-12">
-            <p class="text-center">{{$user->company->desc}}</p>
-            </div>
-        <div>
-    </div>
-    <!-- Company Description -->
     <div class="main row">
         <!-- Edit Profile Errors -->
         @if (count($errors) > 0)
@@ -120,7 +129,7 @@
                                 <span><i class="ti-check"></i> حفظ</span>
                             </button>
                             <a class="btn btn-danger" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
-                                <i class="ti-na"></i> الغاء
+                                <i class="ti-na"></i> إلغاء
                             </a>
                         </div>
                     </form>
@@ -133,14 +142,15 @@
             <div class="row">
                 <div class="col-sm-2">
                     <div class="thumbnail">
-                        <img class="img-responsive user-photo" src="{{ asset($user_comment->user_rate->img) }}">
+                        <a href="{{ url('/userProfile') }}/{{ $user_comment->user_rate->id }}"><img class="img-responsive user-photo" src="{{ asset($user_comment->user_rate->img) }}"></a>
                     </div><!-- /thumbnail -->
                 </div><!-- /col-sm-2 -->
 
                 <div class="col-sm-10">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            {{$user_comment->user_rate->name}}
+                            <a href="{{ url('/userProfile') }}/{{ $user_comment->user_rate->id }}">{{$user_comment->user_rate->name}}</a>
+
                             <div  id="stars" class="btn" >
                                 @for($i=0 ; $i<round($user_comment->stars) ; $i++)
                                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -149,7 +159,7 @@
                                     <i class="fa fa-star-o" aria-hidden="true"></i>
                                     @endfor
                             </div>
-                            <span class="text-muted" style="float: left"><i class="ti-timer"></i>{{$user_comment->created_at->diffForHumans()}}</span>
+                            <span class="text-muted" style="float: left; line-height: 34px; display: block;"><i class="ti-timer"></i>{{$user_comment->created_at->diffForHumans()}}</span>
                         </div>
                         <div class="panel-body">
                             {{$user_comment->review}}
@@ -213,7 +223,7 @@
                         <div class="form-group">
                             <label for="name">وصف الشركة</label>
                             <textarea rows="4" cols="50" class="form-control" id="desc" name="desc">{{$user->company->desc}}</textarea>
-                
+
                         </div>
                         <div class="form-group profile-imge-edit">
                             <label for="name">الصورة الشخصية</label>
@@ -239,15 +249,7 @@
     </form>
 
 </div>  
-
-
-
-
-
 <!-- end google map --> 
-
-
-
 <!--end edit modal-->
 
 @endsection

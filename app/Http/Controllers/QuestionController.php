@@ -46,7 +46,6 @@ class QuestionController extends Controller {
                         ->where('title', '<>', $question->title)
                         ->limit(10)->get();
 
-
         $top_rated = Company_detail::orderBy('rating', 'DESC')->limit('10')->get();
         return view('question', compact('results', 'top_rated', 'question'));
     }

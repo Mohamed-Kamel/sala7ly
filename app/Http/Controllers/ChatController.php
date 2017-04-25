@@ -36,11 +36,20 @@ class ChatController extends Controller
         $message->sender_id = Auth::id();
         $message->receiver_id = $id;
         $message->save();
-
         $redis = Redis::connection();
-        $data = ['message' => $request->get('message'), 'user' => $request->get('user')];
+        $data = ['message' => $request->get('message'),
+            'user' => $request->get('user'),
+            'receiver_id' => $request->get('receiver_id')];
         $redis->publish('message', json_encode($data));
         return response()->json([]);
     }
 
+    public function readAll($id){
+        $msgs = Message::where('readed_at', null)->where('receiver_id', $id)->get();
+        foreach ($msgs as $msg){
+            $msg->readed_at = \Carbon\Carbon::now();
+            $msg->save();
+        }
+        return response()->json(['success' => true], 200);
+    }
 }

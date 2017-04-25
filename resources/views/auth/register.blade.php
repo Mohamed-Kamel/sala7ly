@@ -15,12 +15,12 @@
                         <div class="register-option">
                             <div class="col-md-6 controls regular-user active">
                                 <div class="sub-controls">
-                                    <input type="radio" id="option1"  value="1" name="group" checked >  التسجيل كمستخدم عادي
+                                    <input type="radio" id="option1"  value="1" name="group" @if(old('group')!=2) checked @endif>  التسجيل كمستخدم عادي
                                 </div>
                             </div>
                             <div class="col-md-6 controls company-user">
                                 <div class="sub-controls">
-                                    <input type="radio" id="option2"  value="2" name="group">  التسجيل كصاحب شركة
+                                    <input type="radio" id="option2"  value="2" name="group" @if(old('group')==2) checked @endif>  التسجيل كصاحب شركة
                                 </div>
                             </div>
                         </div>
@@ -32,7 +32,7 @@
                             <div class="col-md-8 controls">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user fa-lg" aria-hidden="true"></i></span>
-                                    <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}"  autofocus>
+                                    <input id="name" required type="text" class="form-control" name="name" value="{{ old('name') }}"  autofocus>
                                 </div>
                                 <div>
 
@@ -78,7 +78,7 @@
                                         <span class="input-group-addon">
                                             <i class="fa fa-phone fa-lg" aria-hidden="true"></i></span>
 
-                                        <input id="phone" type="text" class="form-control" name="phone" value="{{ old('phone') }}" required autofocus>
+                                        <input id="phone" type="text" class="form-control" name="phone" value="{{ old('phone') }}"  autofocus>
 
                                     </div>
                                     <div>
@@ -176,7 +176,7 @@
                             </div>
                         </div>
 
-{{-- 
+ 
                          <!-- google reckapcha usage-->
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label"></label>
@@ -195,7 +195,7 @@
                         </div>
 
                         <!-- end google reckapcha usage-->
- --}}
+ 
                         <!-- user group -->
 
                         <!--                        <div class="form-group">

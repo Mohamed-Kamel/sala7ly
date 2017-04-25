@@ -38,7 +38,9 @@ class AdminController extends Controller
     public function viewallcompanies()
     {
 
-        $companies = User::where('group_id', '=', 2)->get();
+        $companies = User::where('group_id', '=', 2)->whereHas('company', function($companyQuery){
+                     $companyQuery->where('aprovment','=','aprove');
+                      })->get();
 
         return view('admin.companies', compact('companies'));
     }
@@ -69,4 +71,21 @@ class AdminController extends Controller
         return Redirect::back();
     }
 
+    public function waitingcompany(){
+
+        $companies = Company_detail::where('aprovment','=','waiting')->get();
+        
+
+        return view('admin.aprove', compact('companies'));
+
+    }
+    public function aprove($id){
+
+       $company= Company_detail::find($id);
+
+       $company->aprovment="aprove";
+       $company->save();
+
+      return Redirect::back();
+    }
 }

@@ -134,11 +134,14 @@
                                 <b class="caret pull-right"></b>
                                 <i class="fa fa-newspaper-o"></i>
 
-                                <span>register companies</span>
+                                <span>companies</span>
                             </a>
                             <ul class="sub-menu">
-                                <li><a href="{{url('/ad/companies')}}"><i class="fa fa-users"></i>all companies</a></li>
-                                <li><a href="{{url('/ad/trashedcompanies')}}"> <i class="fa fa-trash"></i> trashed companies</a></li>
+                                <li><a href="{{url('/ad/companies')}}"><i class="fa fa-sitemap"></i>all companies</a></li>
+                                <li><a href="{{url('/ad/trashedcompanies')}}"> <i class="fa fa-file-text-o"></i> trashed companies</a>
+                                </li>
+                                <li><a href="{{url('/ad/aprove')}}"> <i class="fa fa-file-text-o"></i>waiting to aprove</a>
+                                </li>
                             </ul>
                         </li>
 

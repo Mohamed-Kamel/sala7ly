@@ -112,6 +112,8 @@ Route::get('/ad/companies/{id}', 'AdminController@deleteUser');
 Route::get('/ad/trashedcompanies','AdminController@trashedcompanies');
 
 Route::get('/ad/trashedcompanies/{id}/restore','AdminController@restorUser');
+Route::get('/ad/aprove','AdminController@waitingcompany');
+Route::get('/ad/aprove/{id}','AdminController@aprove');
 
 
 // end company page in admin panel
@@ -136,3 +138,4 @@ Route::get('MarkAllSeen','PostController@seen');
 /*******************************Chat *******************/
 Route::get('/pm/{id}', 'ChatController@index');
 Route::post('/pm/{id}', 'ChatController@sendMessage');
+Route::get('/msg/read/{id}', 'ChatController@readAll');
