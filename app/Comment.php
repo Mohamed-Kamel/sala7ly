@@ -17,10 +17,16 @@ class Comment extends Model
     }
 
     public function reply(){
-
 	    return Comment::where('parent_id', '=', $this->id)->get();
     }
     public function users(){
 	    return $this->belongsTo('App\User', 'user_id', 'id');
     }
+    public function liked(){
+      return $this->hasMany('App\Like');
+    }
+    public function like_or_not(){
+      return Like::where('comment_id', '=', $this->id)->get();
+    }
+
 }

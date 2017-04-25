@@ -95,6 +95,9 @@ Route::post('userProfile/{id}','UserController@updateUser');
 Route::post("/question/{id}", "comments@post");
 Route::post("/question/{id}/mail", "comments@mailfunction");
 Route::post('question/{id}/done','QuestionController@changeStatus');
+//******************************* Like *******************************
+Route::post('/like','QuestionController@like');
+
 Route::get('question/delete/{id}','QuestionController@deleteQuestion');
 Route::get('comment/delete/{id}','QuestionController@deleteComment');
 Route::post('question/edit/{id}','QuestionController@editQuestion');

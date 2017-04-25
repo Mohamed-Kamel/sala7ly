@@ -18,6 +18,7 @@ class CreateCommentsTable extends Migration
             $table->text('comment');
             $table->unsignedInteger('parent_id')->default(0);
             $table->unsignedInteger('question_id');
+            $table->integer('likes')->default(0);
             $table->timestamp('created')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->unsignedInteger('user_id');
             $table->softDeletes();

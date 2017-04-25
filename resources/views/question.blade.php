@@ -49,7 +49,7 @@
                         </a>
                     </div>
                 </div>
-                <!--********** check status *********-->      
+                <!--********** check status *********-->
                 @if(Auth::id() && Auth::id() == $question->user_id)
                 <div class="col-sm-4">
                     <form method="post" id="my_form" class="colsed-question">
@@ -111,10 +111,10 @@
                         @endif
                         <span class="qustion-user">
                             <i class="ti-timer"></i>
-                            تم النشر بتاريخ: 
+                            تم النشر بتاريخ:
                             {{$question->created}}
                         </span>
-                     
+
                     </div>
                 </div>
             </div>
@@ -170,18 +170,22 @@
                                     <img @if($comment->users->img) src="{{ url($comment->users->img)}}"@endif  alt="{{$comment->users->name}}">
                                 </a>
                                 @endif
-                                   
+
                             </div>
+
+
+
                             <div class="comment-box">
                                 <div class="comment-head">
+
                                     @if($comment->users->group_id == '2' )
                                     <h6 class="comment-name by-author"><a href="{{ url('/company') }}/{{ $comment->users->id }}">{{$comment->users->name}}</a></h6>
                                     @endif
                                      @if($comment->users->group_id == '1' )
                                     <h6 class="comment-name by-author"><a href="{{ url('/userProfile') }}/{{ $comment->users->id }}">{{$comment->users->name}}</a></h6>
                                     @endif
-                                    
-                                    
+
+
                                     <div class="replay-desc">
                                          <span><i class="ti-timer"></i>  {{$comment->created}}</span>
                                         @if(Auth::id() == $comment->user_id )
@@ -198,12 +202,22 @@
                                             <input type="hidden" name="status" value="0">
                                             <input type="hidden" value="">
                                             <button type="submit" class="btn btn-success"><i class="fa fa-handshake-o"></i> تواصل</button>
-                                        </form>  
-                                        @endif 
+                                        </form>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="comment-content">
                                     {{$comment->comment}}
+                                    <!-- Like -->
+                                    @if(auth()->user())
+                                    <div class="post post-like" id="{{$comment->id}}">
+                                      <input type="hidden" value="{{csrf_token()}}">
+                                        <i class="fa fa-heart lik-comment @if($comment->first()->liked->first()->comment_id == $comment->id && $comment->first()->liked->first()->user_id == Auth::id()) {{like-red}} @endif"></i>
+                                        <span>{{$comment->likes}}</span>
+
+                                    </div>
+                                    @endif
+                                    <!-- Like -->
                                 </div>
                             </div>
                         </div>
@@ -226,6 +240,7 @@
                                     @endif
                                 </div>
                                 <div class="comment-box">
+
                                     <div class="comment-head">
                                     @if($reply->users->group_id == '2' )
                                     <h6 class="comment-name by-author"><a href="{{ url('/company') }}/{{ $reply->users->id }}">{{$reply->users->name}}</a></h6>
@@ -233,21 +248,30 @@
                                     @if($reply->users->group_id == '1' )
                                     <h6 class="comment-name by-author"><a href="{{ url('/userProfile') }}/{{ $reply->users->id }}">{{$reply->users->name}}</a></h6>
                                     @endif
-                                     
+
                                     <div class="replay-desc">
                                           <span><i class="ti-timer"></i>  {{$reply->created}}</span>
                                      @if(Auth::id() == $reply->user_id )
                                         <a href="{{url('/comment/delete')}}/{{$reply->id}}" class=""><i class="ti-trash"></i></a>
                                         @endif
                                     </div>
-                                   
+
                                     </div>
                                     <div class="comment-content">
                                         {{$reply->comment}}
                                     </div>
+                                    <!-- Like -->
+                                    @if(auth()->user())
+                                    <div class="post post-like" id="{{$reply->id}}">
+                                        <input type="hidden" value="{{csrf_token()}}">
+                                        <i class="fa fa-heart lik-comment @if($reply->first()->liked->first()->comment_id == $reply->id && $reply->first()->liked->first()->user_id == Auth::id()) {{like-red}} @endif"></i>
+                                        <span>{{$reply->likes}}</span>
+                                    </div>
+                                    @endif
+                                    <!-- Like -->
                                 </div>
                             </li>
-                            @endforeach 
+                            @endforeach
 
                             @if(Auth::id() && $question->status=='open')
                             <li class="auther-leave-comment">
@@ -271,7 +295,7 @@
                                         </form>
                                     </div>
 
-                                </div> 
+                                </div>
                             </li>
                             @endif
                         </ul>
@@ -300,6 +324,8 @@
                                     @if($comment->users->group_id == '1' )
                                     <h6 class="comment-name by-author"><a href="{{ url('/userProfile') }}/{{ $comment->users->id }}">{{$comment->users->name}}</a></h6>
                                     @endif
+
+
                                     <div class="replay-desc">
                                         <span><i class="ti-timer"></i>  {{$comment->created}}</span>
                                          @if(Auth::id() == $comment->user_id )
@@ -317,13 +343,22 @@
                                             <input type="hidden" name="status" value="0"> -->
                                             <input type="hidden" value="">
                                             <button type="submit" class="btn btn-success"><i class="fa fa-handshake-o"></i>  تواصل</button>
-                                        </form> 
-                                        @endif  
+                                        </form>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="comment-content">
                                     {{$comment->comment}}
                                 </div>
+                                <!-- Like -->
+                                @if(auth()->user())
+                                <div class="post post-like" id="{{$comment->id}}">
+                                  <input type="hidden" value="{{csrf_token()}}">
+                                    <i class="fa fa-heart lik-comment @if($comment->first()->liked->first()->comment_id == $comment->id && $comment->first()->liked->first()->user_id == Auth::id()) like-red @endif"></i>
+                                    <span>{{$comment->likes}}</span>
+                                </div>
+                                @endif
+                                <!-- Like -->
                             </div>
                         </div>
                         <!--START REPLIES-->
@@ -350,12 +385,12 @@
                                         </form>
                                     </div>
 
-                                </div> 
+                                </div>
                             </li>
                             @endif
                         </ul>
                         <!-- /END REPLIES-->
-                    </li> 
+                    </li>
                     @endif
                     @endforeach
                     @endif
@@ -380,7 +415,7 @@
             </div>
             <div class="most-rated-comp">
                 <h2>
-                    اسئلة ذات صلة تم حلها    
+                    اسالة ذات صلة تم حلها
                 </h2>
                 @foreach($results as $result)
                 <div class="related-questions-block">
@@ -393,7 +428,7 @@
             </div>
             <div class="most-rated-comp">
                 <h2>
-                    <i class="ti-cup">    
+                    <i class="ti-cup">
                     </i>
                     اعلى الشركات تقيماً
                 </h2>
@@ -416,7 +451,7 @@
                                 </ul>
                             </div>
                         </div>
-                        @endforeach 
+                        @endforeach
                         @endif
                     </div>
             </div>
@@ -432,9 +467,23 @@
         <button class="close-message btn btn-success">حسناً</button>
     </div>
 </div>
+
+<div class="accepted-comment">
+  <p>تم عمل اعجبني .</p>
+</div>
 <div class="loading-message">
     <img class="loading-contacts" src="{{ asset('images/loading.gif') }}">
 </div>
+
+<div class="rejected-comment">
+    <div class="sub-sucess-contact">
+        <p>تم الاعجاب من قبل</p>
+        <img class="fail-img" src="{{ asset('images/fail.png') }}">
+        <br>
+        <button class="close-message btn btn-success">حسناً</button>
+    </div>
+</div>
+
 <!--START EDIT Question-->
 <div class="modal fade" id="edit_question">
     <div class="modal-dialog">
@@ -443,7 +492,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title">Edit {{$question->title}}</h4>
             </div>
-            <form class="form-horizontal" method="post" action="{{url('/question/edit')}}/{{$question->id}}"  enctype="multipart/form-data"> 
+            <form class="form-horizontal" method="post" action="{{url('/question/edit')}}/{{$question->id}}"  enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="panel-body">
                         {{ csrf_field() }}
@@ -463,11 +512,11 @@
                             </div>
                         </div>
                         <div class="form-group-separator"></div>
-                        
+
                         <div class="form-group">
                             <label class="col-sm-3 control-label" for="field-1"> الصورة </label>
                             <div class="col-sm-9">
-                                <input type="file" class="form-control" name="img" value="{{ $question->img }}">  
+                                <input type="file" class="form-control" name="img" value="{{ $question->img }}">
                             </div>
                         </div>
                         <div class="form-group-separator"></div>
@@ -484,13 +533,48 @@
 </div>
 <!--END EDIT PAGE CONTENT-->
 <!-- /main container -->
- 
- @endsection
+
+@endsection
 
 @section("scripts")
 <script>
     $('document').ready(function(){
 
+      //LIKE comment Ahmed Magdy
+      $('.lik-comment').on('click', function (e) {
+              var like = $(this);
+              var comment_id = $(this).parents('div').attr('id');
+              var csrf= $(this).parent('div').find('input').val();
+              var span= parseInt($(this).parent('div').find('span').html());
+              console.log(span);
+              //loading gif
+              //  $( ".loading-message" ).show();
+              $.ajax({
+                      url:"{{url('/like')}}",
+                      data: {
+                        "comment_id" : comment_id,
+                      },
+                      type: "post",
+                      headers: {
+                          'X-CSRF-TOKEN': csrf
+                      },
+                      success: function(response) {
+                        like.addClass('like-red');
+                        span = span + 1;
+                        like.parent().find('span').html(span);
+                    },
+                    error: function (response) {
+                        $( ".rejected-comment").show();
+                    }
+        });
+      });
+      //End LIKE comment Ahmed Magdy
+
+
+      $(".heart").on('click',function(event){
+          event.preventDefault();
+          $(this).toggleClass("animated");
+      });
 
     $(".rep").on("click", function(event){
     event.preventDefault();
@@ -525,7 +609,7 @@
             success: function(response) {
             console.log(response);
 //                alert("message send to company successfully")
-//      
+//
 //hide loading gif
             $( ".loading-message" ).hide();
               $( ".sucess-contact" ).show();
@@ -559,11 +643,10 @@
 
     $('.close-message').on('click', function (e) {
         $('.sucess-contact').hide();
+        $('.rejected-comment').hide();
     });
+
+
+
 </script>
 @endsection
-
-
-
-
-

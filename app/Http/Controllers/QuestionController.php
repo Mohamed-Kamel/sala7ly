@@ -8,6 +8,7 @@ use App\Question;
 use App\Company_detail;
 use App\Cat;
 use App\Comment;
+use App\Like;
 use Auth;
 use Event;
 use Redirect;
@@ -93,6 +94,25 @@ class QuestionController extends Controller {
         }
         $question->save();
         return Redirect::back();
+    }
+    public function like(Request $request) {
+      $like = new Like;
+      $like->comment_id = $request->comment_id;
+      $like->user_id = Auth::user()->id;
+      if($like->save()){
+      $comment = Comment::find($request->comment_id);
+      $comment->likes += 1;
+      $comment->save();
+      return response()->json([
+          'status' => true
+      ]);
+    }else{
+      return response()->json([
+          'status' => false
+      ]);
+    }
+
+
     }
 
 }

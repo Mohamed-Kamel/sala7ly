@@ -5,11 +5,11 @@
     src: url('../font/GE_SS_Two_Light.otf');
 }
 *{
-    font-family:"GE","lucida grande",verdana,helvetica,arial,sans-serif; 
+    font-family:"GE","lucida grande",verdana,helvetica,arial,sans-serif;
 }
 body{
     direction: rtl;
-    font-family:"GE","lucida grande",verdana,helvetica,arial,sans-serif; 
+    font-family:"GE","lucida grande",verdana,helvetica,arial,sans-serif;
 
 }
 
@@ -1485,7 +1485,7 @@ a.inline {
     color: #999;
 }
 a.qustion-user:hover{
-    color: #258cc3;   
+    color: #258cc3;
 }
 .qustion-user i{
     margin-left: 5px;
@@ -1856,7 +1856,7 @@ a.qustion-user:hover{
     bottom: 0;
     left: 0;
     right: 0;
-    width: 100%; 
+    width: 100%;
     z-index: 999;
     cursor: pointer;
 }
@@ -1966,7 +1966,7 @@ a.qustion-user:hover{
     -webkit-border-radius:0 !important;
 }
 .main{
-    padding-top:30px; 
+    padding-top:30px;
 }
 .animated {
     -webkit-transition: height 0.2s;
@@ -2100,7 +2100,7 @@ input:checked + .slider:before {
 }
 .question-user-img a{
     color: #555;
-    line-height: 60px;  
+    line-height: 60px;
 }
 .question-user-img a:hover{
     color: #258cc3;
@@ -2694,7 +2694,7 @@ legend {
 .hide-checkbox{
     display: none;
 }
-.sucess-contact {
+.sucess-contact , .rejected-comment {
     display: none;
     position: fixed;
     top: 0;
@@ -2743,6 +2743,28 @@ legend {
     display: none;
 }
 
+/*like AHMED MAGDI*/
+.post-like {
+    text-align: left;
+    width: 100%;
+}
+.like-red{
+  color: red !important;
+}
+.post-like span{
+  font-family: sans-serif;
+}
+.rejected-comment, .accepted-comment{
+  display: none;
+}
+.fail-img{
+  width: 200px;
+  height: 200px;
+}
+i.fa.fa-heart.lik-comment {
+    cursor: pointer;
+}
+/*end like AHMED MAGDI*/
 /*MESSAGE PAGE*/
 #messages {
     border: 1px solid black;
