@@ -34,36 +34,37 @@
                 @endif
             </div>
         </div>
-        <div class="col-sm-12 company-details btn-group-justified btn-group-lg">
-         
-            @if(isset($user))
-                 
+        <div class="company-details">
+            <div class="col-sm-12  btn-group-justified btn-group-lg">
+                @if(isset($user))
                 @if($user->company->aprovment == 'waiting')
-                   <div class="btn-group"  style="background-color: red">
-                    <div   class="btn"  >
-                    <p style="font-size: 22px;" >بانتظار الموافقه على الحساب.</p>
+                <div class="btn-group" role="group">
+                    <div class="btn waiting-approve">
+                        <i class="fa fa-exclamation-triangle"></i> بانتظار الموافقه على الحساب 
                     </div>
-                   </div>
-
-                   @else
-                   <div class="btn-group" role="group">
-                        <div  id="stars" class="btn" >
-                            @for($i=0 ; $i<round($user->company->rating) ; $i++)
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                @endfor
-                                @for($i=5; $i>round($user->company->rating) ; $i--)
-                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                                @endfor
-                                <div class="hidden-xs">التقييم</div>
-                        </div>
+                </div>
+                @else
+                <div class="btn-group" role="group">
+                    <div  id="stars" class="btn" >
+                        @for($i=0 ; $i<round($user->company->rating) ; $i++)
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            @endfor
+                            @for($i=5; $i>round($user->company->rating) ; $i--)
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            @endfor
+                            <div class="hidden-xs">التقييم</div>
                     </div>
+                </div>
                 @endif
-            <div class="btn-group" role="group">
-                <div  id="favorites" class="btn " ><i class="ti-location-pin" aria-hidden="true"></i>
-                    <div class="hidden-xs">{{$user->city}}</div>
 
-                 </div>
-             </div>
+
+
+
+                <div class="btn-group" role="group">
+                    <div  id="favorites" class="btn " ><i class="ti-location-pin" aria-hidden="true"></i>
+                        <div class="hidden-xs">{{$user->city}}</div>
+                    </div>
+                </div>
                 <div class="btn-group" role="group">
                     <div id="following" class="btn" ><i class="ti-email" aria-hidden="true"></i>
                         @if($status || $user->id == Auth::id() )
@@ -262,10 +263,8 @@
     //     event.preventDefault();
     //     console.log("a");
     // });
-
     // $("#form").on("click", function(event){  
     //         event.preventDefault();
-
     //         var csrf= $("#token").val();
     //         var id = $(".save").attr("id");
     //         var name=$('#name').val();
@@ -299,7 +298,6 @@
     //               window.location.reload();
     //                 $("#myModal").modal("hide");
     //              }
-
     //         });
     //     });
 </script>
