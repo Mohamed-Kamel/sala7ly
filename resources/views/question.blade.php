@@ -212,8 +212,7 @@
                                     @if(auth()->user())
                                     <div class="post post-like" id="{{$comment->id}}">
                                       <input type="hidden" value="{{csrf_token()}}">
-                                        <i class="fa fa-heart lik-comment "></i>
-                                        {{--@if($comment->first()->liked->first()->comment_id == $comment->id && $comment->first()->liked->first()->user_id == Auth::id()) {{like-red}} @endif--}}
+                                        <i class="fa fa-heart lik-comment @if($comment->like_or_not() && $comment->like_or_not()->comment_id == $comment->id) like-red @endif"></i>
                                         <span>{{$comment->likes}}</span>
 
                                     </div>
@@ -265,7 +264,7 @@
                                     @if(auth()->user())
                                     <div class="post post-like" id="{{$reply->id}}">
                                         <input type="hidden" value="{{csrf_token()}}">
-                                        <i class="fa fa-heart lik-comment "></i>
+                                        <i class="fa fa-heart lik-comment @if($reply->like_or_not() && $reply->like_or_not()->comment_id == $reply->id) like-red @endif"></i>
                                         {{--@if($reply->first()->liked->first()->comment_id == $reply->id && $reply->first()->liked->first()->user_id == Auth::id()) {{like-red}} @endif--}}
                                         <span>{{$reply->likes}}</span>
                                     </div>
@@ -356,7 +355,7 @@
                                 @if(auth()->user())
                                 <div class="post post-like" id="{{$comment->id}}">
                                   <input type="hidden" value="{{csrf_token()}}">
-                                    <i class="fa fa-heart lik-comment "></i>
+                                    <i class="fa fa-heart lik-comment @if($comment->like_or_not() && $comment->like_or_not()->comment_id == $comment->id) like-red @endif"></i>
                                     {{--@if($comment->first()->liked->first()->comment_id == $comment->id && $comment->first()->liked->first()->user_id == Auth::id()) like-red @endif--}}
                                     <span>{{$comment->likes}}</span>
                                 </div>

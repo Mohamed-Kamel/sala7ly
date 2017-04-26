@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use Auth;
 class Comment extends Model
 {
 
@@ -26,7 +26,7 @@ class Comment extends Model
       return $this->hasMany('App\Like');
     }
     public function like_or_not(){
-      return Like::where('comment_id', '=', $this->id)->get();
+      return Like::where('comment_id', '=', $this->id)->where('user_id', Auth::id())->first();
     }
 
 }

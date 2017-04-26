@@ -1,3 +1,4 @@
+@if(auth()->user() && auth()->user()->group_id === 3)
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -207,3 +208,12 @@ $(document).ready(function () {
         @yield('scripts')
     </body>
 </html>
+@elseif(auth()->user() && (auth()->user()->group_id === 2 || auth()->user()->group_id === 1))
+    <script type="text/javascript">
+        window.location = "{{ url('/') }}";//here double curly bracket
+    </script>
+@else
+    <script type="text/javascript">
+        window.location = "{{ url('/login') }}";//here double curly bracket
+    </script>
+@endif

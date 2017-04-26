@@ -20,7 +20,7 @@ class UserController extends Controller
 //            ->where('questions.id', '=', $id)
 //            ->select('questions.*')
 //            ->get();
-        
+
 //        $cats = DB::table('questions')
 //            ->join('cats', 'questions.id', '=', 'cats.id')
 //            ->where('cats.id', '=', $id)
@@ -34,21 +34,37 @@ class UserController extends Controller
 //            ->select('comments.*')
 //            ->get();
 //        $commentsNumber = $comments->count();
-       // dd($commentsNumber);
+        // dd($commentsNumber);
 
-        return view("userProfile", compact( 'users'));
+        return view("userProfile", compact('users'));
     }
 
 
     public function updateUser(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|min:7|max:17',
-            'city' => 'required',
-            'phone'=>'required|min:11|max:20',
-            'img'=>'image',
-            'cover'=>'image',
+        $this->validate(request(), [
+            'name' => 'required|string|min:4|max:50',
+            'city' => 'required|string',
+            'phone' => 'required|regex:/[0-9+]+/|min:8|max:14|string',
+            'img' => 'mimes:jpeg,jpg,png,gif',
+            'cover' => 'mimes:jpeg,jpg,png,gif',
+        ], [
+            'city.required' => 'يجب ادخال حقل المدينة .',
+            'city.string' => 'يجب ادخال حقل المدينة بشكل صحيح .',
+            'name.required' => 'يجب ادخال حقل الاسم .',
+            'phone.required' => 'يجب ادخال حقل الهاتف .',
+            'name.min' => ' الاسم يجب ان يكون اكبر من 5 حروف .',
+            'name.string' => ' برجاء ادخال الاسم صحيح .',
+            'phone.min' => 'عفوا يجب ادخال رقم التليفون صحيح .',
+            'phone.numeric' => 'عفوا يجب ادخال رقم التليفون صحيح .',
+            'img.mimes' => 'برجاء اختيار صورة .',
+            'cover.mimes' => 'برجاء اختيار صورة .',
+            'phone.regex' => 'برجاء ادخال رقم الهاتف بشكل صحيح .',
+            'phone.min' => 'برجاء ادخال رقم الهاتف بشكل صحيح .',
+            'phone.max' => 'برجاء ادخال رقم الهاتف بشكل صحيح .',
+            'phone.string' => 'برجاء ادخال رقم الهاتف بشكل صحيح .',
         ]);
+
         $users = User::find(Auth::id());
         $users->name = $request->name;
         // $users->email = $request->email;

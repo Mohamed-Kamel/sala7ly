@@ -19,7 +19,7 @@
     <link href="{{ asset('css/style.css')}}" rel="stylesheet">
     <link href="{{ asset('css/custom-style.css')}}" rel="stylesheet">
     <link href="{{ asset('css/responsive.css')}}" rel="stylesheet">
-    {{--<script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>--}}
+    {{-- <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script> --}}
     <script src="{{asset('js/socket.io.min.js')}}"></script>
     <!-- Scripts -->
     <script>
