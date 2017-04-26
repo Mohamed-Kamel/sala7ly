@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Redirect;
 use App\Company_detail;
-
+use Auth;
 class AdminController extends Controller
 {
 
@@ -15,7 +15,6 @@ class AdminController extends Controller
     // view all users for admin
     public function users()
     {
-
 
         $users = User::withTrashed()->get();
 

@@ -7,6 +7,7 @@ use App\Cat;
 
 class CategoriesController extends Controller {
 
+
     public function index() {
         $cats = Cat::all();
         return view('admin/categories', compact('cats'));

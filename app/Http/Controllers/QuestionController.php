@@ -13,16 +13,19 @@ use Auth;
 use Event;
 use Redirect;
 
-class QuestionController extends Controller {
+class QuestionController extends Controller
+{
 
-    public function index() {
+    public function index()
+    {
 
         $questions = Question::orderBy('id', 'DESC')->paginate(5);
         $cats = Cat::all();
         return view('questions', compact('questions', 'cats'));
     }
 
-    public function changeStatus(Request $request, $id) {
+    public function changeStatus(Request $request, $id)
+    {
         $question = Question::find($id);
         if ($request->status === 'open') {
             $question->status = 'closed';
@@ -37,20 +40,22 @@ class QuestionController extends Controller {
         return response()->json(['success' => "success"], 200);
     }
 
-    public function showQuestion($id) {
+    public function showQuestion($id)
+    {
         $question = Question::find($id);
         Event::fire('question', $question);
         //@TODO:Question by category
 
         $results = Question::where('title', 'LIKE', '%' . $question->title . '%')
-                        ->where('title', '<>', $question->title)
-                        ->limit(10)->get();
+            ->where('title', '<>', $question->title)
+            ->limit(10)->get();
 
         $top_rated = Company_detail::orderBy('rating', 'DESC')->limit('10')->get();
         return view('question', compact('results', 'top_rated', 'question'));
     }
 
-    public function add_question(AddQuestion $request) {
+    public function add_question(AddQuestion $request)
+    {
 
         Common::globalXssClean($request);
         $question = new Question;
@@ -65,7 +70,8 @@ class QuestionController extends Controller {
         return redirect('/questions');
     }
 
-    public function deleteQuestion($id) {
+    public function deleteQuestion($id)
+    {
         $question = Question::find($id);
         $comments = Comment::where('question_id', '=', $id);
         $comments->forceDelete();
@@ -74,13 +80,15 @@ class QuestionController extends Controller {
 //        Recommended redirect on his profile
     }
 
-    public function deleteComment($id) {
+    public function deleteComment($id)
+    {
         $comment = Comment::find($id);
         $comment->forceDelete();
         return Redirect::back();
     }
 
-    public function editQuestion(Request $request, $id) {
+    public function editQuestion(Request $request, $id)
+    {
         $this->validate($request, [
             'title' => 'required|min:5|max:255',
             'desc' => 'required|min:10',
@@ -95,23 +103,24 @@ class QuestionController extends Controller {
         $question->save();
         return Redirect::back();
     }
-    public function like(Request $request) {
-      $like = new Like;
-      $like->comment_id = $request->comment_id;
-      $like->user_id = Auth::user()->id;
-      if($like->save()){
-      $comment = Comment::find($request->comment_id);
-      $comment->likes += 1;
-      $comment->save();
-      return response()->json([
-          'status' => true
-      ]);
-    }else{
-      return response()->json([
-          'status' => false
-      ]);
-    }
 
+    public function like(Request $request)
+    {
+        $like = new Like;
+        $like->comment_id = $request->comment_id;
+        $like->user_id = Auth::user()->id;
+        if ($like->save()) {
+            $comment = Comment::find($request->comment_id);
+            $comment->likes += 1;
+            $comment->save();
+            return response()->json([
+                'status' => true
+            ]);
+        } else {
+            return response()->json([
+                'status' => false
+            ]);
+        }
 
     }
 
