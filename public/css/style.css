@@ -90,7 +90,7 @@ a:hover, a:active, a:focus{
 }
 
 .navbar-brand {
-    padding: 10px 15px;
+    padding: 13px 15px;
     color: #FFFFFF;
     font-size: 28px;
     font-weight: bold;
@@ -190,7 +190,7 @@ a.heaer-user-notify span, a.header-user-message span{
     display: none;
     position: absolute;
     top: 44px;
-    right: -197px;
+    left: 0;
     background-color: #fff;
     box-shadow: 0 0 10px silver;
     border-radius: 0 0 3px 3px;
@@ -2783,6 +2783,13 @@ i.fa.fa-heart.lik-comment {
     margin-left: 15px;
     border-radius: 100%;
 }
+#messages .reciever img {
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin-right: 15px;
+    border-radius: 100%;
+}
 #messages .sender {
     float: right;
     width: 100%;
@@ -2790,8 +2797,18 @@ i.fa.fa-heart.lik-comment {
     border-bottom: 1px solid #dedede;
     padding-bottom: 10px;
 }
+#messages .reciever {
+    float: left;
+    width: 100%;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #dedede;
+    padding-bottom: 10px;
+}
 #messages .sender p {
     display: block;
+}
+#messages .reciever p {
+    text-align: left;
 }
 #messages .reciever{
 /*    float: left;
@@ -2823,4 +2840,32 @@ i.fa.fa-heart.lik-comment {
 
 .waiting-approve i{
     color: #fedc2f;
+}
+li.temp {
+    padding: 10px;
+}
+
+form.send-message {
+    margin: 0 25px 0 49px;
+}
+form.send-message button.btn.btn-success.send-msg {
+    margin-bottom: 20px;
+}
+#messages .reciever span.msg-name {
+    font-weight: bold;
+    text-align: left;
+    display: block;
+}
+#messages .sender span.msg-name {
+    font-weight: bold;
+    text-align: right;
+    display: block;
+}
+#messages .reciever span.message-date {
+    text-align: right;
+    color: #999;
+}
+#messages .sender span.message-date {
+    text-align: left;
+    color: #999;
 }

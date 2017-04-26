@@ -99,7 +99,7 @@
                         class="sr-only"> Toggle navigation </span> <span class="icon-bar"> </span> <span
                         class="icon-bar"> </span> <span class="icon-bar"> </span></button>
             <a class="navbar-brand" href="{{ url('/') }}">
-                <img style="height:40px;" src="{{ asset('images/logo.png') }}" alt="Salahly"> </a>
+                <img style="height:30px;" src="{{ asset('images/logo.png') }}" alt="Salahly"> </a>
         </div>
 
         <div class="navbar-collapse collapse">
@@ -391,15 +391,25 @@
             $(this).removeClass('unread');
         });
     }
+
     /*************************************NodJS Chat*****************************************/
     var socket = io.connect('http://localhost:8890');
     socket.on('message', function (data) {
         data = jQuery.parseJSON(data);
         console.log(data);
-        $("#messages").append("<strong>" + data.user + "</strong><p>" + data.message + "</p>");
+        var img = $('<img src="/sala7ly/public/'+ data.img +'">');
+        var name = $('<span></span>').addClass('msg-name').text(data.user);
+        var msg = $('<p></p>').text(data.message);
+        var time = $('<span class="message-date"> <i class="fa fa-clock-o" aria-hidden="true"></i> {{\Carbon\Carbon::parse(\Carbon\Carbon::now())->diffForHumans()}}</span>');
+        var msgContent = $('<div></div>').addClass('mesaage-content').append(name).append(msg).append(time);
+        var container = $('<div class="sender"><div>').append(img).append(msgContent);
+        $("#messages").append(container);
+        console.log(container);
+//        $("#messages").append("<strong>" + data.user + "</strong><p>" + data.message + "</p>");
         @if(auth()->user())
         if (data.receiver_id == {{auth()->user()->id}}) {
             $("#no_msgs").find(".no_unread").text(parseInt($("#no_msgs").find(".no_unread").text()) + 1);
+ 
             var msg = $('<span></span>').addClass('notification-time').text(data.user).append($('<i></i>').addClass('ti-user'));
             var time = $('<span></span>').addClass('notification-time').text("{{\Carbon\Carbon::parse(\Carbon\Carbon::now())->diffForHumans()}}").append($('<i></i>').addClass('ti-timer'));
             var ele = $('<li></li>').append($('<a></a>').attr('href', "{{url('pm')}}/"+data.receiver_id).text(data.message).append(time).append(msg));

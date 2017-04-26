@@ -122,4 +122,15 @@
     .auther-leave-comment textarea{
         height: 60px !important;
     }
+    .company-details .btn-group {
+        width: 100% !important;
+        float: right !important;
+        display: block;
+    }
+    .card-background img{
+        display:none;
+    }
+    .navbar .navbar-top{
+        height: auto;
+    }
 }

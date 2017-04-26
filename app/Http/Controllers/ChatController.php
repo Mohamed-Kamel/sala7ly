@@ -21,7 +21,7 @@ class ChatController extends Controller
                 ->where('receiver_id', $id);
         })->orderBy('id', 'ASC')->get();
 
-        $user = User::where('id', $id)->first(['id', 'name']);
+        $user = User::where('id', $id)->first(['id', 'name', 'img']);
 
         return view('message', compact('messages', 'user'));
     }
@@ -39,7 +39,8 @@ class ChatController extends Controller
         $redis = Redis::connection();
         $data = ['message' => $request->get('message'),
             'user' => $request->get('user'),
-            'receiver_id' => $request->get('receiver_id')];
+            'receiver_id' => $request->get('receiver_id'),
+            'img' => $request->get('img')];
         $redis->publish('message', json_encode($data));
         return response()->json([]);
     }

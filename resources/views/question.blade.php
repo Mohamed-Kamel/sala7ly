@@ -136,12 +136,12 @@
                         <div class="status-upload">
                             <form class="postcomment" action="" method="post">
                                 {{ csrf_field() }}
-                                <textarea placeholder="اترك عرضك " name="comment" ></textarea>
+                                <textarea placeholder="اترك تعليقك " name="comment" ></textarea>
                                 <input type="hidden" name="question_id" value="{{$question->id}}" placeholder="{{$question->id}}">
                                 <input type="hidden" name="parent_id" value="0" placeholder="">
                                 <button type="submit"  class="btn btn-success">
                                     <i class="fa fa-share"></i>
-                                    اترك عرضك
+                                    اترك تعليقك
                                 </button>
                             </form>
                         </div><!-- Status Upload  -->
@@ -201,7 +201,7 @@
                                             <input type="hidden" name="review" value=" ">
                                             <input type="hidden" name="status" value="0">
                                             <input type="hidden" value="">
-                                            <button type="submit" class="btn btn-success"><i class="fa fa-handshake-o"></i> تواصل</button>
+                                            <button type="submit" class="btn btn-success"><i class="fa fa-handshake-o"></i> دعوة للتواصل</button>
                                         </form>
                                         @endif
                                     </div>
@@ -344,7 +344,7 @@
                                             <input type="hidden" name="review" value=" ">
                                             <input type="hidden" name="status" value="0"> -->
                                             <input type="hidden" value="">
-                                            <button type="submit" class="btn btn-success"><i class="fa fa-handshake-o"></i>  تواصل</button>
+                                            <button type="submit" class="btn btn-success"><i class="fa fa-handshake-o"></i>  دعوة للتواصل</button>
                                         </form>
                                         @endif
                                     </div>
@@ -457,6 +457,7 @@
 <div class="sucess-contact">
     <div class="sub-sucess-contact">
         <p>تم ارسال دعوتك بنجاح</p>
+        <p> لضمان حقوقك كن على اتصال بالشركة من خلال رسائل الموقع الخاصة</p>
         <img src="{{ asset('images/success.png') }}">
         <br>
         <button class="close-message btn btn-success">حسناً</button>
