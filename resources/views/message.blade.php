@@ -54,7 +54,8 @@
                             <input type="hidden" name="_token" value="{{ csrf_token() }}" >
                             <input type="hidden" name="user" value="{{Auth::user()->name}}" >
                             <input type="hidden" name="receiver_id" value="{{$user->id}}" >
-                            <input type="hidden" name="img" value="{{$user->img}}" > 
+                            <input type="hidden" name="sender_id" value="{{Auth::id()}}" >
+                            <input type="hidden" name="img" value="{{$user->img}}" >
                             <textarea class="form-control msg"></textarea>
                             <br/>
                             <button type="button" class="btn btn-success send-msg"><i class="fa fa-paper-plane" aria-hidden="true"></i> ارسل</button>
@@ -79,6 +80,7 @@
         var user = $("input[name='user']").val();
         var msg = $(".msg").val();
         var receiver_id = $("input[name='receiver_id']").val();
+        var sender_id = $("input[name='sender_id']").val();
         var img = $("input[name='img']").val();
         console.log(token, user, msg, receiver_id, img);
         if (msg != '') {
@@ -89,6 +91,7 @@
                     'message': msg,
                     'user': user,
                     'receiver_id': receiver_id,
+                    'sender_id': sender_id,
                     'img': img
                 },
                 success: function (data) {

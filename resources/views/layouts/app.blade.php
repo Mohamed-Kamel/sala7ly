@@ -397,7 +397,7 @@
     socket.on('message', function (data) {
         data = jQuery.parseJSON(data);
         console.log(data);
-        var img = $('<img src="/sala7ly/public/'+ data.img +'">');
+        var img = $('<img src="/'+ data.img +'">');
         var name = $('<span></span>').addClass('msg-name').text(data.user);
         var msg = $('<p></p>').text(data.message);
         var time = $('<span class="message-date"> <i class="fa fa-clock-o" aria-hidden="true"></i> {{\Carbon\Carbon::parse(\Carbon\Carbon::now())->diffForHumans()}}</span>');
@@ -412,7 +412,7 @@
  
             var msg = $('<span></span>').addClass('notification-time').text(data.user).append($('<i></i>').addClass('ti-user'));
             var time = $('<span></span>').addClass('notification-time').text("{{\Carbon\Carbon::parse(\Carbon\Carbon::now())->diffForHumans()}}").append($('<i></i>').addClass('ti-timer'));
-            var ele = $('<li></li>').append($('<a></a>').attr('href', "{{url('pm')}}/"+data.receiver_id).text(data.message).append(time).append(msg));
+            var ele = $('<li></li>').append($('<a></a>').attr('href', "{{url('pm')}}/"+data.sender_id).text(data.message).append(time).append(msg));
             $('.user-menu-message').prepend(ele);
         }
         @endif

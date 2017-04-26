@@ -41,31 +41,40 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown navbar-user">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <span class="image"><img src="{{ asset('images/team1.png') }}" alt="marwa" /></span>
-                                <span class="hidden-xs">marwa</span> <b class="caret"></b>
+                                <span class="image"><img src="{{ asset(auth()->user()->img) }}" alt="" /></span>
+                                <span class="hidden-xs">{{auth()->user()->name}}</span> <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu pull-right">
-                                <li><a href=""><i class="fa fa-pencil-square-o"></i> Edit Profile</a></li>
-                                <li><a href=""><i class="fa fa-power-off"></i> Log Out</a></li>
+                                {{--<li><a href=""><i class="fa fa-pencil-square-o"></i> Edit Profile</a></li>--}}
+                                <li><a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                       document.getElementById('logout-form').submit();">
+                                        <i class="fa fa-power-off"></i> Log Out</a></li>
                             </ul>
                         </li>
                     </ul>
                 </div>
             </div>
 
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+            </form>
             <div id="sidebar" class="sidebar">
                 <div data-scrollbar="true" data-height="100%">
                     <ul class="nav">
                         <li class="nav-user">
                             <div class="image">
-                                <img src="{{ asset('images/team1.png') }}" alt="" />
+                                <img src="{{ asset(auth()->user()->img) }}" alt="" />
                             </div>
                             <div class="info">
                                 <div class="name dropdown">
-                                    <a href="#" data-toggle="dropdown">marwa <b class="caret"></b></a>
+                                    <a href="#" data-toggle="dropdown">{{auth()->user()->name}} <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href=""><i class="fa fa-pencil-square-o"></i> Edit Profile</a></li>
-                                        <li><a href=""><i class="fa fa-power-off"></i> Log Out</a></li>
+                                        {{--<li><a href=""><i class="fa fa-pencil-square-o"></i> Edit Profile</a></li>--}}
+                                        <li><a href="{{ route('logout') }}"
+                                               onclick="event.preventDefault();
+                                                       document.getElementById('logout-form').submit();">
+                                                <i class="fa fa-power-off"></i> Log Out</a></li>
                                     </ul>
                                 </div>
                                 <div class="position">Administrator</div>

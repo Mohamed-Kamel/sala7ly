@@ -6,7 +6,7 @@
     <div class="row">
         @if(auth()->user() && auth()->user()->id != $users->id)
         <div class="col-lg-12 col-sm-12" style="text-align: center;">
-            <a href="{{url('/pm')}}/{{$user->id}}" class="btn message-me hvr-icon-pulse"> راسلني الآن</a>
+            <a href="{{url('/pm')}}/{{$users->id}}" class="btn message-me hvr-icon-pulse"> راسلني الآن</a>
         </div>
         @endif
         <div class="col-lg-12 col-sm-12">

@@ -33,13 +33,14 @@ class ChatController extends Controller
         //TODO: validate message
         $message = new Message;
         $message->msg = $request->get('message');
-        $message->sender_id = Auth::id();
+        $message->sender_id = $request->get('sender_id');
         $message->receiver_id = $id;
         $message->save();
         $redis = Redis::connection();
         $data = ['message' => $request->get('message'),
             'user' => $request->get('user'),
             'receiver_id' => $request->get('receiver_id'),
+            'sender_id' => $request->get('sender_id'),
             'img' => $request->get('img')];
         $redis->publish('message', json_encode($data));
         return response()->json([]);
