@@ -124,7 +124,7 @@
                         <li>
                             <a href="{{url('/ad/rate')}}">
                                 <i class="fa fa-handshake-o"></i>
-                                <span>User Contacts</span>
+                                <span>User Communications</span>
                             </a>
                         </li>
 

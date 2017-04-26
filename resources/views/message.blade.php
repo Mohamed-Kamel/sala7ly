@@ -21,33 +21,26 @@
                             @foreach($messages as $msg)
                             <div class="block-message">
                                 @if($msg->sender_id == auth()->id())
-                                <div class="reciever">
+                                <div class="sender">
                                     <img @if(isset(auth()->user()->img)) src="{{ url(auth()->user()->img)}}" @endif  alt="{{auth()->user()->name}}">
                                     <div class="mesaage-content">
-                                        <div class="message-date">
-                                            <span class="text-right">
-                                                <i class="fa fa-clock-o" aria-hidden="true"></i> {{$msg->created}}
-                                            </span>
-                                            <span class="text-left">
-                                                {{auth()->user()->name}}
-                                            </span>
-                                        </div>
+                                        <span class="msg-name">
+                                            {{auth()->user()->name}}
+                                        </span>
                                         <p>{{$msg->msg}}</p>
+                                        <span class="message-date"> <i class="fa fa-clock-o" aria-hidden="true"></i> {{$msg->created}}</span>
                                     </div>
                                 </div>
                                 @else
                                 <div class="sender">
                                    <img @if(isset($user->img)) src="{{ url($user->img)}}" @endif  alt="{{$user->name}}">
                                     <div class="mesaage-content">
-                                        <div class="message-date">
-                                            <span class="text-left">
-                                                <i class="fa fa-clock-o" aria-hidden="true"></i> {{$msg->created}}
-                                            </span>
-                                            <span class="text-right">
-                                                 {{$user->name}}
-                                            </span>
-                                        </div>
-                                         <p>{{$msg->msg}}</p>
+                                    <span class="msg-name">
+                                         {{$user->name}}
+                                    </span>
+                                   <span class="message-date">
+                                        <i class="fa fa-clock-o" aria-hidden="true"></i> {{$msg->created}}
+                                    </span>
                                     </div>
                                 </div>
                                 @endif  
@@ -57,14 +50,14 @@
                         </div>
                     </div>
                     <div class="col-lg-12" >
-                        <form action="sendmessage" method="POST">
+                        <form action="sendmessage" method="POST" class="send-message">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}" >
                             <input type="hidden" name="user" value="{{Auth::user()->name}}" >
                             <input type="hidden" name="receiver_id" value="{{$user->id}}" >
-                            {{-- <input type="hidden" name="receiver_id" value="{{$user->id}}" > --}}
+                            <input type="hidden" name="img" value="{{$user->img}}" > 
                             <textarea class="form-control msg"></textarea>
                             <br/>
-                            <button type="button" class="btn btn-success send-msg">ارسل</button>
+                            <button type="button" class="btn btn-success send-msg"><i class="fa fa-paper-plane" aria-hidden="true"></i> ارسل</button>
                         </form>
                     </div>
                 </div>
@@ -86,7 +79,8 @@
         var user = $("input[name='user']").val();
         var msg = $(".msg").val();
         var receiver_id = $("input[name='receiver_id']").val();
-        console.log(token, user, msg, receiver_id);
+        var img = $("input[name='img']").val();
+        console.log(token, user, msg, receiver_id, img);
         if (msg != '') {
             $.ajax({
                 method: 'post',
@@ -94,7 +88,8 @@
                 data: {'_token': token,
                     'message': msg,
                     'user': user,
-                    'receiver_id': receiver_id
+                    'receiver_id': receiver_id,
+                    'img': img
                 },
                 success: function (data) {
                     //                    console.log(data);

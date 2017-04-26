@@ -52,7 +52,7 @@
                             @for($i=5; $i>round($user->company->rating) ; $i--)
                             <i class="fa fa-star-o" aria-hidden="true"></i>
                             @endfor
-                            <div class="hidden-xs">التقييم</div>
+                            <div >التقييم</div>
                     </div>
                 </div>
                 @endif
@@ -62,24 +62,24 @@
 
                 <div class="btn-group" role="group">
                     <div  id="favorites" class="btn " ><i class="ti-location-pin" aria-hidden="true"></i>
-                        <div class="hidden-xs">{{$user->city}}</div>
+                        <div >{{$user->city}}</div>
                     </div>
                 </div>
                 <div class="btn-group" role="group">
                     <div id="following" class="btn" ><i class="ti-email" aria-hidden="true"></i>
                         @if($status || $user->id == Auth::id() )
-                        <div class="hidden-xs ">{{$user->email}}</div>
+                        <div class="">{{$user->email}}</div>
                         @else
-                        <div class="hidden-xs blurry-text">لم يتم التواصل من قبل</div>
+                        <div class="blurry-text">لم يتم التواصل من قبل</div>
                         @endif
                     </div>
                 </div>
                 <div class="btn-group" role="group">
                     <div id="following" class="btn" ><i class="ti-headphone-alt" aria-hidden="true"></i>
                         @if($status || $user->id == Auth::id() )
-                        <div class="hidden-xs">{{$user->phone}}</div>
+                        <div >{{$user->phone}}</div>
                         @else
-                        <div class="hidden-xs blurry-text">لم يتم التواصل من قبل</div>
+                        <div class="blurry-text">لم يتم التواصل من قبل</div>
                         @endif
                     </div>
                 </div>
