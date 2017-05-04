@@ -38,6 +38,7 @@
                                     <span class="msg-name">
                                          {{$user->name}}
                                     </span>
+                                    <p>{{$msg->msg}}</p>
                                    <span class="message-date">
                                         <i class="fa fa-clock-o" aria-hidden="true"></i> {{$msg->created}}
                                     </span>

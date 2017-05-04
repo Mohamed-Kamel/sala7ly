@@ -36,6 +36,7 @@ class ChatController extends Controller
         $message->sender_id = $request->get('sender_id');
         $message->receiver_id = $id;
         $message->save();
+
         $redis = Redis::connection();
         $data = ['message' => $request->get('message'),
             'user' => $request->get('user'),
@@ -43,6 +44,7 @@ class ChatController extends Controller
             'sender_id' => $request->get('sender_id'),
             'img' => $request->get('img')];
         $redis->publish('message', json_encode($data));
+
         return response()->json([]);
     }
 
