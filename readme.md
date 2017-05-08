@@ -38,12 +38,12 @@ This is a community to connect the maintenance companies with the computer users
 4) Install composer Composer.
 5) Install git.
 6) Install real time chat requirements.
-<br/> &nbsp;&nbsp;&nbsp;  **Ubuntu user**
+<br/><br/> &nbsp;&nbsp;&nbsp;  **Ubuntu user**
 	* `sudo apt-get install nodejs`.
 	* `sudo apt-get install npm`.
 	* `sudo apt-get install redis-server` [Redis].
 	* `npm install express redis socket.io –save` (express, socket.io).
-<br/>**Windows User**
+<br/><br/>**Windows User**
 	* Install nodeJS & npm. [nodeJS](https://nodejs.org/en/download/).
 	* Install Redis. [Redis](https://www.youtube.com/watch?v=Pdapt2PFidE).
 	* Open the project folder with git bash or cmd then run the command `npm install express redis socket.io –save` (express, socket.io).
