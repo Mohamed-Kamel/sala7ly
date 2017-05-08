@@ -51,6 +51,14 @@ This is a community to connect the maintenance companies with the computer users
 	* Open git bash from the project folder then run this laravel server `php artisan serve`.
 	* Open another git bash from the project folder then run the nodejs server `node nodejs/server.js`.
 	* Open the browser with this url `localhost:8000`.
-
+## References
+* [Stack Overflow](http://stackoverflow.com/).
+* [Laravel](https://laravel.com/docs/5.4).
+* [StreamLab](https://streamlab.io/).
+* [Youtube](https://www.youtube.com/).
+* [Bootstrap](http://getbootstrap.com/).
+* [LaraCast](https://laracasts.com/).
+* [Github Community](https://github.com/issues).
+* [Socket.io](https://socket.io/).
 ## License
 Any one can fork this project and use it for free.
