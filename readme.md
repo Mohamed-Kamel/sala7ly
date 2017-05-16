@@ -48,9 +48,9 @@ This is a community to connect the maintenance companies with the computer users
 	* Install Redis. [Redis](https://www.youtube.com/watch?v=Pdapt2PFidE).
 	* Open the project folder with git bash or cmd then run the command `npm install express redis socket.io –save` (express, socket.io).
 
-	* Open git bash from the project folder then run this laravel server `php artisan serve`.
-	* Open another git bash from the project folder then run the nodejs server `node nodejs/server.js`.
-	* Open the browser with this url `localhost:8000`.
+7) Open git bash from the project folder then run this laravel server `php artisan serve`.
+8) Open another git bash from the project folder then run the nodejs server `node nodejs/server.js`.
+9) Open the browser with this url `localhost:8000`.
 ## References
 * [Stack Overflow](http://stackoverflow.com/).
 * [Laravel](https://laravel.com/docs/5.4).
