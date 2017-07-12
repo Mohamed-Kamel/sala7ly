@@ -1,5 +1,5 @@
 # FIX-IT
-This is a community to connect the maintenance companies with the computer users who has problems with their computers.
+This is a community to connect the maintenance companies with the computer users who have problems with their computers.
 
 ## Tools
 1) **Servers**
